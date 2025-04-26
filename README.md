@@ -67,7 +67,8 @@ However, feedback and ideas are welcome!
 
 ## License
 
-To be determined.
+This project is licensed under the **Apache 2.0 License**.  
+See the [LICENSE](./LICENSE) file for details.
 
 ---
 
