@@ -1,0 +1,23 @@
+.button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  
+    .go {
+      background-color: #412ebd;
+      padding: 10px;
+      border-radius: 5px;
+      width: 90%;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none; // important pour retirer le soulignement du lien
+  
+      &:hover {
+        cursor: pointer;
+        background-color: #4A35CF;
+        color: white;
+      }
+    }
+  }

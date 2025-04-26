@@ -1,0 +1,255 @@
+/*===============================================================*/
+/* Nav */
+/*===============================================================*/
+
+nav {
+    position: relative;
+    z-index: 99;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .subnav {
+        position: fixed;
+        top: 15px;
+        width: 90%;
+        height: 90px;
+        display: flex;
+        align-items: center;
+        background-color: #000f3dcc;
+        border-radius: 30px;
+    }
+    
+    .subnav a:hover {
+        color: white !important;
+    }
+    
+    .subnav .logo {
+        position: absolute;
+        left: 20px;
+        width: 80px;
+        height: 80px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .subnav .logo img {
+        width: 85%;
+    }
+    
+    .subnav .pages {
+        display: flex;
+        padding-left: 130px;
+        align-items: center;
+        width: auto;
+        height: 100%;
+    }
+    
+    .subnav .pages a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 30px;
+        font-size: 15px;
+        color: #dadada;
+        font-family: 'termina', sans-serif;
+    }
+    
+    .subnav .pages a .bx {
+        font-size: 25px !important;
+        padding-right: 10px;
+    }
+    
+    
+    .button {
+        position: absolute;
+        height: 100%;
+        width: auto;
+        right: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .button .espaceclientMobile {
+        display: none;
+    }
+    
+    .button a,
+    .button div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'termina', sans-serif;
+        padding: 20px;
+        padding-left: 25px;
+        padding-right: 25px;
+        border-radius: 20px;
+        background-color: #00205b;
+        margin: 5px;
+        color: white;
+    }
+    
+    .button a img,
+    .button div img {
+        height: 20px;
+        border-radius: 100%;
+        padding-right: 10px;
+    }
+    
+    .button a .bx,
+    .button div .bx {
+        font-size: 20px !important;
+    }
+    
+    .button .menuPhone {
+        display: none;
+    }
+}
+
+
+
+/*===============================================================*/
+/* Menu Mobile */
+/*===============================================================*/
+
+.navmenu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 600px;
+    height: 100vh;
+    background-color: #000f3df6;
+    z-index: 99;
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.navmenu .close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'termina', sans-serif;
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 20px;
+    background-color: #00205b;
+    margin: 15px;
+    font-size: 40px !important;
+    color: white;
+}
+
+
+.navmenu .close:hover {
+    cursor: pointer;
+}
+
+.navmenu .buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: auto;
+    height: auto;
+}
+
+.navmenu .buttons a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'termina', sans-serif;
+    padding: 20px;
+    padding-left: 25px;
+    padding-right: 25px;
+    border-radius: 20px;
+    margin: 15px;
+    font-size: 22px;
+}
+
+
+.navmenu .buttons img {
+    height: 20px;
+    border-radius: 100%;
+    padding-right: 10px;
+}
+
+.navmenu .buttons a .bx {
+    font-size: 30px !important;
+    padding-right: 20px;
+}
+
+/*===============================================================*/
+/* Media Queries */
+/*===============================================================*/
+
+@keyframes apparition_right {
+    0% {
+        right: -100vw;
+    }
+    100% {
+        right: 0px;
+    }
+}
+
+
+@keyframes disparition_right {
+    0% {
+        right: 0px;
+    }
+    100% {
+        right: -100vw;
+    }
+}
+
+
+@media screen and (max-width: 1000px) {
+    .subnav .pages {
+        display: none;
+    }
+
+    .button .menuPhone {
+        display: flex;
+    }
+}
+
+@media screen and (max-width: 630px) {
+    .navmenu {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 590px) {
+    .button .espaceclientMobile {
+        display: flex;
+    }
+    .button #compte {
+        display: none;
+    }
+    .button .espaceclient {
+        display: none;
+    }
+}
+
+
+@media screen and (max-width: 480px) {
+    #settings {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .nav {
+      display: none !important;
+    }
+  }

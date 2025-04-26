@@ -1,0 +1,130 @@
+/*===============================================================*/
+/* Footer */
+/*===============================================================*/
+
+footer {
+    width: 100%;
+    height: 450px;
+    background-color: #000c30;
+    display: flex;
+    justify-content: center;
+}
+
+footer .left {
+    width: 33%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+footer .left h1 {
+    margin-top: 60px;
+    color: white;
+    font-size: 35px;
+    font-family: 'termina', sans-serif;
+}
+
+footer .left .buttons {
+    margin-top: 30px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+footer .left .buttons a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    background-color: #003391;
+    padding: 15px;
+    font-size: 22px;
+    border-radius: 15px;
+}
+
+footer .left .buttons a .bx {
+    padding-right: 10px;
+}
+
+footer .mid {
+    width: 33%;
+    height: 100%;
+    background-color: #ff000000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+footer .mid img {
+    margin-top: 50px;
+    width: 120px;
+}
+
+
+footer .mid p {
+    margin-top: 0px;
+    font-size: 16px;
+    text-align: center;
+    width: 50%;
+    color: rgb(230, 222, 252);
+}
+
+
+footer .right {
+    width: 33%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+footer .right h1 {
+    margin-top: 60px;
+    color: white;
+    font-size: 35px;
+    font-family: 'termina', sans-serif;
+}
+
+footer .right .links {
+    margin-top: 30px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+footer .right .links a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    font-size: 18px;
+}
+
+footer .right .links .bx {
+    padding-left: 10px;
+}
+
+/*===============================================================*/
+/* Media Queries */
+/*===============================================================*/
+
+@media screen and (max-width: 1400px) {
+    footer {
+        height: auto;
+        padding-bottom: 40px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    footer .mid {
+        display: none;
+    }
+
+    
+    footer .right,
+    footer .left {
+        width: 100%;
+    }
+}
