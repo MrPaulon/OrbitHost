@@ -7,7 +7,7 @@
 [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
 [![SCSS](https://img.shields.io/badge/SCSS-CC6699?style=for-the-badge&logo=sass&logoColor=white)](https://sass-lang.com/)
 [![In Development](https://img.shields.io/badge/status-in%20development-yellow?style=for-the-badge)](#)
-[![License](https://img.shields.io/badge/license-TBD-lightgrey?style=for-the-badge)](#)
+[![License](https://img.shields.io/badge/license-Apache_2.0-blue?style=for-the-badge)](./LICENSE)
 
 ---
 
