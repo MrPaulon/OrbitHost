@@ -29,7 +29,8 @@
             display: flex;
             flex-direction: column;
 
-            button {
+            button,
+            .button {
                 font-weight: bold;
                 margin-top: 10px;
                 color: rgb(211, 205, 222);

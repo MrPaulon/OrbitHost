@@ -9,6 +9,9 @@ import '~/assets/css/AppNavigation.scss'
                 <UButton
                     color="secondary"
                     variant="ghost"
+                    to="/"
+                    as="button"
+                    class="button"
                     icon="solar:cloud-bold"
                 >
                     Mes serveurs
@@ -16,6 +19,9 @@ import '~/assets/css/AppNavigation.scss'
                 <UButton
                     color="secondary"
                     variant="ghost"
+                    to="/"
+                    as="button"
+                    class="button"
                     icon="ic:round-support"
                 >
                     Support
@@ -23,6 +29,9 @@ import '~/assets/css/AppNavigation.scss'
                 <UButton
                     color="secondary"
                     variant="ghost"
+                    to="/"
+                    as="button"
+                    class="button"
                     icon="solar:settings-minimalistic-bold"
                 >
                     Paramètres
@@ -34,6 +43,9 @@ import '~/assets/css/AppNavigation.scss'
                 <UButton
                     color="secondary"
                     variant="ghost"
+                    to="/dashboard"
+                    as="button"
+                    class="button"
                     icon="material-symbols:space-dashboard"
                 >
                     Dashboard
@@ -41,6 +53,9 @@ import '~/assets/css/AppNavigation.scss'
                 <UButton
                     color="secondary"
                     variant="ghost"
+                    to="/"
+                    as="button"
+                    class="button"
                     icon="solar:programming-bold"
                 >
                     Console
@@ -48,6 +63,9 @@ import '~/assets/css/AppNavigation.scss'
                 <UButton
                     color="secondary"
                     variant="ghost"
+                    to="/"
+                    as="button"
+                    class="button"
                     icon="solar:spedometer-low-bold-duotone"
                 >
                     Performance
@@ -55,6 +73,9 @@ import '~/assets/css/AppNavigation.scss'
                 <UButton
                     color="secondary"
                     variant="ghost"
+                    to="/"
+                    as="button"
+                    class="button"
                     icon="solar:database-bold-duotone"
                 >
                     Base de données
@@ -62,6 +83,9 @@ import '~/assets/css/AppNavigation.scss'
                 <UButton
                     color="secondary"
                     variant="ghost"
+                    to="/"
+                    as="button"
+                    class="button"
                     icon="solar:folder-with-files-bold"
                 >
                     Fichiers
@@ -69,6 +93,9 @@ import '~/assets/css/AppNavigation.scss'
                 <UButton
                     color="secondary"
                     variant="ghost"
+                    to="/"
+                    as="button"
+                    class="button"
                     icon="solar:rewind-back-bold-duotone"
                 >
                     Backup
@@ -76,6 +103,9 @@ import '~/assets/css/AppNavigation.scss'
                 <UButton
                     color="secondary"
                     variant="ghost"
+                    to="/"
+                    as="button"
+                    class="button"
                     icon="solar:document-text-bold"
                 >
                     Logs
@@ -88,6 +118,9 @@ import '~/assets/css/AppNavigation.scss'
                 <UButton
                     color="secondary"
                     variant="ghost"
+                    to="/"
+                    as="button"
+                    class="button"
                     icon="solar:shield-user-bold"
                 >
                     Mon compte
@@ -95,6 +128,9 @@ import '~/assets/css/AppNavigation.scss'
                 <UButton
                     color="error"
                     variant="ghost"
+                    to="/"
+                    as="button"
+                    class="button"
                     icon="solar:logout-2-bold"
                 >
                     Deconnexion
