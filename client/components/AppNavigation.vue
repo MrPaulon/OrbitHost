@@ -3,31 +3,106 @@ import '~/assets/css/AppNavigation.scss'
 </script>
 <template>
     <div class="navbar">
-        <div class="content  bg-indigo-800 bg-muted rounded-xl opacity-90">
-            <div class="left">
-                <img src="../public/logo_no_bg.png" alt="logo">
+        <div class="content  bg-indigo-800 bg-muted opacity-90">
+            <h1 class="title text-white font-bold text-3xl">Pterodactyl<span class=""></span> </h1>
+            <div class="categorie text-indigo-150 text-xs font-extrabold">MENU
+                <UButton
+                    color="secondary"
+                    variant="ghost"
+                    icon="solar:cloud-bold"
+                >
+                    Mes serveurs
+                </UButton>
+                <UButton
+                    color="secondary"
+                    variant="ghost"
+                    icon="ic:round-support"
+                >
+                    Support
+                </UButton>
+                <UButton
+                    color="secondary"
+                    variant="ghost"
+                    icon="solar:settings-minimalistic-bold"
+                >
+                    Paramètres
+                </UButton>
             </div>
-            <div class="center">
-                <div class="buttons">
-                    <UButton
-                        icon="solar:home-2-bold"
-                        size="md"
-                        color="neutral"
-                        variant="outline"
-                    >
-                        Accueil
-                    </UButton>
-                    <UButton
-                        icon="solar:book-2-broken"
-                        size="md"
-                        color="neutral"
-                        variant="outline"
-                    >
-                        Docs
-                    </UButton>
-                </div>
+
+            <!--CATEGORIE SERVER SETTINGS-->
+            <div class="categorie text-indigo-150 text-xs font-extrabold">GESTION SERVEUR
+                <UButton
+                    color="secondary"
+                    variant="ghost"
+                    icon="material-symbols:space-dashboard"
+                >
+                    Dashboard
+                </UButton>
+                <UButton
+                    color="secondary"
+                    variant="ghost"
+                    icon="solar:programming-bold"
+                >
+                    Console
+                </UButton>
+                <UButton
+                    color="secondary"
+                    variant="ghost"
+                    icon="solar:spedometer-low-bold-duotone"
+                >
+                    Performance
+                </UButton>
+                <UButton
+                    color="secondary"
+                    variant="ghost"
+                    icon="solar:database-bold-duotone"
+                >
+                    Base de données
+                </UButton>
+                <UButton
+                    color="secondary"
+                    variant="ghost"
+                    icon="solar:folder-with-files-bold"
+                >
+                    Fichiers
+                </UButton>
+                <UButton
+                    color="secondary"
+                    variant="ghost"
+                    icon="solar:rewind-back-bold-duotone"
+                >
+                    Backup
+                </UButton>
+                <UButton
+                    color="secondary"
+                    variant="ghost"
+                    icon="solar:document-text-bold"
+                >
+                    Logs
+                </UButton>
             </div>
-            <div class="right"></div>
+
+
+            <!--COMPTE-->
+            <div class="categorie text-indigo-150 text-xs font-extrabold">COMPTE
+                <UButton
+                    color="secondary"
+                    variant="ghost"
+                    icon="solar:shield-user-bold"
+                >
+                    Mon compte
+                </UButton>
+                <UButton
+                    color="error"
+                    variant="ghost"
+                    icon="solar:logout-2-bold"
+                >
+                    Deconnexion
+                </UButton>
+            </div>
+
+            <!--BLANK-->
+            <div class="categorie"></div>
         </div>
-    </div>
+        </div>
 </template>

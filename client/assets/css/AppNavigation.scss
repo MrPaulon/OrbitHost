@@ -1,41 +1,59 @@
 .navbar {
-    width: 100%;
-    height: 140px;
+    width: 80px;
+    height: 100%;
     display: flex;
-    justify-content: center;
 
     .content {
         position: fixed;
-        margin-top: 20px;
-        width: 80%;
-        max-width: 800px;
-        height: 72px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        left: 0px;
+        height: 100%;
+        width: 300px;
+        overflow-x: scroll;
 
-        .left {
-            position: absolute;
-            left: 20px;
-            width: 60px;
-            img {
-                height: 40px;
-            }
+        display: flex;
+        flex-direction: column;
+        
+        .title {
+            font-family: termina;
+            margin-top: 20px;
+            width: 100%;
+            text-align: center;
         }
 
-        .center {
-            width: 300px;
+        .categorie {
+            margin-top: 40px;
+            margin-left: 20px;
+            color: rgb(194, 187, 208);
+            width: 90%;
+            font-size: 10px;
+            display: flex;
+            flex-direction: column;
 
-            .buttons {
-                width: auto;
-                button {
-                    width: auto;
-                    height: 50px;
-                    padding-left: 20px;
-                    padding-right: 20px;
-                    margin: 5px;
+            button {
+                font-weight: bold;
+                margin-top: 10px;
+                color: rgb(211, 205, 222);
+                font-size: 15px;
+
+                span {    
+                    width: calc(var(--spacing) * 8);
+                    height: calc(var(--spacing) * 8);
                 }
             }
+
+            button:hover {
+                color: white;
+                cursor: pointer;
+            }
         }
+
+
+
+        .blank {
+            width: 100px;
+            height: 20px;
+            background-color: red;
+        }
+
     }
 }

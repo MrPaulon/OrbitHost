@@ -1,7 +1,10 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
 @import url('https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css');
-
+@font-face {
+  font-family: termina;
+  src: url('../fonts/TerminaTest-Bold.otf');
+}
 @theme static {
   --font-sans: 'Public Sans', sans-serif;
 
@@ -18,4 +21,8 @@
   --color-green-800: #016538;
   --color-green-900: #0A5331;
   --color-green-950: #052E16;
+}
+
+body {
+  margin-left: 300px;
 }
