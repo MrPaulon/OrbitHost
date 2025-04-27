@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
+@import url('https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css');
 
 @theme static {
   --font-sans: 'Public Sans', sans-serif;
