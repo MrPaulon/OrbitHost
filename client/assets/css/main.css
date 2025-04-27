@@ -23,5 +23,7 @@
 }
 
 body {
+  background-image: url(./texture.png);
+  background-size: 100px;
   margin-left: 300px;
 }
