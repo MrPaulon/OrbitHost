@@ -60,8 +60,8 @@ import '~/assets/css/dashboard.scss'
                 <p>RAM :</p>
                 <p class="text-sm text-gray-300">{{ server.ramUsage }}% / {{ server.ram }} GB</p>
               </div>
-              <div class="w-full bg-white/10 rounded-[10px] h-4">
-                <div class="bg-indigo-500 h-4 rounded-[10px]" :style="{ width: server.ramUsage + '%' }"></div>
+              <div class="w-full bg-white/10 rounded-[5px] h-4">
+                <div class="bg-indigo-500 h-4 rounded-[5px]" :style="{ width: server.ramUsage + '%' }"></div>
               </div>
             </div>
             <div>
@@ -69,8 +69,8 @@ import '~/assets/css/dashboard.scss'
                 <p>Stockage :</p>
                 <p class="text-sm text-gray-300">{{ server.storageUsage }}% / {{ server.storage }} GB</p>
               </div>
-              <div class="w-full bg-white/10 rounded-[10px] h-4">
-                <div class="bg-indigo-500 h-4 rounded-[10px]" :style="{ width: server.storageUsage + '%' }"></div>
+              <div class="w-full bg-white/10 rounded-[5px] h-4">
+                <div class="bg-indigo-500 h-4 rounded-[5px]" :style="{ width: server.storageUsage + '%' }"></div>
               </div>
             </div>
           </div>

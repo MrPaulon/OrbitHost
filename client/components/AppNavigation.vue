@@ -4,7 +4,7 @@ import '~/assets/css/AppNavigation.scss'
 <template>
     <div class="navbar">
         <div class="content  bg-indigo-800 bg-muted opacity-90">
-            <h1 class="title text-white font-bold text-3xl">Pterodactyl<span class=""></span> </h1>
+            <h1 class="title text-white font-bold text-3xl">Pelicore<span class=""></span> </h1>
             <div class="categorie text-indigo-150 text-xs font-extrabold">MENU
                 <UButton
                     color="secondary"
