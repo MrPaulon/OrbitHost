@@ -1,5 +1,5 @@
-.navbar {
-    width: 80px;
+.navigation {
+    width: 250px;
     height: 100%;
     display: flex;
 
@@ -7,7 +7,7 @@
         position: fixed;
         left: 0px;
         height: 100%;
-        width: 300px;
+        width: 250px;
         overflow-x: scroll;
 
         display: flex;
@@ -23,7 +23,6 @@
         .categorie {
             margin-top: 40px;
             margin-left: 20px;
-            color: rgb(194, 187, 208);
             width: 90%;
             font-size: 10px;
             display: flex;
@@ -31,10 +30,9 @@
 
             button,
             .button {
-                font-weight: bold;
-                margin-top: 10px;
-                color: rgb(211, 205, 222);
-                font-size: 15px;
+                margin-top: 5px;
+                font-size: 12px;
+                width: 80%;
 
                 span {    
                     width: calc(var(--spacing) * 8);

@@ -2,16 +2,15 @@
 import '~/assets/css/AppNavigation.scss'
 </script>
 <template>
-    <div class="navbar">
-        <div class="content  bg-indigo-800 bg-muted opacity-90">
-            <h1 class="title text-white font-bold text-3xl">Pelicore<span class=""></span> </h1>
-            <div class="categorie text-indigo-150 text-xs font-extrabold">MENU
+    <div class="navigation">
+        <div class="content bg-muted/40 text-dark-10">
+            <div class="categorie text-indigo-150 text-xs">MENU
                 <UButton
                     color="secondary"
                     variant="ghost"
                     to="/"
                     as="button"
-                    class="button"
+                    class="button text-dark-10"
                     icon="solar:cloud-bold"
                 >
                     Mes serveurs
@@ -21,7 +20,7 @@ import '~/assets/css/AppNavigation.scss'
                     variant="ghost"
                     to="/"
                     as="button"
-                    class="button"
+                    class="button text-dark-10"
                     icon="ic:round-support"
                 >
                     Support
@@ -31,7 +30,7 @@ import '~/assets/css/AppNavigation.scss'
                     variant="ghost"
                     to="/"
                     as="button"
-                    class="button"
+                    class="button text-dark-10"
                     icon="solar:settings-minimalistic-bold"
                 >
                     Paramètres
@@ -39,13 +38,13 @@ import '~/assets/css/AppNavigation.scss'
             </div>
 
             <!--CATEGORIE SERVER SETTINGS-->
-            <div class="categorie text-indigo-150 text-xs font-extrabold">GESTION SERVEUR
+            <div class="categorie text-indigo-150 text-xs">GESTION SERVEUR
                 <UButton
                     color="secondary"
                     variant="ghost"
                     to="/dashboard"
                     as="button"
-                    class="button"
+                    class="button text-dark-10"
                     icon="material-symbols:space-dashboard"
                 >
                     Dashboard
@@ -55,7 +54,7 @@ import '~/assets/css/AppNavigation.scss'
                     variant="ghost"
                     to="/"
                     as="button"
-                    class="button"
+                    class="button text-dark-10"
                     icon="solar:programming-bold"
                 >
                     Console
@@ -65,7 +64,7 @@ import '~/assets/css/AppNavigation.scss'
                     variant="ghost"
                     to="/"
                     as="button"
-                    class="button"
+                    class="button text-dark-10"
                     icon="solar:spedometer-low-bold-duotone"
                 >
                     Performance
@@ -75,7 +74,7 @@ import '~/assets/css/AppNavigation.scss'
                     variant="ghost"
                     to="/"
                     as="button"
-                    class="button"
+                    class="button text-dark-10"
                     icon="solar:database-bold-duotone"
                 >
                     Base de données
@@ -85,7 +84,7 @@ import '~/assets/css/AppNavigation.scss'
                     variant="ghost"
                     to="/"
                     as="button"
-                    class="button"
+                    class="button text-dark-10"
                     icon="solar:folder-with-files-bold"
                 >
                     Fichiers
@@ -95,7 +94,7 @@ import '~/assets/css/AppNavigation.scss'
                     variant="ghost"
                     to="/"
                     as="button"
-                    class="button"
+                    class="button text-dark-10"
                     icon="solar:rewind-back-bold-duotone"
                 >
                     Backup
@@ -105,40 +104,15 @@ import '~/assets/css/AppNavigation.scss'
                     variant="ghost"
                     to="/"
                     as="button"
-                    class="button"
+                    class="button text-dark-10"
                     icon="solar:document-text-bold"
                 >
                     Logs
                 </UButton>
             </div>
 
-
-            <!--COMPTE-->
-            <div class="categorie text-indigo-150 text-xs font-extrabold">COMPTE
-                <UButton
-                    color="secondary"
-                    variant="ghost"
-                    to="/"
-                    as="button"
-                    class="button"
-                    icon="solar:shield-user-bold"
-                >
-                    Mon compte
-                </UButton>
-                <UButton
-                    color="error"
-                    variant="ghost"
-                    to="/"
-                    as="button"
-                    class="button"
-                    icon="solar:logout-2-bold"
-                >
-                    Deconnexion
-                </UButton>
-            </div>
-
             <!--BLANK-->
             <div class="categorie"></div>
         </div>
-        </div>
+    </div>
 </template>

@@ -4,10 +4,10 @@ import '~/assets/css/dashboard.scss'
 <template>
     <div class="dashboard p-6 space-y-6 min-h-screen">
       <!-- Header and Server Control Buttons Card -->
-      <UCard class="w-full bg-white/5 backdrop-blur-lg border border-white/10 text-white shadow-md focus:outline-none">
+      <UCard class="w-full bg-white/5 backdrop-blur-lg border border-white/10  shadow-md focus:outline-none">
         <div class="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
           <div>
-            <h1 class="title text-3xl font-bold text-white flex items-center gap-2">
+            <h1 class="title text-3xl font-bold  flex items-center gap-2">
               {{ server.name }}
               <span v-if="server.status === 'online'" class="w-3 h-3 rounded-full bg-green-500"></span>
             </h1>
@@ -31,7 +31,7 @@ import '~/assets/css/dashboard.scss'
       <div class="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-3 gap-6">
   
         <!-- Infos Serveur -->
-        <UCard class="h-auto bg-white/5 backdrop-blur-lg border border-white/10 text-white shadow-md focus:outline-none">
+        <UCard class="h-auto bg-white/5 backdrop-blur-lg border border-white/10  shadow-md focus:outline-none">
           <template #header>
             <span class="text-xl font-bold flex items-center gap-2">
               <Icon name="solar:monitor-outline" />
@@ -47,7 +47,7 @@ import '~/assets/css/dashboard.scss'
         </UCard>
   
         <!-- RAM & Stockage Card (Combined) -->
-        <UCard class="h-auto bg-white/5 backdrop-blur-lg border border-white/10 text-white shadow-md focus:outline-none">
+        <UCard class="h-auto bg-white/5 backdrop-blur-lg border border-white/10  shadow-md focus:outline-none">
           <template #header>
             <span class="text-xl font-bold flex items-center gap-2">
               <Icon name="solar:cpu-outline" />
@@ -58,7 +58,7 @@ import '~/assets/css/dashboard.scss'
             <div>
               <div class="flex items-center justify-between font-semibold">
                 <p>RAM :</p>
-                <p class="text-sm text-gray-300">{{ server.ramUsage }}% / {{ server.ram }} GB</p>
+                <p class="text-sm">{{ server.ramUsage }}% / {{ server.ram }} GB</p>
               </div>
               <div class="w-full bg-white/10 rounded-[5px] h-4">
                 <div class="bg-indigo-500 h-4 rounded-[5px]" :style="{ width: server.ramUsage + '%' }"></div>
@@ -67,7 +67,7 @@ import '~/assets/css/dashboard.scss'
             <div>
               <div class="flex items-center justify-between font-semibold">
                 <p>Stockage :</p>
-                <p class="text-sm text-gray-300">{{ server.storageUsage }}% / {{ server.storage }} GB</p>
+                <p class="text-sm">{{ server.storageUsage }}% / {{ server.storage }} GB</p>
               </div>
               <div class="w-full bg-white/10 rounded-[5px] h-4">
                 <div class="bg-indigo-500 h-4 rounded-[5px]" :style="{ width: server.storageUsage + '%' }"></div>
@@ -78,7 +78,7 @@ import '~/assets/css/dashboard.scss'
   
   
         <!-- Réseau -->
-        <UCard class="h-auto bg-white/5 backdrop-blur-lg border border-white/10 text-white shadow-md focus:outline-none">
+        <UCard class="h-auto bg-white/5 backdrop-blur-lg border border-white/10  shadow-md focus:outline-none">
           <template #header>
             <span class="text-xl font-bold flex items-center gap-2">
               <Icon name="solar:wi-fi-router-bold" />
@@ -93,7 +93,7 @@ import '~/assets/css/dashboard.scss'
         </UCard>
   
         <!-- État du Serveur -->
-        <UCard class="h-auto bg-white/5 backdrop-blur-lg border border-white/10 text-white shadow-md focus:outline-none">
+        <UCard class="h-auto bg-white/5 backdrop-blur-lg border border-white/10  shadow-md focus:outline-none">
           <template #header>
             <span class="text-xl font-bold flex items-center gap-2">
               <Icon name="solar:settings-outline" />
@@ -111,7 +111,7 @@ import '~/assets/css/dashboard.scss'
         </UCard>
   
         <!-- Localisation -->
-        <UCard class="h-auto bg-white/5 backdrop-blur-lg border border-white/10 text-white shadow-md focus:outline-none">
+        <UCard class="h-auto bg-white/5 backdrop-blur-lg border border-white/10  shadow-md focus:outline-none">
           <template #header>
             <span class="text-xl font-bold flex items-center gap-2">
               <Icon name="solar:map-point-outline" />
