@@ -1,8 +1,4 @@
-<p align="center">
-  <img src="./client/public/logo.png" alt="OrbitHost Logo" width="300"/>
-</p>
-
-# 🚀 OrbitHost
+# 🚀 Serverly
 
 [![Nuxt.js](https://img.shields.io/badge/Nuxt.js-00DC82?style=for-the-badge&logo=nuxtdotjs&logoColor=white)](https://nuxt.com/)
 [![SCSS](https://img.shields.io/badge/SCSS-CC6699?style=for-the-badge&logo=sass&logoColor=white)](https://sass-lang.com/)
@@ -17,7 +13,7 @@
 
 ## About the Project
 
-**OrbitHost** is an innovative hosting management platform currently under active development.  
+**Serverly** is an innovative hosting management platform currently under active development.  
 Our goal is to **make server hosting easier, faster, and more intuitive** for users of all levels.
 
 We are building a **new-generation hosting experience** with modern technologies, focusing on:
