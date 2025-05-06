@@ -52,9 +52,9 @@ Stay tuned for more updates! 🚀
 
 ## Tech Stack
 
-- ReactJS
+- NUXT JS
 - SCSS (for custom styling)
-- React Router
+- PYTHON
 - Future integrations: API services, WebSocket for real-time updates
 
 ---
