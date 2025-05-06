@@ -15,7 +15,7 @@
   - `frontend/` (Nuxt)
   - `backend/` (Express)
   - `agent/` (Python)
-- [_] Choisir PostgreSQL et créer la base de données
+- [ ] Choisir PostgreSQL et créer la base de données
 - [ ] Écrire un fichier `schema.sql` pour créer les tables à la main
 
 ---
