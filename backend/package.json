@@ -1,11 +1,17 @@
 {
-  "name": "orbithost",
+  "name": "serverly_api",
   "version": "1.0.0",
-  "description": "server-side of orbithost",
+  "description": "The api of serverly",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "mrpaulon",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "mariadb": "^3.4.2"
+  }
 }
