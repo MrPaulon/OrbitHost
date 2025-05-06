@@ -15,8 +15,8 @@
   - `frontend/` (Nuxt)
   - `backend/` (Express)
   - `agent/` (Python)
-- [ ] Choisir MariaDB et créer la base de données
-- [ ] Écrire un fichier `schema.sql` pour créer les tables à la main
+- [X] Choisir MariaDB et créer la base de données
+- [X] Écrire un fichier `schema.sql` pour créer les tables à la main
 
 ---
 
