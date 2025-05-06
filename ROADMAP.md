@@ -3,7 +3,7 @@
 **Stack choisi :**
 - Frontend : Nuxt 3
 - Backend : Express.js avec requêtes SQL écrites à la main
-- Base de données : PostgreSQL
+- Base de données : MariaDB
 - Agent VPS : Python
 
 ---
@@ -15,7 +15,7 @@
   - `frontend/` (Nuxt)
   - `backend/` (Express)
   - `agent/` (Python)
-- [ ] Choisir PostgreSQL et créer la base de données
+- [ ] Choisir MariaDB et créer la base de données
 - [ ] Écrire un fichier `schema.sql` pour créer les tables à la main
 
 ---
@@ -24,7 +24,7 @@
 **Durée : 4-6 jours**
 
 ### Backend (Express + SQL)
-- [ ] Configurer PostgreSQL avec `pg` (`npm install pg`)
+- [ ] Configurer MariaDB avec `pg` (`npm install pg`)
 - [ ] Créer les tables :
   - `users (id, email, password_hash, created_at)`
 - [ ] Routes :
