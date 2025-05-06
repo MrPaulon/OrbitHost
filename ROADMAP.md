@@ -28,8 +28,8 @@
 - [X] Créer les tables :
   - `users (id, email, password_hash, created_at)`
 - [ ] Routes :
-  - `POST /auth/register` → INSERT utilisateur
-  - `POST /auth/login` → SELECT + vérification mot de passe (bcrypt)
+  - [x]`POST /auth/register` → INSERT utilisateur
+  - [ ]`POST /auth/login` → SELECT + vérification mot de passe (bcrypt)
 - [ ] JWT pour authentifier les utilisateurs
 
 ### Frontend (Nuxt)
