@@ -11,6 +11,11 @@
 
 ---
 
+## 📍 Roadmap
+
+Want to see what's coming next? Check out our [📅 Roadmap](./ROADMAP.md) for planned features and development stages.
+
+
 ## About the Project
 
 **Serverly** is an innovative hosting management platform currently under active development.  
