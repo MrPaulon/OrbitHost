@@ -10,16 +10,10 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@nuxt/schema": "^3.16.2",
-    "@nuxt/ui": "^3.1.0",
-    "chart.js": "^4.4.9",
-    "nuxt": "^3.16.2",
-    "sass": "^1.87.0",
+    "@nuxt/ui": "^3.1.1",
+    "nuxt": "^3.17.1",
     "typescript": "^5.8.3",
     "vue": "^3.5.13",
-    "vue-router": "^4.5.0"
-  },
-  "devDependencies": {
-    "@iconify-json/solar": "^1.2.2"
+    "vue-router": "^4.5.1"
   }
 }
