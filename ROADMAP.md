@@ -29,8 +29,8 @@
   - `users (id, email, password_hash, created_at)`
 - [ ] Routes :
   - [x]`POST /auth/register` → INSERT utilisateur
-  - [ ]`POST /auth/login` → SELECT + vérification mot de passe (bcrypt)
-- [ ] JWT pour authentifier les utilisateurs
+  - [X]`POST /auth/login` → SELECT + vérification mot de passe (bcrypt)
+- [X] JWT pour authentifier les utilisateurs
 
 ### Frontend (Nuxt)
 - [ ] Pages login / register
