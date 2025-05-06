@@ -24,8 +24,8 @@
 **Durée : 4-6 jours**
 
 ### Backend (Express + SQL)
-- [ ] Configurer MariaDB avec `pg` (`npm install pg`)
-- [ ] Créer les tables :
+- [X] Configurer MariaDB avec
+- [X] Créer les tables :
   - `users (id, email, password_hash, created_at)`
 - [ ] Routes :
   - `POST /auth/register` → INSERT utilisateur
