@@ -10,12 +10,12 @@
 
 ## 🔹 Phase 1 – Planification & Préparation
 **Durée : 1-2 jours**
-- [ ] Définir les fonctionnalités MVP (auth, ajout serveurs, monitoring, exécution de commandes)
-- [ ] Créer un monorepo ou arborescence :
+- [X] Définir les fonctionnalités MVP (auth, ajout serveurs, monitoring, exécution de commandes)
+- [X] Créer un monorepo ou arborescence :
   - `frontend/` (Nuxt)
   - `backend/` (Express)
   - `agent/` (Python)
-- [ ] Choisir PostgreSQL et créer la base de données
+- [] Choisir PostgreSQL et créer la base de données
 - [ ] Écrire un fichier `schema.sql` pour créer les tables à la main
 
 ---
