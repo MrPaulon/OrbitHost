@@ -35,7 +35,7 @@ async function loginUser(data: Schema) {
     console.log("Connexion réussie", response)
     // Afficher un toast de succès ou rediriger
   } catch (error) {
-    console.error("Erreur lors de l'inscription :", error)
+    console.error("Erreur lors de la connexion :", error)
     // Afficher une alerte/toast d'erreur
   }
 }
