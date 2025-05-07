@@ -33,7 +33,7 @@
 - [X] JWT pour authentifier les utilisateurs
 
 ### Frontend (Nuxt)
-- [ ] Pages login / register
+- [X] Pages login / register
 - [ ] Connexion à l’API pour auth
 - [ ] Stockage du JWT (via cookies ou localStorage)
 
