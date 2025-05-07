@@ -34,7 +34,7 @@ function onInvalid(error: any) {
         <UForm :schema="schema" :state="state" @submit="onSubmit" @submit-invalid="onInvalid">
             <UCard variant="solid" class="container">
                 <template #header>
-                    <h1 class="text-center title">Bienvennue</h1>
+                    <h1 class="text-center title">Bienvenue</h1>
                     <p class="text">Créez un compte pour accéder à nos services</p>
                 </template>
                 <div class="content">
