@@ -1,0 +1,71 @@
+.login {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), url(https://verpex.com/assets/uploads/images/blog/How-to-host-a-dedicated-server.webp?v=1681472130);
+    background-size: 100%;
+  
+    .container {
+      background-color: var(--color-surface);
+      width: 400px;
+      height: 420px;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      border-radius: 20px;
+  
+        .title {
+          margin-top: 20px;
+          font-weight: bold;
+          text-transform: uppercase;
+          font-size: 30px;
+        }
+  
+        .text {
+          margin-top: 10px;
+          width: 300px;
+        }
+  
+      .content {
+        width: 320px;
+        height: auto;
+        margin-top: -20px;
+  
+        .input {
+          width: 100%;
+          border: 1px solid #3e394a;
+          background-color: #3e394a;
+          border-radius: 5px;
+          margin-top: 10px;
+        }
+      }
+  
+      .footer {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 0px;
+        .buttons {
+          margin-top: 20px;
+          width: 80%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          .divider {
+            width: 100%;
+            height: 10px;
+          }
+        }
+      }
+    }
+  }
+  
+  .ring {
+    box-shadow: none !important;
+  }
+  
