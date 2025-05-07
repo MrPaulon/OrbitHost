@@ -13,15 +13,33 @@ const schema = object({
 
 type Schema = InferType<typeof schema>
 
-const state = reactive({
-    email: undefined,
-    pseudo: undefined,
-    password: undefined
+const state = reactive<Schema>({
+  email: '',
+  pseudo: '',
+  password: ''
 })
 
 async function onSubmit(event: FormSubmitEvent<Schema>) {
-    console.log(event.data)
     console.log("Success")
+    console.log(event.data);
+    if (event.data.email != null && event.data.password != null && event.data.pseudo != null) {
+        registerUser(event.data)
+    }
+}
+
+async function registerUser(data: Schema) {
+  try {
+    const response = await $fetch('http://localhost:3001/api/users/register', {
+      method: 'POST',
+      body: data,
+    })
+
+    console.log("Inscription réussie", response)
+    // Afficher un toast de succès ou rediriger
+  } catch (error) {
+    console.error("Erreur lors de l'inscription :", error)
+    // Afficher une alerte/toast d'erreur
+  }
 }
 
 function onInvalid(error: any) {

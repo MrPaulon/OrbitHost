@@ -13,8 +13,8 @@ const schema = object({
 type Schema = InferType<typeof schema>
 
 const state = reactive({
-    email: undefined,
-    password: undefined
+    email: '',
+    password: ''
 })
 
 async function onSubmit(event: FormSubmitEvent<Schema>) {
