@@ -27,6 +27,28 @@
   --color-primary-950: #020f4f;
 }
 
+.dark {
+  --ui-text-dimmed: var(--color-muted);
+  --ui-text-muted: var(--color-muted);
+  --ui-text-toned: var(--color-text);
+  --ui-text: var(--color-text);
+  --ui-text-highlighted: var(--color-primary-100);
+  --ui-text-inverted: var(--color-background);
+  
+  --ui-bg: var(--color-surface);
+  --ui-bg-muted: var(--color-background);
+  --ui-bg-elevated: var(--color-surface);
+  --ui-bg-accented: var(--color-primary-950);
+  --ui-bg-inverted: var(--color-primary-100);
+  
+  --ui-border: var(--color-border);
+  --ui-border-muted: var(--color-border);
+  --ui-border-accented: var(--color-primary-400);
+  --ui-border-inverted: var(--color-primary-100);
+
+  --ui-primary: var(--color-primary-500);
+}
+
 body {
   background-color: var(--color-background);
 }
