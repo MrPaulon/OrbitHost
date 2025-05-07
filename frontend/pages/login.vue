@@ -32,7 +32,7 @@ async function loginUser(data: Schema) {
       body: data,
     })
 
-    console.log("Inscription réussie", response)
+    console.log("Connexion réussie", response)
     // Afficher un toast de succès ou rediriger
   } catch (error) {
     console.error("Erreur lors de l'inscription :", error)
