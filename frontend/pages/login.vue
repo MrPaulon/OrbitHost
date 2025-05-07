@@ -20,6 +20,24 @@ const state = reactive({
 async function onSubmit(event: FormSubmitEvent<Schema>) {
     console.log(event.data)
     console.log("Success")
+    if (event.data.email != null && event.data.password != null) {
+        loginUser(event.data)
+    }
+}
+
+async function loginUser(data: Schema) {
+  try {
+    const response = await $fetch('http://localhost:3001/api/users/login', {
+      method: 'POST',
+      body: data,
+    })
+
+    console.log("Inscription réussie", response)
+    // Afficher un toast de succès ou rediriger
+  } catch (error) {
+    console.error("Erreur lors de l'inscription :", error)
+    // Afficher une alerte/toast d'erreur
+  }
 }
 
 function onInvalid(error: any) {
