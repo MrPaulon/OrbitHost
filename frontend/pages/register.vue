@@ -44,9 +44,28 @@ function onInvalid(error: any) {
                         <UInput v-model="state.password" icon="solar:lock-password-bold" class="input" size="xl" type="password" color="neutral" variant="soft" placeholder="Mot de passe" />
                     </UFormField>
                 </div>
-                <template #footer>
-                    <UButton type="submit" icon="material-symbols:rocket-launch-rounded" color="primary" size="lg" variant="solid" label="Créer le compte" />
-                </template>
+                <div class="footer">
+                    <p class="text">En créant un compte vous acceptez nos conditions d'utilisations</p>
+                    <div class="buttons">
+                        <UButton 
+                            type="submit"
+                            icon="material-symbols:rocket-launch-rounded"
+                            color="primary"
+                            size="lg"
+                            variant="solid"
+                            label="Créer le compte"
+                        />
+                        <div class="divider"></div>
+                        <UButton
+                            disabled
+                            label="Continuer avec Discord"
+                            icon="i-simple-icons-discord"
+                            color="primary"
+                            size="lg"
+                            variant="soft"
+                        />
+                    </div>
+                </div>
             </UCard>
         </UForm>
     </div>
