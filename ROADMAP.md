@@ -34,7 +34,7 @@
 
 ### Frontend (Nuxt)
 - [X] Pages login / register
-- [ ] Connexion à l’API pour auth
+- [X] Connexion à l’API pour auth
 - [ ] Stockage du JWT (via cookies ou localStorage)
 
 ---
