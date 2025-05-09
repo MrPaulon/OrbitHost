@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const { getConnection } = require('../../db/connection');
+const logger = require('../../utils/logger');
 
 const SALT_ROUNDS = 10;
 
@@ -24,15 +25,20 @@ module.exports = async (req, res) => {
     }
 
     const passwordHash = await bcrypt.hash(password, SALT_ROUNDS);
-    await conn.query(
+    const result = await conn.query(
       'INSERT INTO users (email, password_hash, pseudo) VALUES (?, ?, ?)',
       [email, passwordHash, pseudo]
     );
 
+    // Transforme le user id en INT
+    const userID = Number(result.insertId);
+
     conn.release();
+    logger.info(`Création d'un nouveau compte: ${userID}`);
+
     return res.status(201).json({ message: 'Utilisateur créé avec succès.' });
   } catch (err) {
-    console.error('Erreur lors de l’inscription:', err);
+    logger.error(`Erreur lors de la création d'un compte: ${err.message}`);
     return res.status(500).json({ error: 'Erreur interne du serveur.' });
   }
 };

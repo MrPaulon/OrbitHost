@@ -1,14 +1,17 @@
 const { getConnection } = require('../../db/connection');
+const logger = require('../../utils/logger');
 
 module.exports = async (req, res) => {
     const { name, ip_address, ssh_port = 22, username } = req.body;
     const userId = req.user?.userId;
 
     if (!userId) {
+        logger.error(`Tentative de création de serveur échouée pour un utilisateur non authentifié.`);
         return res.status(401).json({ error: 'Non authentifié.' });
     }
 
     if (!name || !ip_address || !username) {
+        logger.warn(`Serveur non créé. Paramètres manquants : ${JSON.stringify(req.body)}`);
         return res.status(400).json({ error: 'Champs requis manquants.' });
     }
 
@@ -31,9 +34,11 @@ module.exports = async (req, res) => {
         // Transforme le server id en INT
         const serverID = Number(result.insertId);
 
+        logger.info(`Serveur ajouté par l'utilisateur ${userId} avec l'ID ${serverID}`);
+
         return res.status(201).json({ message: 'Serveur ajouté.', id: serverID });
     } catch (err) {
-        console.error('Erreur lors de l’ajout du serveur :', err);
+        logger.error(`Erreur lors de l'ajout du serveur: ${err.message}`);
         return res.status(500).json({ error: 'Erreur interne du serveur.' });
     }
 };

@@ -3,6 +3,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { getConnection } = require('../../db/connection');
+const logger = require('../../utils/logger');
 
 module.exports = async (req, res) => {
   const { email, password } = req.body;
@@ -26,6 +27,7 @@ module.exports = async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password_hash);
     if (!isMatch) {
       conn.release();
+      logger.warn(`Tentative de connexion sur le compte: ${user.id}`);
       return res.status(401).json({ error: 'Mot de passe incorrect.' });
     }
 
@@ -37,12 +39,13 @@ module.exports = async (req, res) => {
     );
 
     conn.release();
+    logger.info(`Connexion du compte: ${user.id}`);
     return res.status(200).json({
       message: 'Connexion réussie.',
       token
     });
   } catch (err) {
-    console.error('Erreur lors de la connexion:', err);
+    logger.error(`Erreur lors de la connexion d'un compte: ${err.message}`);
     return res.status(500).json({ error: 'Erreur interne du serveur.' });
   }
 };
