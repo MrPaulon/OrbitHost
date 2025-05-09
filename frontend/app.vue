@@ -1,9 +1,11 @@
 <template>
   <body class="dark">
     <div>
-      <NuxtLayout>
-        <NuxtPage />
-      </NuxtLayout>
+      <UApp>
+        <NuxtLayout>
+          <NuxtPage />
+        </NuxtLayout>
+      </UApp>
     </div>
   </body>
 </template>

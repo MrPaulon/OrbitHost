@@ -3,6 +3,8 @@ import '../assets/css/login.scss'
 import { object, string, type InferType } from 'yup'
 import type { FormSubmitEvent } from '@nuxt/ui'
 
+const toast = useToast()
+
 const schema = object({
     email: string().email('Invalid email').required('Required'),
     password: string()
@@ -33,10 +35,21 @@ async function loginUser(data: Schema) {
     })
 
     console.log("Connexion réussie", response)
+    localStorage.setItem('token', response.token)
+    toast.add({
+      title: 'Connexion réussie',
+      description: 'Bienvenue sur votre tableau de bord',
+      color: 'success'
+    })
     // Afficher un toast de succès ou rediriger
   } catch (error) {
     console.error("Erreur lors de la connexion :", error)
     // Afficher une alerte/toast d'erreur
+    toast.add({
+      title: 'Erreur de connexion',
+      description: 'Vérifiez vos identifiants et réessayez',
+      color: 'error'
+    })
   }
 }
 
