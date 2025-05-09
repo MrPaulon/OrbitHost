@@ -12,6 +12,10 @@ app.use(express.json()); // Permet de lire le JSON dans les requêtes
 const userRoutes = require('./routes/users'); // Exemple : fichier routes/users.js
 app.use('/api/users', userRoutes);
 
+// Routes
+const serverRoutes = require('./routes/servers'); // Exemple : fichier routes/users.js
+app.use('/api/servers', serverRoutes);
+
 // Port
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
