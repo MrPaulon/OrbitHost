@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import '../assets/css/login.scss'
+import '../assets/css/auth.scss'
 import { object, string, type InferType } from 'yup'
 import type { FormSubmitEvent } from '@nuxt/ui'
 
@@ -60,7 +60,7 @@ function onInvalid(error: any) {
 <template>
     <div class="login dark">
         <UForm :schema="schema" :state="state" @submit="onSubmit" @submit-invalid="onInvalid">
-            <UCard variant="solid" class="container">
+            <UCard variant="solid" class="container" style="height: 420px;">
                 <template #header>
                     <h1 class="text-center title">Connexion</h1>
                     <p class="text">Connectez-vous pour accéder à votre espace</p>
