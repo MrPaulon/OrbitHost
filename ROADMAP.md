@@ -43,7 +43,7 @@
 **Durée : 5-7 jours**
 
 ### Backend
-- [ ] Tables :
+- [X] Tables :
   - `servers (id, user_id, name, token, created_at)`
 - [ ] Routes :
   - `POST /servers` → créer un serveur avec un token unique
