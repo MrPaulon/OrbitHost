@@ -45,7 +45,7 @@
 ### Backend
 - [X] Tables :
   - `servers (id, user_id, name, token, created_at)`
-- [ ] Routes :
+- [X] Routes :
   - `POST /servers` → créer un serveur avec un token unique
   - `GET /servers` → lister les serveurs de l'utilisateur connecté
   - `DELETE /servers/:id` → suppression sécurisée
