@@ -6,7 +6,7 @@ module.exports = async (req, res) => {
     const userId = req.user?.userId;
 
     if (!userId) {
-        logger.error(`Tentative de création de serveur échouée pour un utilisateur non authentifié.`, { ip: req.ipAddress });
+        logger.warn(`Tentative de création de serveur échouée pour un utilisateur non authentifié.`, { ip: req.ipAddress });
         return res.status(401).json({ error: 'Non authentifié.' });
     }
 
