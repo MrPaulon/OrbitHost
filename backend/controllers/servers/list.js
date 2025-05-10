@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
   const userId = req.user?.userId;
 
   if (!userId) {
-    logger.warn(`Tentative de récupération d'un utilisateur non authentifié`);
+    logger.warn(`Tentative de récupération d'un utilisateur non authentifié`, { ip: req.ipAddress });
     return res.status(401).json({ error: 'Non authentifié.' });
   }
 
@@ -16,10 +16,10 @@ module.exports = async (req, res) => {
     const rows = await conn.query('SELECT * FROM servers WHERE user_id = ?', [userId]);
     conn.release();
 
-    logger.warn(`Récupération de la liste des serveurs par l'utilisateur: ${userId}`);
+    logger.warn(`Récupération de la liste des serveurs par l'utilisateur: ${userId}`, { ip: req.ipAddress });
     return res.status(200).json(rows);
   } catch (err) {
-    logger.error(`Erreur lors de la récupération des serveurs : ${err.message}`);
+    logger.error(`Erreur lors de la récupération des serveurs : ${err.message}`, { ip: req.ipAddress });
     return res.status(500).json({ error: 'Erreur interne du serveur.' });
   }
 };

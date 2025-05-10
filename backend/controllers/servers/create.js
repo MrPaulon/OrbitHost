@@ -6,12 +6,12 @@ module.exports = async (req, res) => {
     const userId = req.user?.userId;
 
     if (!userId) {
-        logger.error(`Tentative de création de serveur échouée pour un utilisateur non authentifié.`);
+        logger.error(`Tentative de création de serveur échouée pour un utilisateur non authentifié.`, { ip: req.ipAddress });
         return res.status(401).json({ error: 'Non authentifié.' });
     }
 
     if (!name || !ip_address || !username) {
-        logger.warn(`Serveur non créé. Paramètres manquants : ${JSON.stringify(req.body)}`);
+        logger.warn(`Serveur non créé. Paramètres manquants : ${JSON.stringify(req.body)}`, { ip: req.ipAddress });
         return res.status(400).json({ error: 'Champs requis manquants.' });
     }
 
@@ -34,11 +34,11 @@ module.exports = async (req, res) => {
         // Transforme le server id en INT
         const serverID = Number(result.insertId);
 
-        logger.info(`Serveur ajouté par l'utilisateur ${userId} avec l'ID ${serverID}`);
+        logger.info(`Serveur ajouté par l'utilisateur ${userId} avec l'ID ${serverID}`, { ip: req.ipAddress });
 
         return res.status(201).json({ message: 'Serveur ajouté.', id: serverID });
     } catch (err) {
-        logger.error(`Erreur lors de l'ajout du serveur: ${err.message}`);
+        logger.error(`Erreur lors de l'ajout du serveur: ${err.message}`, { ip: req.ipAddress });
         return res.status(500).json({ error: 'Erreur interne du serveur.' });
     }
 };

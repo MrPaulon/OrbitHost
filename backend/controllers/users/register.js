@@ -34,11 +34,11 @@ module.exports = async (req, res) => {
     const userID = Number(result.insertId);
 
     conn.release();
-    logger.info(`Création d'un nouveau compte: ${userID}`);
+    logger.info(`Création d'un nouveau compte: ${userID}`, { ip: req.ipAddress });
 
     return res.status(201).json({ message: 'Utilisateur créé avec succès.' });
   } catch (err) {
-    logger.error(`Erreur lors de la création d'un compte: ${err.message}`);
+    logger.error(`Erreur lors de la création d'un compte: ${err.message}`, { ip: req.ipAddress });
     return res.status(500).json({ error: 'Erreur interne du serveur.' });
   }
 };

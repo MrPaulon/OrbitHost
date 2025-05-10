@@ -27,7 +27,7 @@ module.exports = async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password_hash);
     if (!isMatch) {
       conn.release();
-      logger.warn(`Tentative de connexion sur le compte: ${user.id}`);
+      logger.warn(`Tentative de connexion sur le compte: ${user.id}`, { ip: req.ipAddress });
       return res.status(401).json({ error: 'Mot de passe incorrect.' });
     }
 
@@ -39,13 +39,13 @@ module.exports = async (req, res) => {
     );
 
     conn.release();
-    logger.info(`Connexion du compte: ${user.id}`);
+    logger.info(`Connexion du compte: ${user.id}`, { ip: req.ipAddress });
     return res.status(200).json({
       message: 'Connexion réussie.',
       token
     });
   } catch (err) {
-    logger.error(`Erreur lors de la connexion d'un compte: ${err.message}`);
+    logger.error(`Erreur lors de la connexion d'un compte: ${err.message}`, { ip: req.ipAddress });
     return res.status(500).json({ error: 'Erreur interne du serveur.' });
   }
 };
