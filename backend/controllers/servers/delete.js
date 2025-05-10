@@ -1,6 +1,7 @@
 
 
 const { getConnection } = require('../../db/connection');
+const logger = require('../../utils/logger');
 
 module.exports = async (req, res) => {
   const serverId = req.params.id;
@@ -24,7 +25,7 @@ module.exports = async (req, res) => {
     conn.release();
 
     if (result.affectedRows === 0) {
-        logger.warn(`Tentative de suppression du serveyr: ${serverId} par: ${userId}`, { ip: req.ipAddress });
+        logger.warn(`Serveur non trouvé ou non autorisé à supprimer. Server id: ${serverId} par: ${userId}`, { ip: req.ipAddress });
         return res.status(404).json({ error: 'Serveur non trouvé ou non autorisé.' });
     }
 
