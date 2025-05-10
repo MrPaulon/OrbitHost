@@ -42,6 +42,7 @@ async function loginUser(data: Schema) {
       color: 'success'
     })
     // Afficher un toast de succès ou rediriger
+    navigateTo('/')
   } catch (error) {
     console.error("Erreur lors de la connexion :", error)
     // Afficher une alerte/toast d'erreur
