@@ -49,7 +49,7 @@
   - `POST /servers` → créer un serveur avec un token unique
   - `GET /servers` → lister les serveurs de l'utilisateur connecté
   - `DELETE /servers/:id` → suppression sécurisée
-- [ ] Middleware JWT pour protéger les routes
+- [X] Middleware JWT pour protéger les routes
 
 ### Frontend
 - [ ] Page "Mes serveurs" avec liste et bouton d’ajout
