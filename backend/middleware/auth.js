@@ -1,9 +1,11 @@
 const jwt = require('jsonwebtoken');
+const logger = require('../utils/logger');
 
 const verifyToken = (req, res, next) => {
   const token = req.header('Authorization')?.split(' ')[1]; // Récupérer le token à partir de l'en-tête Authorization
 
   if (!token) {
+    logger.error(`Accès refusé. token manquant.`);
     return res.status(401).json({ error: 'Accès refusé. Token manquant.' });
   }
 
@@ -13,6 +15,7 @@ const verifyToken = (req, res, next) => {
     req.user = decoded; // Ajoute les informations de l'utilisateur dans la requête
     next(); // Passe à la route suivante
   } catch (err) {
+    logger.error(`Token invalide ou expiré.`);
     return res.status(400).json({ error: 'Token invalide ou expiré.' });
   }
 };
