@@ -16,7 +16,7 @@
     </section>
 
     <!-- Liste des serveurs -->
-    <section class="servers max-w-5xl mx-auto p-4 grid gap-4 grid-cols-1">
+    <section class="servers max-w-6xl mx-auto p-4 grid gap-4 grid-cols-1">
       <UCard
         v-for="server in filteredServers"
         :key="server.id"
