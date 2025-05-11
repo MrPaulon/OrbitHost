@@ -9,9 +9,9 @@
     <!-- View mode buttons -->
     <section class="buttons flex justify-center gap-4 my-20">
       <div class="box">
-        <UButton class="button" size="lg" :color="filter === 'mine' ? 'primary' : 'gray'" @click="filter = 'mine'" variant="solid">Mes serveurs <UBadge color="primary" variant="soft">1</UBadge></UButton>
-        <UButton class="button" size="lg" :color="filter === 'others' ? 'primary' : 'gray'" @click="filter = 'others'" variant="solid">Autres serveurs <UBadge color="primary" variant="soft">0</UBadge></UButton>
-        <UButton class="button" size="lg" :color="filter === 'all' ? 'primary' : 'gray'" @click="filter = 'all'" variant="solid">Tous les serveurs <UBadge color="primary" variant="soft">1</UBadge></UButton>
+        <UButton class="button" size="lg" :color="filter === 'mine' ? 'primary' : 'gray'" @click="filter = 'mine'" variant="solid">Mes serveurs <UBadge color="primary" variant="soft">{{ mineCount }}</UBadge></UButton>
+        <UButton class="button" size="lg" :color="filter === 'others' ? 'primary' : 'gray'" @click="filter = 'others'" variant="solid">Autres serveurs <UBadge color="primary" variant="soft">{{ othersCount }}</UBadge></UButton>
+        <UButton class="button" size="lg" :color="filter === 'all' ? 'primary' : 'gray'" @click="filter = 'all'" variant="solid">Tous les serveurs <UBadge color="primary" variant="soft">{{ allCount }}</UBadge></UButton>
       </div>
     </section>
 
@@ -76,4 +76,8 @@ const filteredServers = computed(() => {
   }
   return servers.value
 })
+
+const mineCount = computed(() => servers.value.filter(server => server.user_id === userId.value).length)
+const othersCount = computed(() => servers.value.filter(server => server.user_id !== userId.value).length)
+const allCount = computed(() => servers.value.length)
 </script>
