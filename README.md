@@ -52,10 +52,10 @@ Stay tuned for more updates! 🚀
 
 ## Tech Stack
 
-- NUXT JS
-- SCSS (for custom styling)
-- PYTHON
-- Future integrations: API services, WebSocket for real-time updates
+- NUXT JS (Frontend)
+- NODE JS (Backend)
+- PYTHON (Agent vps)
+- MARIADB
 
 ---
 
