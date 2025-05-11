@@ -1,0 +1,64 @@
+.index {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    .buttons {
+        width: auto;
+        .box {
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 15px;
+            padding: 10px;
+            
+            .button {
+                color: var(--color-text);
+            }
+        }
+    }
+
+    .servers {
+        background-color: var(--color-surface);
+        border-radius: 15px;
+
+        .servercard {
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-border);
+            position: relative;
+            display: flex;
+            align-items: center;
+
+            .infos {
+                display: flex;
+                align-items: center;
+
+                .iconify {
+                    color: var(--color-primary-400);
+                }
+
+                .title {
+                    margin-left: 10px;
+                }
+                
+                .center {
+                    display: flex;
+                    align-items: center;
+                    margin-left: 10px;
+                    p {
+                        margin-left: 10px;
+                    }
+                }
+            }
+
+            .buttons {
+                position: absolute;
+                height: 100%;
+                width: auto;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                right: 15px;
+                top: 0px;
+            }
+        }
+    }
+}
