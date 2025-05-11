@@ -16,7 +16,7 @@ module.exports = async (req, res) => {
     const rows = await conn.query('SELECT * FROM servers WHERE user_id = ?', [userId]);
     conn.release();
 
-    logger.warn(`Récupération de la liste des serveurs par l'utilisateur: ${userId}`, { ip: req.ipAddress });
+    logger.info(`Récupération de la liste des serveurs par l'utilisateur: ${userId}`, { ip: req.ipAddress });
     return res.status(200).json(rows);
   } catch (err) {
     logger.error(`Erreur lors de la récupération des serveurs : ${err.message}`, { ip: req.ipAddress });
