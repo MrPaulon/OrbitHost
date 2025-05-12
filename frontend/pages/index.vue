@@ -1,12 +1,10 @@
 <template>
   <div class="index dark">
-    <!-- Navigation -->
-    <nav class="flex justify-between items-center p-4 bg-surface border-b border-border">
-      <h1 class="text-xl font-bold">Serverly</h1>
-      <UButton icon="solar:user-bold" label="Mon compte" color="primary" variant="soft" />
-    </nav>
 
-    <!-- View mode buttons -->
+    <!--Navigation-->    
+    <Navbar/>
+
+    <!--Card buttons -->
     <section class="buttons flex justify-center gap-4 my-20">
       <div class="box">
         <UButton class="button" size="lg" :color="filter === 'mine' ? 'primary' : 'gray'" @click="filter = 'mine'" variant="solid">Mes serveurs <UBadge color="primary" variant="soft">{{ mineCount }}</UBadge></UButton>
@@ -16,7 +14,20 @@
     </section>
 
     <!-- Liste des serveurs -->
-    <section class="servers max-w-6xl mx-auto p-4 grid gap-4 grid-cols-1">
+    <section class="servers max-w-6xl mx-auto p-4 grid gap-4 grid-cols-1" style="border: 1px solid var(--color-border);">
+      <div class="header flex items-center justify-between mb-6 gap-4 flex-wrap">
+        <UInput
+          v-model="searchQuery"
+          placeholder="Rechercher un serveur..."
+          icon="i-heroicons-magnifying-glass"
+          size="lg"
+          class="w-full sm:w-auto flex-1"
+        />
+        <UButton class="button" icon="solar:filter-bold-duotone" color="primary" variant="subtle">
+          Filtres
+        </UButton>
+      </div>
+
       <UCard
         v-for="server in filteredServers"
         :key="server.id"
@@ -25,7 +36,8 @@
         
         <template #default>
           <div class="infos">
-            <UIcon :class="status" name="solar:heart-angle-bold" class="size-8" />
+            <div class="status"></div>
+            <UIcon name="solar:server-square-cloud-bold" class="size-8" />
             <h2 class="title text-lg font-semibold">{{ server.name }}</h2>
             <div class="center">
               <p>IP: {{ server.ip_address }}</p>
@@ -49,6 +61,7 @@ import "../assets/css/index.scss"
 const filter = ref('mine')
 const servers = ref([])
 const userId = ref(null)
+const searchQuery = ref('')
 
 onMounted(async () => {
   const token = localStorage.getItem('token')
@@ -68,13 +81,16 @@ onMounted(async () => {
 })
 
 const filteredServers = computed(() => {
-  if (filter.value === 'mine') {
-    return servers.value.filter(server => server.user_id === userId.value)
-  }
-  if (filter.value === 'others') {
-    return servers.value.filter(server => server.user_id !== userId.value)
-  }
-  return servers.value
+  const base = filter.value === 'mine'
+    ? servers.value.filter(s => s.user_id === userId.value)
+    : filter.value === 'others'
+      ? servers.value.filter(s => s.user_id !== userId.value)
+      : servers.value
+
+  return base.filter(s =>
+    s.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    s.ip_address.includes(searchQuery.value)
+  )
 })
 
 const mineCount = computed(() => servers.value.filter(server => server.user_id === userId.value).length)

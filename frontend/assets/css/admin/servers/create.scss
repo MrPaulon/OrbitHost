@@ -1,0 +1,62 @@
+.create {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+
+    .content {
+        margin-top: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        .card {
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-border);
+            width: auto;
+            height: auto;
+            padding: 40px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+
+            h1 {
+                font-weight: bold;
+                text-transform: uppercase;
+                font-size: 30px;
+            }
+
+            .grid {
+                width: 100%;
+                margin-top: 30px;
+                .iconify {
+                    color: var(--color-primary-100);
+                }
+                input,
+                button {
+                    border: 1px solid #3e394a;
+                    background-color: #3e394a;
+                    border-radius: 5px;
+                    align-items: center;
+                    width: 300px;
+
+                    
+                }
+            }
+
+            .createbtn {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                margin-top: 30px;
+
+                .submit {
+                    color: var(--color-text);
+                }
+            }
+
+        }
+    }
+}

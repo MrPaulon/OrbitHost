@@ -1,24 +1,29 @@
 const express = require('express');
 const cors = require('cors');
 require('dotenv').config(); // Charge les variables depuis le .env
+
+// Charge le middleware pour l'ip
 const ipMiddleware = require('./middleware/ip');
 
-
+// Initialise express
 const app = express();
 
 // Middlewares
 app.use(cors());
 app.use(express.json()); // Permet de lire le JSON dans les requêtes
 
-
 app.use(ipMiddleware);
 
-// Routes
-const userRoutes = require('./routes/users'); // Exemple : fichier routes/users.js
+// Routes Token
+const tokenRoutes = require('./routes/token');
+app.use('/api/token', tokenRoutes);
+
+// Routes users
+const userRoutes = require('./routes/users');
 app.use('/api/users', userRoutes);
 
-// Routes
-const serverRoutes = require('./routes/servers'); // Exemple : fichier routes/users.js
+// Routes servers
+const serverRoutes = require('./routes/servers');
 app.use('/api/servers', serverRoutes);
 
 // Port
