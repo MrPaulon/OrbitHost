@@ -38,8 +38,16 @@
                 display: flex;
                 align-items: center;
 
+                .status {
+                    height: 30px;
+                    width: 5px;
+                    background-color: rgb(32, 197, 142);
+                    margin-right: 10px;
+                    border-radius: 5px;
+                }
+
                 .iconify {
-                    color: var(--color-primary-400);
+                    color: var(--color-text);
                 }
 
                 .title {

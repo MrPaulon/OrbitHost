@@ -14,7 +14,7 @@
     </section>
 
     <!-- Liste des serveurs -->
-    <section class="servers max-w-6xl mx-auto p-4 grid gap-4 grid-cols-1">
+    <section class="servers max-w-6xl mx-auto p-4 grid gap-4 grid-cols-1" style="border: 1px solid var(--color-border);">
       <div class="header flex items-center justify-between mb-6 gap-4 flex-wrap">
         <UInput
           v-model="searchQuery"
@@ -36,7 +36,8 @@
         
         <template #default>
           <div class="infos">
-            <UIcon :class="status" name="solar:heart-angle-bold" class="size-8" />
+            <div class="status"></div>
+            <UIcon name="solar:server-square-cloud-bold" class="size-8" />
             <h2 class="title text-lg font-semibold">{{ server.name }}</h2>
             <div class="center">
               <p>IP: {{ server.ip_address }}</p>
