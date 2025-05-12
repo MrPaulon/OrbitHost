@@ -1,12 +1,10 @@
 <template>
   <div class="index dark">
-    <!-- Navigation -->
-    <nav class="flex justify-between items-center p-4 bg-surface border-b border-border">
-      <h1 class="text-xl font-bold">Serverly</h1>
-      <UButton icon="solar:user-bold" label="Mon compte" color="primary" variant="soft" />
-    </nav>
 
-    <!-- View mode buttons -->
+    <!--Navigation-->    
+    <Navbar/>
+
+    <!--Card buttons -->
     <section class="buttons flex justify-center gap-4 my-20">
       <div class="box">
         <UButton class="button" size="lg" :color="filter === 'mine' ? 'primary' : 'gray'" @click="filter = 'mine'" variant="solid">Mes serveurs <UBadge color="primary" variant="soft">{{ mineCount }}</UBadge></UButton>
