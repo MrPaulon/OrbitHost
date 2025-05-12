@@ -60,3 +60,7 @@ span,
 p {
   color: var(--color-text);
 }
+
+.ring {
+  box-shadow: none !important;
+}
