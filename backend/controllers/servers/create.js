@@ -2,7 +2,8 @@ const { getConnection } = require('../../db/connection');
 const logger = require('../../utils/logger');
 
 module.exports = async (req, res) => {
-    const { name, ip_address, ssh_port = 22, username } = req.body;
+    const { name, ip_address, ssh_port = 22, username, ownerId = req.user?.userId} = req.body;
+
     const userId = req.user?.userId;
 
     if (!userId) {
@@ -28,7 +29,7 @@ module.exports = async (req, res) => {
         const conn = await getConnection();
         const result = await conn.query(
             'INSERT INTO servers (user_id, name, ip_address, ssh_port, username) VALUES (?, ?, ?, ?, ?)',
-            [userId, name, ip_address, ssh_port, username]
+            [ownerId, name, ip_address, ssh_port, username]
         );
         conn.release();
         // Transforme le server id en INT
