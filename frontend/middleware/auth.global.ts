@@ -1,14 +1,27 @@
-export default defineNuxtRouteMiddleware((to, from) => {
-    const token = process.client ? localStorage.getItem('token') : null
-  
-    const isAuthPage = to.path.startsWith('/auth')
-  
-    if (!token && !isAuthPage) {
-      return navigateTo('/auth/login')
-    }
-  
-    // Si déjà connecté et tente d'aller sur /auth/login, on peut aussi rediriger :
-    if (token && isAuthPage) {
-      return navigateTo('/')
-    }
+export default defineNuxtRouteMiddleware(async (to, from) => {
+  if (!process.client) return
+
+  const token = localStorage.getItem('token')
+  const isAuthPage = to.path.startsWith('/auth')
+
+  if (!token) {
+    if (!isAuthPage) return navigateTo('/auth/login')
+    return
+  }
+
+  try {
+    await $fetch('http://localhost:3001/api/token/verify', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+  } catch (error) {
+    localStorage.removeItem('token')
+    if (!isAuthPage) return navigateTo('/auth/login')
+  }
+
+  if (token && isAuthPage) {
+    return navigateTo('/')
+  }
 })
