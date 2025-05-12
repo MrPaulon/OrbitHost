@@ -8,13 +8,13 @@
                 <UForm :state="form" @submit="createServer" style="width: 100%;">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6" style="justify-items: center;">
                         <UFormField label="Node:">
-                            <USelect icon="solar:server-path-bold-duotone" size="xl" v-model="form.node" :items="itemsnode" label="Node" placeholder="Nom du noeud" />
+                            <USelect icon="solar:slash-square-bold-duotone" size="xl" v-model="form.node" :items="itemsnode" label="Node" placeholder="Nom du noeud" />
                         </UFormField>
                         <UFormField label="Nom du serveur:" required>
                             <UInput icon="solar:server-2-bold-duotone" size="xl" v-model="form.name" label="Nom du serveur" placeholder="ex: Mon VPS personnel" />
                         </UFormField>
                         <UFormField label="Utilisateur:">
-                            <UInput icon="solar:user-circle-bold" size="xl" v-model="form.username" label="Utilisateur" placeholder="ex: Mrpaulon" />
+                            <UInput icon="solar:user-circle-bold-duotone" size="xl" v-model="form.username" label="Utilisateur" placeholder="ex: Mrpaulon" />
                         </UFormField>
                         <UFormField label="Adresse Ip:" required>
                             <UInput icon="solar:wi-fi-router-bold-duotone" size="xl" v-model="form.ip_address" label="Adresse IP" placeholder="ex: 192.168.0.1" />
