@@ -13,14 +13,29 @@
     
 
     .content {
-        margin-top: 50px;
+        margin-top: 120px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
 
-        button {
+        .button {
             width: 250px;
-            border: 1px solid var(--color-border);
+            color: var(--color-text);
+            border: 1px solid var(--color-surface);
         }
 
-        button:hover {
+        .button:hover {
+            border: 1px solid var(--color-border);
+            background-color: var(--color-surface);
+        }
+
+        .active {
+            background-color: var(--color-bg-alt);
+        }
+
+        p {
+            margin-top: 20px;
+            font-size: 15px;
         }
     }
 }
