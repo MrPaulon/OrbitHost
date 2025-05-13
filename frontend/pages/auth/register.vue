@@ -1,4 +1,7 @@
 <script setup lang="ts">
+definePageMeta({
+  layout: false
+})
 import "../assets/css/auth.scss";
 import { object, string, type InferType } from 'yup'
 import type { FormSubmitEvent } from '@nuxt/ui'
