@@ -40,10 +40,29 @@ import { USelect } from "#components"
 import "~/assets/css/admin/servers/create.scss"
 const itemsnode = ref(['Node 01'])
 const itemstype = ref(['VPS', 'Docker'])
-const itemsuser = ref([
-  { label: 'Mrpaulon', value: '5'},
-  { label: 'Test', value: '4' }
-])
+const itemsuser = ref([])
+
+onMounted(async () => {
+  try {
+    const token = localStorage.getItem('token')
+    const users = await $fetch('http://localhost:3001/api/users/list', {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    itemsuser.value = users.map(user => ({
+      label: user.pseudo,
+      value: user.id
+    }))
+  } catch (error) {
+    console.error('Erreur lors du chargement des utilisateurs:', error)
+    toast.add({
+      title: 'Erreur',
+      description: "Impossible de charger les utilisateurs",
+      color: 'red'
+    })
+  }
+})
 
 const toast = useToast()
 
