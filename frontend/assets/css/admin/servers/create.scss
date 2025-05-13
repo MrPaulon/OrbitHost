@@ -3,31 +3,34 @@
     width: 100%;
 
     .content {
-        margin-top: 80px;
+        margin-top: 40px;
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
         margin-left: 300px;
 
+        h1 {
+            width: 800px;
+            text-align: left;
+            margin-bottom: 50px;
+
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 30px;
+        }
         .card {
             background-color: var(--color-surface);
             border: 1px solid var(--color-border);
-            width: auto;
+            width: 800px;
             height: auto;
-            padding: 40px;
+            padding: 20px;
             border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
 
-            h1 {
-                font-weight: bold;
-                text-transform: uppercase;
-                font-size: 30px;
-                margin-bottom: 20px;
-            }
 
             .grid {
                 width: 100%;

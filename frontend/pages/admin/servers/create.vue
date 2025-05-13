@@ -1,8 +1,8 @@
 <template>
   <div class="create">
     <div class="content"> 
+      <h1>Créer un serveur</h1>
       <div class="card">
-        <h1>Créer un serveur</h1>
         <UForm :state="form" @submit="createServer" style="width: 100%;">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6" style="justify-items: center;">
               <UFormField label="Node:">
