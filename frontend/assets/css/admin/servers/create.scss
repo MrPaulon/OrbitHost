@@ -1,6 +1,5 @@
 .create {
     position: absolute;
-    height: 100%;
     width: 100%;
 
     .content {
@@ -9,6 +8,7 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
+        margin-left: 300px;
 
         .card {
             background-color: var(--color-surface);

@@ -78,8 +78,9 @@ async function createServer() {
 </script>
 
 <template>
+  <Navbar />
+  <Navigation/>
   <div class="create">
-    <Navbar />
     <div class="content"> 
       <UStepper :items="stepperitems" class="w-full" />
       <div class="card">
