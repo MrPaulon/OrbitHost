@@ -2,7 +2,7 @@ const { getConnection } = require('../../db/connection');
 const logger = require('../../utils/logger');
 
 module.exports = async (req, res) => {
-    const { name, ip_address, ssh_port = 22, username, ownerId = req.user?.userId} = req.body;
+    const { name, ip_address, ssh_port = 22, ownerId = req.user?.userId} = req.body;
 
     const userId = req.user?.userId;
 
@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
         return res.status(401).json({ error: 'Non authentifié.' });
     }
 
-    if (!name || !ip_address || !username) {
+    if (!name || !ip_address) {
         logger.warn(`Serveur non créé. Paramètres manquants : ${JSON.stringify(req.body)}`, { ip: req.ipAddress });
         return res.status(400).json({ error: 'Champs requis manquants.' });
     }
@@ -28,8 +28,8 @@ module.exports = async (req, res) => {
     try {
         const conn = await getConnection();
         const result = await conn.query(
-            'INSERT INTO servers (user_id, name, ip_address, ssh_port, username) VALUES (?, ?, ?, ?, ?)',
-            [ownerId, name, ip_address, ssh_port, username]
+            'INSERT INTO servers (user_id, name, ip_address, ssh_port) VALUES (?, ?, ?, ?)',
+            [ownerId, name, ip_address, ssh_port]
         );
         conn.release();
         // Transforme le server id en INT

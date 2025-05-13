@@ -14,7 +14,7 @@ CREATE TABLE servers (
   name VARCHAR(100) NOT NULL,
   ip_address VARCHAR(45) NOT NULL,
   ssh_port INT DEFAULT 22,
-  username VARCHAR(100) NOT NULL,
+  username VARCHAR(100),
   os_type VARCHAR(100),
   status VARCHAR(20) DEFAULT 'unknown',
   notes TEXT,
