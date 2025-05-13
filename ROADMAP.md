@@ -52,7 +52,7 @@
 - [X] Middleware JWT pour protéger les routes
 
 ### Frontend
-- [ ] Page "Mes serveurs" avec liste et bouton d’ajout
+- [X] Page "Mes serveurs" avec liste et bouton d’ajout
 - [ ] Génération d’une commande à copier pour installer l’agent (avec token)
 
 ---
