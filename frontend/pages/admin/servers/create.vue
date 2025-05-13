@@ -1,6 +1,4 @@
 <template>
-  <Navbar />
-  <Navigation/>
   <div class="create">
     <div class="content"> 
       <div class="card">
@@ -36,6 +34,11 @@
 </template>
 
 <script setup>
+definePageMeta({
+  layout: 'admin'
+})
+
+
 import "~/assets/css/admin/servers/create.scss"
 const itemsnode = ref(['Node 01'])
 const itemstype = ref(['VPS', 'Docker'])

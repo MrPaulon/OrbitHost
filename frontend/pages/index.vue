@@ -1,9 +1,6 @@
 <template>
   <div class="index dark">
 
-    <!--Navigation-->    
-    <Navbar/>
-
     <!--Card buttons -->
     <section class="buttons flex justify-center gap-4 my-20">
       <div class="box">
