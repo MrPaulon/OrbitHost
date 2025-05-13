@@ -14,7 +14,7 @@
                             <UInput icon="solar:server-2-bold-duotone" size="xl" v-model="form.name" label="Nom du serveur" placeholder="ex: Mon VPS personnel" />
                         </UFormField>
                         <UFormField label="Utilisateur:">
-                            <UInput icon="solar:user-circle-bold-duotone" size="xl" v-model="form.username" label="Utilisateur" placeholder="ex: Mrpaulon" />
+                            <USelectMenu icon="solar:user-circle-bold-duotone" size="xl" v-model="form.user" :items="itemsuser" label="Utilisateur" placeholder="ex: Mrpaulon" />
                         </UFormField>
                         <UFormField label="Adresse Ip:" required>
                             <UInput icon="solar:wi-fi-router-bold-duotone" size="xl" v-model="form.ip_address" label="Adresse IP" placeholder="ex: 192.168.0.1" />
@@ -36,16 +36,21 @@
 </template>
 
 <script setup>
+import { USelect } from "#components"
 import "~/assets/css/admin/servers/create.scss"
 const itemsnode = ref(['Node 01'])
 const itemstype = ref(['VPS', 'Docker'])
+const itemsuser = ref([
+  { label: 'Mrpaulon', value: '5'},
+  { label: 'Test', value: '4' }
+])
 
 const toast = useToast()
 
 const form = ref({
   node: 'Node 01',
   name: '',
-  username: '',
+  user: '',
   ip_address: '',
   port: 22,
   type: 'VPS'
@@ -56,7 +61,7 @@ async function createServer() {
     const token = localStorage.getItem('token')
     if (!token) throw new Error('Token manquant.')
 
-    if (!form.value.name || !form.value.ip_address || !form.value.username) {
+    if (!form.value.name || !form.value.ip_address || !form.value.user.value) {
       throw new Error('Veuillez remplir tous les champs obligatoires.')
     }
 
@@ -70,7 +75,7 @@ async function createServer() {
       body: {
         name: form.value.name,
         ip_address: form.value.ip_address,
-        username: form.value.username
+        ownerId: form.value.user.value
       }
     })
 
