@@ -1,0 +1,58 @@
+.serverspage {
+    position: absolute;
+    width: 100%;
+
+    .content {
+        margin-top: 80px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-left: 300px;
+
+        .card {
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-border);
+            width: 800px;
+            height: auto;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+
+
+            .header {
+                width: 100%;
+                padding: 15px;
+                display: flex;
+                align-items: center;
+                position: relative;
+
+
+                .searchbar {
+                    width: 70%;
+                }
+
+                .bouton {
+                    position: absolute;
+                    color: var(--color-text);
+                    right: 15px;
+                }
+            }
+
+            .table {
+                width: 100%;
+            }
+        }
+    }
+}
+
+.\[\&\>tr\]\:after\:bg-\(--ui-border-accented\) {
+    & > tr {
+        &::after {
+            content: var(--tw-content);
+            background-color: var(--color-border);
+        }
+    }
+}

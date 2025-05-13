@@ -16,7 +16,7 @@ module.exports = async (req, res) => {
     const conn = await getConnection();
 
     // Recherche l'utilisateur par email
-    const [user] = await conn.query('SELECT id, email, password_hash FROM users WHERE email = ?', [email]);
+    const [user] = await conn.query('SELECT id, email, password_hash, is_admin FROM users WHERE email = ?', [email]);
     
     if (!user) {
       conn.release();
@@ -33,7 +33,7 @@ module.exports = async (req, res) => {
 
     // Génération d'un token JWT
     const token = jwt.sign(
-      { userId: user.id, email: user.email },
+      { userId: user.id, email: user.email, isAdmin: user.is_admin },
       process.env.JWT_SECRET, // Assure-toi d'avoir une clé secrète dans ton .env
       { expiresIn: '1h' } // Expiration du token dans 1 heure
     );

@@ -1,9 +1,6 @@
 <template>
   <div class="index dark">
 
-    <!--Navigation-->    
-    <Navbar/>
-
     <!--Card buttons -->
     <section class="buttons flex justify-center gap-4 my-20">
       <div class="box">
@@ -56,7 +53,7 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
-import "../assets/css/index.scss"
+import "~/assets/css/index.scss"
 
 const filter = ref('mine')
 const servers = ref([])

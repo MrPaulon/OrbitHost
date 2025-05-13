@@ -5,7 +5,8 @@ CREATE TABLE users (
   email VARCHAR(255) UNIQUE NOT NULL,
   pseudo VARCHAR(255) UNIQUE NOT NULL,
   password_hash TEXT NOT NULL,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  is_admin BOOLEAN DEFAULT FALSE
 );
 
 CREATE TABLE servers (
@@ -14,7 +15,7 @@ CREATE TABLE servers (
   name VARCHAR(100) NOT NULL,
   ip_address VARCHAR(45) NOT NULL,
   ssh_port INT DEFAULT 22,
-  username VARCHAR(100) NOT NULL,
+  username VARCHAR(100),
   os_type VARCHAR(100),
   status VARCHAR(20) DEFAULT 'unknown',
   notes TEXT,

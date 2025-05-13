@@ -19,7 +19,7 @@ const items = ref<DropdownMenuItem[]>([
 </script>
 
 <template>
-    <nav class="flex items-center p-4 bg-surface border-b border-border" style="position: relative;">
+    <nav class="flex items-center p-4 bg-surface border-b border-border" style="position: relative; z-index: 99;">
       <img style="width: 50px; margin-left: 20px;" src="/logo_sans_texte_sans_fond.png" alt="">
       <h1 class="text-xl font-bold ml-2">Serverly</h1>
 
