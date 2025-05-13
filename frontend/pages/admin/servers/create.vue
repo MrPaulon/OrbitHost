@@ -59,7 +59,7 @@ onMounted(async () => {
     toast.add({
       title: 'Erreur',
       description: "Impossible de charger les utilisateurs",
-      color: 'red'
+      color: 'error'
     })
   }
 })
