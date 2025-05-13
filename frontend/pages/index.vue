@@ -53,7 +53,7 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
-import "../assets/css/index.scss"
+import "~/assets/css/index.scss"
 
 const filter = ref('mine')
 const servers = ref([])
