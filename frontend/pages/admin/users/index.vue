@@ -8,6 +8,7 @@
           item-type="users"
           :fields="['id', 'email', 'pseudo', 'is_admin']"
           @delete="deleteUser"
+          icon="lets-icons:user-box-duotone"
         />
       </div>
     </div>

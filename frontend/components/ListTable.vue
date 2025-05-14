@@ -17,6 +17,7 @@
                 Aucune donnée trouvée.
             </div>
             <div v-for="item in paginatedItems" :key="item.id" class="server">
+                <UIcon :name="`${icon}`" class="size-8" />
                 <p v-for="field in fields" :key="field">
                 {{ field }}: {{ item[field] }}
                 </p>
@@ -51,7 +52,8 @@ const props = defineProps({
   title: String,
   data: Array,
   itemType: String,
-  fields: Array // <-- Champs à afficher
+  fields: Array,
+  icon: String
 })
 
 const emit = defineEmits(['delete'])

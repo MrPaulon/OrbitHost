@@ -8,6 +8,7 @@
         item-type="servers"
         :fields="['id', 'user_id', 'name', 'ip_address', 'status']"
         @delete="deleteServer"
+        icon="solar:server-square-cloud-bold-duotone"
       />
     </div>
   </div>
