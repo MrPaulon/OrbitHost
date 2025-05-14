@@ -2,31 +2,12 @@
   <div class="serverspage">
     <div class="content">
       <h1>Liste des serveurs</h1>
-      <div class="card">
-        <div class="header">
-          <UInput class="searchbar" v-model="searchQuery" placeholder="Rechercher un serveur..." icon="i-heroicons-magnifying-glass" />
-          <UButton icon="solar:cloud-upload-bold-duotone" class="bouton" size="md" color="primary" :to="'/admin/servers/create'">Créer un serveur</UButton>
-        </div>
-        <div class="table">
-          <div class="tablecontent">
-            <div v-for="server in paginatedServers" :key="server.id" class="server">
-              <p>Id: {{ server.id }}</p>
-              <p>Utilisateur: {{ server.user_id || '—' }}</p>
-              <p>Nom: {{ server.name }}</p>
-              <p>Ip: {{ server.ip_address }}</p>
-              <p>Type: {{ server.os_type || 'VPS' }}</p>
-              <div class="serverbtn">
-                <UButton icon="solar:eye-bold-duotone" color="primary" variant="solid" :to="`/admin/servers/${server.id}`" />
-                <UButton icon="solar:trash-bin-minimalistic-bold-duotone" color="error" variant="solid" @click="() => deleteServer(server.id)" />
-              </div>
-            </div>
-          </div>
-          <div class="pagination flex gap-4 mt-4">
-            <UButton icon="solar:alt-arrow-left-bold" :disabled="page === 1" @click="page--"></UButton>
-            <UButton icon="solar:alt-arrow-right-bold" :disabled="page === pageCount" @click="page++"></UButton>
-          </div>
-        </div>
-      </div>
+      <ListTable
+        title="la liste des serveurs"
+        :data="servers"
+        :search-keys="['name', 'ip_address', 'username']"
+        @delete="deleteServer"
+      />
     </div>
   </div>
 </template>
@@ -34,7 +15,6 @@
 definePageMeta({
   layout: 'admin'
 })
-
 import "~/assets/css/admin/servers/index.scss";
 
 const servers = ref([])
