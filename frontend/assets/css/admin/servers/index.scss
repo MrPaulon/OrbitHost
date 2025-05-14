@@ -4,17 +4,16 @@
 
     .content {
         margin-top: 40px;
+        flex-direction: column;
         display: flex;
         justify-content: center;
         align-items: center;
-        flex-direction: column;
         margin-left: 300px;
 
         h1 {
-            width: 800px;
             text-align: left;
             margin-bottom: 50px;
-
+            width: 900px;
             font-weight: bold;
             text-transform: uppercase;
             font-size: 30px;
@@ -23,7 +22,7 @@
         .card {
             background-color: var(--color-surface);
             border: 1px solid var(--color-border);
-            width: 800px;
+            width: 900px;
             height: auto;
             border-radius: 20px;
             display: flex;
@@ -40,7 +39,6 @@
                 align-items: center;
                 position: relative;
 
-
                 .searchbar {
                     width: 70%;
                 }
@@ -53,7 +51,39 @@
             }
 
             .table {
+                margin-top: 20px;
                 width: 100%;
+                height: 50px;
+
+                .tablecontent {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+
+                    .server {
+                        position: relative;
+                        border: 1px solid var(--color-border);
+                        padding: 10px;
+                        display: flex;
+                        align-items: center;
+                        border-radius: 10px;
+
+                        p {
+                            padding: 10px;
+                        }
+                        .serverbtn {
+                            position: absolute;
+                            right: 20px;
+                            display: flex;
+                            gap: 10px;
+                        }
+                    }
+                }
+
+                .pagination {
+                    justify-content: center;
+                }
             }
         }
     }
