@@ -13,17 +13,28 @@
       </div>
       <div class="table">
         <div class="tablecontent">
-          <div v-for="item in paginatedItems" :key="item.id" class="server">
-            <p>Id: {{ item.id }}</p>
-            <p>Utilisateur: {{ item.user_id || '—' }}</p>
-            <p>Nom: {{ item.name }}</p>
-            <p>Ip: {{ item.ip_address }}</p>
-            <p>Type: {{ item.os_type || 'VPS' }}</p>
-            <div class="serverbtn">
-              <UButton icon="solar:eye-bold-duotone" color="primary" variant="solid" :to="`/admin/servers/${item.id}`" />
-              <UButton icon="solar:trash-bin-minimalistic-bold-duotone" color="error" variant="solid" @click="$emit('delete', item.id)" />
+            <div v-if="paginatedItems.length === 0" class="text-center text-sm text-gray-500 py-4">
+                Aucune donnée trouvée.
             </div>
-          </div>
+            <div v-for="item in paginatedItems" :key="item.id" class="server">
+                <p v-for="field in fields" :key="field">
+                {{ field }}: {{ item[field] }}
+                </p>
+                <div class="serverbtn">
+                    <UButton
+                        icon="solar:eye-bold-duotone"
+                        color="primary"
+                        variant="solid"
+                        :to="`/admin/${itemType}/${item.id}`"
+                    />
+                    <UButton
+                        icon="solar:trash-bin-minimalistic-bold-duotone"
+                        color="error"
+                        variant="solid"
+                        @click="$emit('delete', item.id)"
+                    />
+                </div>
+            </div>
         </div>
         <div class="pagination flex gap-4 mt-4">
           <UButton icon="solar:alt-arrow-left-bold" :disabled="page === 1" @click="page--" />
@@ -31,34 +42,37 @@
         </div>
       </div>
     </div>
-</template>
+  </template>
   
 <script setup>
+import "~/assets/css/components/ListTable.scss"
 const route = useRoute()
-import "~/assets/css/components/ListTable.scss";
-  const props = defineProps({
-    title: String,
-    data: Array,
-    searchKeys: Array
-  })
-  
-  const emit = defineEmits(['delete'])
-  
-  const searchQuery = ref('')
-  const page = ref(1)
-  const itemsPerPage = 4
-  
-  const filtered = computed(() => {
+const props = defineProps({
+  title: String,
+  data: Array,
+  itemType: String,
+  fields: Array // <-- Champs à afficher
+})
+
+const emit = defineEmits(['delete'])
+
+const searchQuery = ref('')
+const page = ref(1)
+const itemsPerPage = 4
+
+const filtered = computed(() => {
     if (!searchQuery.value) return props.data
     const q = searchQuery.value.toLowerCase()
     return props.data.filter(item =>
-      props.searchKeys.some(key => item[key]?.toLowerCase?.().includes(q))
+        Object.values(item).some(val =>
+        String(val).toLowerCase().includes(q)
+        )
     )
-  })
-  
-  const pageCount = computed(() => Math.ceil(filtered.value.length / itemsPerPage))
-  const paginatedItems = computed(() => {
+})
+
+const pageCount = computed(() => Math.ceil(filtered.value.length / itemsPerPage))
+const paginatedItems = computed(() => {
     const start = (page.value - 1) * itemsPerPage
     return filtered.value.slice(start, start + itemsPerPage)
-  })
+})
 </script>

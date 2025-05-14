@@ -5,7 +5,8 @@
       <ListTable
         title="la liste des serveurs"
         :data="servers"
-        :search-keys="['name', 'ip_address', 'username']"
+        item-type="servers"
+        :fields="['id', 'user_id', 'name', 'ip_address', 'status']"
         @delete="deleteServer"
       />
     </div>
