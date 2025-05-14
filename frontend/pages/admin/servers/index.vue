@@ -16,24 +16,9 @@
 definePageMeta({
   layout: 'admin'
 })
-import "~/assets/css/admin/servers/index.scss";
+import "~/assets/css/admin/basic.scss";
 
 const servers = ref([])
-
-const searchQuery = ref('')
-
-const page = ref(1)
-const itemsPerPage = 4
-
-const paginatedServers = computed(() => {
-  const start = (page.value - 1) * itemsPerPage
-  const end = start + itemsPerPage
-  return filteredServers.value.slice(start, end)
-})
-
-const pageCount = computed(() =>
-  Math.ceil(filteredServers.value.length / itemsPerPage)
-)
 
 onMounted(async () => {
   const token = localStorage.getItem('token')
@@ -51,15 +36,6 @@ onMounted(async () => {
   }
 })
 
-const filteredServers = computed(() => {
-  if (!searchQuery.value) return servers.value
-  const query = searchQuery.value.toLowerCase()
-  return servers.value.filter(server =>
-    server.name?.toLowerCase().includes(query) ||
-    server.ip_address?.toLowerCase().includes(query) ||
-    server.username?.toLowerCase().includes(query)
-  )
-})
 
 function deleteServer(id: number) {
   console.log('Supprimer serveur', id)
