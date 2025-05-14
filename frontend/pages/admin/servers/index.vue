@@ -23,7 +23,7 @@ onMounted(async () => {
   if (!token) return
 
   try {
-    const response = await $fetch('http://localhost:3001/api/servers/list', {
+    const response = await $fetch('http://localhost:3001/api/servers/listall', {
       headers: {
         Authorization: `Bearer ${token}`
       }
