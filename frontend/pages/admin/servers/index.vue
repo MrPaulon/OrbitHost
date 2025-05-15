@@ -14,14 +14,22 @@
   </div>
 </template>
 <script setup lang="ts">
+// Layout admin
 definePageMeta({
   layout: 'admin'
 })
+
+// Style
 import "~/assets/css/admin/basic.scss";
 
+
+// Variables
 const servers = ref([])
 
+
+// Récupération de la liste de tous les serveurs
 onMounted(async () => {
+  // Récupération du token
   const token = localStorage.getItem('token')
   if (!token) return
 
@@ -40,6 +48,6 @@ onMounted(async () => {
 
 function deleteServer(id: number) {
   console.log('Supprimer serveur', id)
-  // Implement real delete logic here
+  // Logique suppresion d'un serveur
 }
 </script>

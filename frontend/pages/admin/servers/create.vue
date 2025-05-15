@@ -34,16 +34,30 @@
 </template>
 
 <script setup>
+
+// Layout admin
 definePageMeta({
   layout: 'admin'
 })
 
-
+// Style
 import "~/assets/css/admin/servers/create.scss"
+
+// Variables
 const itemsnode = ref(['Node 01'])
 const itemstype = ref(['VPS', 'Docker'])
 const itemsuser = ref([])
+const toast = useToast()
+const form = ref({
+  node: 'Node 01',
+  name: '',
+  user: '',
+  ip_address: '',
+  port: 22,
+  type: 'VPS'
+})
 
+// Récupération liste des utilisateurs
 onMounted(async () => {
   try {
     const token = localStorage.getItem('token')
@@ -66,17 +80,8 @@ onMounted(async () => {
   }
 })
 
-const toast = useToast()
 
-const form = ref({
-  node: 'Node 01',
-  name: '',
-  user: '',
-  ip_address: '',
-  port: 22,
-  type: 'VPS'
-})
-
+// Fonction de création de serveur
 async function createServer() {
   try {
     const token = localStorage.getItem('token')
