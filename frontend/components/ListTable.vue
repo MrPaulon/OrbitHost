@@ -7,7 +7,7 @@
           :placeholder="`Rechercher dans ${title}...`"
           icon="i-heroicons-magnifying-glass"
         />
-        <UButton icon="solar:cloud-upload-bold-duotone" class="bouton" size="md" color="primary" :to="`${route.path}/create`">
+        <UButton icon="solar:cloud-plus-bold-duotone" class="bouton" size="md" color="primary" :to="`${route.path}/create`">
           Créer
         </UButton>
       </div>
