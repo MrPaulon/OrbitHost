@@ -52,15 +52,22 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+// Style
 import "~/assets/css/index.scss"
 
+// Importation modules
+import { ref, computed, onMounted } from 'vue'
+
+
+// Variables
 const filter = ref('mine')
 const servers = ref([])
 const userId = ref(null)
 const searchQuery = ref('')
 
+// Récupération liste des serveurs
 onMounted(async () => {
+  // Récupération du token
   const token = localStorage.getItem('token')
   if (!token) return
 
@@ -77,6 +84,7 @@ onMounted(async () => {
   servers.value = result
 })
 
+// Filtre les serveurs dans les différentes catégories (Mes serveurs, Autres serveurs, Tous les serveurs)
 const filteredServers = computed(() => {
   const base = filter.value === 'mine'
     ? servers.value.filter(s => s.user_id === userId.value)
@@ -90,6 +98,7 @@ const filteredServers = computed(() => {
   )
 })
 
+// Variable des totaux de chaque catégories de serveurs (Mes serveurs, Autres serveurs, Tous les serveurs)
 const mineCount = computed(() => servers.value.filter(server => server.user_id === userId.value).length)
 const othersCount = computed(() => servers.value.filter(server => server.user_id !== userId.value).length)
 const allCount = computed(() => servers.value.length)
