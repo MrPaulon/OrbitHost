@@ -1,79 +1,3 @@
-<script setup lang="ts">
-definePageMeta({
-  layout: false
-})
-import "../assets/css/auth.scss";
-import { object, string, type InferType } from 'yup'
-import type { FormSubmitEvent } from '@nuxt/ui'
-
-const toast = useToast()
-
-const schema = object({
-    email: string().email('Invalid email').required('Required'),
-    pseudo: string().required('Required'),
-    password: string().required('Required')
-})
-
-type Schema = InferType<typeof schema>
-
-const state = reactive<Schema>({
-  email: '',
-  pseudo: '',
-  password: ''
-})
-
-async function onSubmit(event: FormSubmitEvent<Schema>) {
-    console.log(event.data);
-    if (event.data.email != null && event.data.password != null && event.data.pseudo != null) {
-        if (event.data.password.length > 8) {
-            registerUser(event.data)
-            console.log("success")
-        } else {
-            toast.add({
-                title: 'Erreur',
-                description: 'Votre mot de passe doit contenir plus de 8 caratères',
-                color: 'error'
-            })
-        }
-    } else {
-        toast.add({
-            title: 'Erreur',
-            description: 'Veuillez remplir tous les champs pour créer votre compte',
-            color: 'error'
-        })
-    }
-}
-
-async function registerUser(data: Schema) {
-  try {
-    const response = await $fetch('http://localhost:3001/api/users/register', {
-      method: 'POST',
-      body: data,
-    })
-
-    console.log("Inscription réussie", response)
-    // Afficher un toast de succès ou rediriger
-    toast.add({
-      title: 'Connexion réussie',
-      description: 'Bienvenue sur votre tableau de bord',
-      color: 'success'
-    })
-  } catch (error) {
-    console.error("Erreur lors de l'inscription :", error)
-    // Afficher une alerte/toast d'erreur
-    toast.add({
-      title: 'Erreur',
-      description: 'Un problème est survenue lors de la création de votre compte',
-      color: 'error'
-    })
-  }
-}
-
-function onInvalid(error: any) {
-    console.warn("Validation error:", error)
-}
-</script>
-
 <template>
     <div class="register dark">
         <UForm :schema="schema" :state="state" @submit="onSubmit" @submit-invalid="onInvalid">
@@ -115,3 +39,88 @@ function onInvalid(error: any) {
         </UForm>
     </div>
 </template>
+<script setup lang="ts">
+// Désactivation du layout
+definePageMeta({
+  layout: false
+})
+
+// Style
+import "../assets/css/auth.scss";
+
+// Importation modules
+import { object, string, type InferType } from 'yup'
+import type { FormSubmitEvent } from '@nuxt/ui'
+
+
+// Variables
+const toast = useToast()
+
+const schema = object({
+    email: string().email('Invalid email').required('Required'),
+    pseudo: string().required('Required'),
+    password: string().required('Required')
+})
+
+type Schema = InferType<typeof schema>
+
+const state = reactive<Schema>({
+  email: '',
+  pseudo: '',
+  password: ''
+})
+
+
+// Fonction vérification des informations saisies
+async function onSubmit(event: FormSubmitEvent<Schema>) {
+    console.log(event.data);
+    if (event.data.email != null && event.data.password != null && event.data.pseudo != null) {
+        if (event.data.password.length > 8) {
+            registerUser(event.data)
+            console.log("success")
+        } else {
+            toast.add({
+                title: 'Erreur',
+                description: 'Votre mot de passe doit contenir plus de 8 caratères',
+                color: 'error'
+            })
+        }
+    } else {
+        toast.add({
+            title: 'Erreur',
+            description: 'Veuillez remplir tous les champs pour créer votre compte',
+            color: 'error'
+        })
+    }
+}
+
+// Fonction enregistrement utilisateur dans la bdd via api
+async function registerUser(data: Schema) {
+  try {
+    const response = await $fetch('http://localhost:3001/api/users/register', {
+      method: 'POST',
+      body: data,
+    })
+
+    console.log("Inscription réussie", response)
+    // Afficher un toast de succès ou rediriger
+    toast.add({
+      title: 'Connexion réussie',
+      description: 'Bienvenue sur votre tableau de bord',
+      color: 'success'
+    })
+  } catch (error) {
+    console.error("Erreur lors de l'inscription :", error)
+    // Afficher une alerte/toast d'erreur
+    toast.add({
+      title: 'Erreur',
+      description: 'Un problème est survenue lors de la création de votre compte',
+      color: 'error'
+    })
+  }
+}
+
+function onInvalid(error: any) {
+    console.warn("Validation error:", error)
+}
+</script>
