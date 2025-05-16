@@ -13,7 +13,6 @@ TOKEN = config["token"]
 INTERVAL = config["interval"]
 
 
-
 # Token api
 headers = {
     "Authorization": f"Bearer {TOKEN}"

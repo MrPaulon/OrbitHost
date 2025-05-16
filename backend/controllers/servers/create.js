@@ -54,12 +54,15 @@ module.exports = async (req, res) => {
 
         conn.release();
 
+        const apiUrl = 'http://localhost:3001/api/agents';
+        const command = `echo '{"api_url":"${apiUrl}","token":"${token}","interval":60}' > config.json && python3 agent.py`;
+
         logger.info(`Serveur ajouté par l'utilisateur ${userId} avec l'ID ${serverID}`, { ip: req.ipAddress });
 
         return res.status(201).json({
             message: 'Serveur ajouté.',
             id: serverID,
-            token
+            command
         });
     } catch (err) {
         logger.error(`Erreur lors de l'ajout du serveur: ${err.message}`, { ip: req.ipAddress });

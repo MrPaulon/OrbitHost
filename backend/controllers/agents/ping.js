@@ -11,12 +11,12 @@ module.exports = async (req, res) => {
     const serverId = decoded.serverId;
     const conn = await getConnection();
 
-    const [rows] = await conn.query(
+    const rows = await conn.query(
       'SELECT id FROM server_metrics WHERE server_id = ?',
       [serverId]
     );
-    
-    if (rows.length === 0) {
+
+    if (rows != null) {
       // INSERT
       await conn.query(
         'INSERT INTO server_metrics (server_id, hostname, os, os_version, cpu_usage, ram_total, ram_used, uptime) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
