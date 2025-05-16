@@ -1,0 +1,5 @@
+{
+    "api_url": "http://localhost:3001/api/agents",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXJ2ZXJJZCI6MywibmFtZSI6IlZQUyBQYXVsIHRlc3QiLCJpcCI6IjEyNy4wLjAuMSIsImlhdCI6MTc0NzQwNjQ5MSwiZXhwIjozMTcyOTE4NDg4OTF9.wO9EaFIaAL7Nerv252wy94s_vPZfFIqRhZczC5sq1SU",
+    "interval": 60
+}
