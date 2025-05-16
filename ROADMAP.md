@@ -61,15 +61,15 @@
 **Durée : 5-7 jours**
 
 ### Agent Python
-- [ ] Lecture d’un fichier de config (token, URL de l’API)
-- [ ] Authentification via token serveur
-- [ ] Envoi périodique :
+- [X] Lecture d’un fichier de config (token, URL de l’API)
+- [X] Authentification via token serveur
+- [X] Envoi périodique :
   - hostname, IP, uptime, CPU, RAM, disque
-- [ ] Utilise `requests`, `psutil`, `socket`, etc.
+- [X] Utilise `requests`, `psutil`, `socket`, etc.
 
 ### Backend
-- [ ] Table `metrics (id, server_id, timestamp, cpu, ram, disk, uptime)`
-- [ ] Route `POST /agent/metrics` → vérifie token, INSERT dans DB
+- [X] Table `metrics (id, server_id, timestamp, cpu, ram, disk, uptime)`
+- [X] Route `POST /agent/metrics` → vérifie token, INSERT dans DB
 
 ---
 
