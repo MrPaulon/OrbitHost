@@ -1,4 +1,4 @@
-# Import des packages
+# Import packages
 import json
 import time
 import requests
@@ -12,11 +12,19 @@ API_URL = config["api_url"]
 TOKEN = config["token"]
 INTERVAL = config["interval"]
 
-# Header des requêtes api
+
+
+# Token api
 headers = {
     "Authorization": f"Bearer {TOKEN}"
 }
 
-# Test de la connexion
-data = collect_system_info()
-print(data)
+# Envoie des données
+while True:
+    try:
+        data = collect_system_info()
+        res = requests.post(f"{API_URL}/ping", json=data, headers=headers)
+        print(f"[PING] Status: {res.status_code}, Response: {res.text}")
+    except Exception as e:
+        print(f"[ERREUR] {e}")
+    time.sleep(INTERVAL)

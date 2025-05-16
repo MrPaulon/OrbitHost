@@ -14,7 +14,7 @@ app.use(express.json()); // Permet de lire le JSON dans les requêtes
 
 app.use(ipMiddleware);
 
-// Routes Token
+// Routes token
 const tokenRoutes = require('./routes/token');
 app.use('/api/token', tokenRoutes);
 
@@ -25,6 +25,11 @@ app.use('/api/users', userRoutes);
 // Routes servers
 const serverRoutes = require('./routes/servers');
 app.use('/api/servers', serverRoutes);
+
+// Routes agent
+const agentRoutes = require('./routes/agents');
+app.use('/api/agents', agentRoutes);
+
 
 // Port
 const PORT = process.env.PORT || 3001;
