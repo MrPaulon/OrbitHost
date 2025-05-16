@@ -24,3 +24,17 @@ CREATE TABLE servers (
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
+
+CREATE TABLE server_metrics (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  server_id INT NOT NULL,
+  hostname VARCHAR(255),
+  os VARCHAR(100),
+  os_version TEXT,
+  cpu_usage FLOAT,
+  ram_total BIGINT,
+  ram_used BIGINT,
+  uptime BIGINT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (server_id) REFERENCES servers(id) ON DELETE CASCADE
+);
