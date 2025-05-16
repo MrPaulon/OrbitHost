@@ -34,7 +34,7 @@
 
           <template #deployement>
             <div class="deployementsection">
-              <p>Copié/coller la commande suivante sur le terminal de votre serveur pour terminer la configuration: </p>
+              <p>Copie/colle la commande suivante sur le terminal de ton serveur pour terminer la configuration: </p>
               <div class="copysection">
                 <pre class="command">{{ commandtocpy }}</pre>
                 <UButton class="btncpy" @click="copyCommand()" icon="solar:copy-bold-duotone" variant="solid" color="neutral"/>
@@ -119,7 +119,7 @@ async function createServer() {
     if (!token) throw new Error('Token manquant.')
 
     if (!form.value.name || !form.value.ip_address || !form.value.user.value) {
-      throw new Error('Veuillez remplir tous les champs obligatoires.')
+      throw new Error('veuillez remplir tous les champs obligatoires.')
     }
 
     // Vérification des champs du form
