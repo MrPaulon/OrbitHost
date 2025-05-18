@@ -46,8 +46,23 @@ onMounted(async () => {
 })
 
 
-function deleteServer(id: number) {
-  console.log('Supprimer serveur', id)
-  // Logique suppresion d'un serveur
+async function deleteServer(serverId: number) {
+  const token = localStorage.getItem('token')
+  if (!token) return
+
+  try {
+    await $fetch(`http://localhost:3001/api/servers/delete/${serverId}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+
+    // Mets à jour la liste après suppression
+    servers.value = servers.value.filter(s => s.id !== serverId)
+
+  } catch (error) {
+    console.error('Erreur lors de la suppression du serveur :', error)
+  }
 }
 </script>
