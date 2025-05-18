@@ -28,12 +28,29 @@
                         variant="solid"
                         :to="`/admin/${itemType}/${item.id}`"
                     />
-                    <UButton
+                    <UPopover>
+                      <UButton
                         icon="solar:trash-bin-minimalistic-bold-duotone"
                         color="error"
                         variant="solid"
-                        @click="$emit('delete', item.id)"
                     />
+
+                      <template #content>
+                        <div class="contentPopOver" style="width: 220px; padding: 20px; border-radius: 8px; display: flex; flex-direction: column; align-items: center;">
+                          <p style="text-align: center; margin-bottom: 10px;">Voulez-vous vraiment supprimer ce serveur ?</p>
+                          <UButton
+                            icon="solar:trash-bin-minimalistic-bold-duotone"
+                            color="error"
+                            variant="solid"
+                            @click="$emit('delete', item.id)"
+                            style="color: var(--color-text);"
+                          >
+                          Confirmer
+                          </UButton>
+                        </div>
+                      </template>
+                    </UPopover>
+  
                 </div>
             </div>
         </div>
