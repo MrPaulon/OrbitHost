@@ -37,7 +37,7 @@
 
                     <template #content>
                       <div class="contentPopOver" style="width: 220px; padding: 20px; border-radius: 8px; display: flex; flex-direction: column; align-items: center;">
-                        <p style="text-align: center; margin-bottom: 10px;">Voulez-vous vraiment supprimer ce serveur ?</p>
+                        <p style="text-align: center; margin-bottom: 10px;">Voulez-vous vraiment supprimer ?</p>
                         <UButton
                           icon="solar:trash-bin-minimalistic-bold-duotone"
                           color="error"
