@@ -30,6 +30,10 @@ app.use('/api/servers', serverRoutes);
 const agentRoutes = require('./routes/agents');
 app.use('/api/agents', agentRoutes);
 
+// Routes locations
+const locationsRoutes = require('./routes/locations');
+app.use('/api/locations', locationsRoutes);
+
 
 // Port
 const PORT = process.env.PORT || 3001;
