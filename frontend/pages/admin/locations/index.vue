@@ -31,9 +31,20 @@ const locations = ref([])
 
 // Récupération de la liste de tous les locations
 onMounted(async () => {
-// Récupération du token
-const token = localStorage.getItem('token')
-if (!token) return
+  // Récupération du token
+  const token = localStorage.getItem('token')
+  if (!token) return
+
+  try {
+    const result = await $fetch('http://localhost:3001/api/locations/list', {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    locations.value = result
+  } catch (error) {
+    console.error('Erreur lors du chargement des emplacements :', error)
+  }
 })
 
 

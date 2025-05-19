@@ -32,6 +32,7 @@ definePageMeta({
 })
 
 // Variables
+const toast = useToast()
 const form = ref({
   name: '',
   description: '',
@@ -40,7 +41,39 @@ const form = ref({
 
 // Fonction de création d'emplacement
 async function createLocation() {
+  try {
+    const token = localStorage.getItem('token')
+    if (!token) throw new Error('Token manquant.')
+
+    if (!form.value.name) {
+      throw new Error('veuillez remplir le champ obligatoire.')
+    }
     // Fonction création location
-    alert('salade')
+    const response = await $fetch('http://localhost:3001/api/locations/create', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+      body: {
+        name: form.value.name,
+        ip_address: form.value.description
+      }
+    })
+
+    console.log('Emplacement créé :', response)
+    toast.add({
+      title: 'Emplacement créé',
+      description: `Le Emplacement: ${form.value.name} à été créé`,
+      color: 'success'
+    })
+
+    } catch (error) {
+        console.error('Erreur lors de la création du serveur :', error)
+        toast.add({
+        title: 'Erreur',
+        description: `Problème à la création du serveur: ${error.message}`,
+        color: 'error'
+        })
+    }
 }
 </script>
