@@ -29,6 +29,54 @@
             align-items: center;
             justify-content: center;
             flex-direction: column;
+
+
+            .bg-accented {
+                background-color: var(--color-border);
+            }
+
+            .group-data-\[state\=completed\]\:bg-primary {
+                &:is(:where(.group)[data-state="completed"] *) {
+                    background-color: var(--color-primary-500);
+                }
+            }
+
+            .group-data-\[state\=active\]\:bg-primary {
+                &:is(:where(.group)[data-state="inactive"] *) {
+                    background-color: var(--color-border);
+                }
+            }
+
+
+            .grid {
+                width: 100%;
+                margin-top: 30px;
+                .iconify {
+                    color: var(--color-primary-100);
+                }
+                input,
+                button {
+                    border: 1px solid var(--color-bg-alt);
+                    background-color: var(--color-bg-alt);
+                    border-radius: 5px;
+                    align-items: center;
+                    width: 300px;
+
+                    
+                }
+            }
+
+            .createbtn {
+                width: 100%;
+                height: auto;
+                display: flex;
+                justify-content: center;
+                margin-top: 30px;
+
+                button {
+                    color: var(--color-text);
+                }
+            }
         }
     }
 }
