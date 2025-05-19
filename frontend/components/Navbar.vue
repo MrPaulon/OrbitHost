@@ -1,23 +1,3 @@
-<script setup lang="ts">
-import type { DropdownMenuItem } from '@nuxt/ui'
-
-const items = ref<DropdownMenuItem[]>([
-  {
-    label: 'Profil',
-    icon: 'solar:user-bold'
-  },
-  {
-    label: 'Paramètres',
-    icon: 'solar:settings-bold-duotone'
-  },
-  {
-    label: 'Admin',
-    icon: 'solar:shield-bold-duotone',
-    to: '/admin'
-  }
-])
-</script>
-
 <template>
     <nav class="flex items-center p-4 bg-surface border-b border-border" style="position: relative; z-index: 99;">
       <img style="width: 50px; margin-left: 20px;" src="/logo_sans_texte_sans_fond.png" alt="">
@@ -47,3 +27,23 @@ const items = ref<DropdownMenuItem[]>([
       </div>
     </nav>
 </template>
+
+<script setup lang="ts">
+import type { DropdownMenuItem } from '@nuxt/ui'
+
+const items = ref<DropdownMenuItem[]>([
+  {
+    label: 'Profil',
+    icon: 'solar:user-bold'
+  },
+  {
+    label: 'Paramètres',
+    icon: 'solar:settings-bold-duotone'
+  },
+  {
+    label: 'Admin',
+    icon: 'solar:shield-bold-duotone',
+    to: '/admin'
+  }
+])
+</script>
