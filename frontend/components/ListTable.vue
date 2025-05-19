@@ -1,69 +1,72 @@
 <template>
-    <div class="listcard">
-      <div class="header">
-        <UInput
-          class="searchbar"
-          v-model="searchQuery"
-          :placeholder="`Rechercher dans ${title}...`"
-          icon="i-heroicons-magnifying-glass"
-        />
-        <UButton icon="solar:cloud-plus-bold-duotone" class="bouton" size="md" color="primary" :to="`${route.path}/create`">
-          Créer
-        </UButton>
-      </div>
-      <div class="table">
-        <div class="tablecontent">
-            <div v-if="paginatedItems.length === 0" class="text-center text-sm text-gray-500 py-4">
-                Aucune donnée trouvée.
-            </div>
-            <div v-for="item in paginatedItems" :key="item.id" class="server">
-                <UIcon :name="`${icon}`" class="size-8" />
-                <p v-for="field in fields" :key="field">
-                {{ field }}: {{ item[field] }}
-                </p>
-                <div class="serverbtn">
+  <div class="listcard">
+    <div class="header">
+      <UInput
+        class="searchbar"
+        v-model="searchQuery"
+        :placeholder="`Rechercher dans ${title}...`"
+        icon="i-heroicons-magnifying-glass"
+      />
+      <UButton icon="solar:cloud-plus-bold-duotone" class="bouton" size="md" color="primary" :to="`${route.path}/create`">
+        Créer
+      </UButton>
+    </div>
+    <div class="table">
+      <div class="tablecontent">
+          <div v-if="paginatedItems.length === 0" class="text-center text-sm text-gray-500 py-4">
+              Aucune donnée trouvée.
+          </div>
+          <div v-for="item in paginatedItems" :key="item.id" class="server">
+              <UIcon :name="`${icon}`" class="size-8" />
+              <p v-for="field in fields" :key="field">
+              {{ field }}: {{ item[field] }}
+              </p>
+              <div class="serverbtn">
+                  <UButton
+                      icon="solar:eye-bold-duotone"
+                      color="primary"
+                      variant="solid"
+                      :to="`/admin/${itemType}/${item.id}`"
+                  />
+                  <UPopover>
                     <UButton
-                        icon="solar:eye-bold-duotone"
-                        color="primary"
-                        variant="solid"
-                        :to="`/admin/${itemType}/${item.id}`"
-                    />
-                    <UPopover>
-                      <UButton
-                        icon="solar:trash-bin-minimalistic-bold-duotone"
-                        color="error"
-                        variant="solid"
-                    />
+                      icon="solar:trash-bin-minimalistic-bold-duotone"
+                      color="error"
+                      variant="solid"
+                  />
 
-                      <template #content>
-                        <div class="contentPopOver" style="width: 220px; padding: 20px; border-radius: 8px; display: flex; flex-direction: column; align-items: center;">
-                          <p style="text-align: center; margin-bottom: 10px;">Voulez-vous vraiment supprimer ce serveur ?</p>
-                          <UButton
-                            icon="solar:trash-bin-minimalistic-bold-duotone"
-                            color="error"
-                            variant="solid"
-                            @click="$emit('delete', item.id)"
-                            style="color: var(--color-text);"
-                          >
-                          Confirmer
-                          </UButton>
-                        </div>
-                      </template>
-                    </UPopover>
-  
-                </div>
-            </div>
-        </div>
-        <div class="pagination flex gap-4 mt-4">
-          <UButton icon="solar:alt-arrow-left-bold" :disabled="page === 1" @click="page--" />
-          <UButton icon="solar:alt-arrow-right-bold" :disabled="page === pageCount" @click="page++" />
-        </div>
+                    <template #content>
+                      <div class="contentPopOver" style="width: 220px; padding: 20px; border-radius: 8px; display: flex; flex-direction: column; align-items: center;">
+                        <p style="text-align: center; margin-bottom: 10px;">Voulez-vous vraiment supprimer ce serveur ?</p>
+                        <UButton
+                          icon="solar:trash-bin-minimalistic-bold-duotone"
+                          color="error"
+                          variant="solid"
+                          @click="$emit('delete', item.id)"
+                          style="color: var(--color-text);"
+                        >
+                        Confirmer
+                        </UButton>
+                      </div>
+                    </template>
+                  </UPopover>
+
+              </div>
+          </div>
+      </div>
+      <div class="pagination flex gap-4 mt-4">
+        <UButton icon="solar:alt-arrow-left-bold" :disabled="page === 1" @click="page--" />
+        <UButton icon="solar:alt-arrow-right-bold" :disabled="page === pageCount" @click="page++" />
       </div>
     </div>
-  </template>
-  
+  </div>
+</template>
+
+<style scoped lang="scss">
+@import "~/assets/css/components/ListTable.scss";
+</style>
+
 <script setup>
-import "~/assets/css/components/ListTable.scss"
 const route = useRoute()
 const props = defineProps({
   title: String,

@@ -1,16 +1,18 @@
 <template>
-    <div class="serverspage">
-      <div class="content">
-        <h1>API</h1>
-      </div>
+  <div class="serverspage">
+    <div class="content">
+      <h1>API</h1>
     </div>
-  </template>
-  <script setup lang="ts">
-  // Layout admin
-  definePageMeta({
-  layout: 'admin'
-  })
-  
-  // Style
-  import "~/assets/css/admin/basic.scss";
-  </script>
+  </div>
+</template>
+
+<style scoped lang="scss">
+@import "~/assets/css/admin/basic.scss";
+</style>
+
+<script setup lang="ts">
+// Layout admin
+definePageMeta({
+layout: 'admin'
+})
+</script>

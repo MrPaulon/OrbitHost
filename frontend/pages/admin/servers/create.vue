@@ -48,6 +48,10 @@
   </div>
 </template>
 
+<style scoped lang="scss">
+@import "~/assets/css/admin/servers/create.scss";
+</style>
+
 <script setup lang="ts">
 import type { StepperItem } from '@nuxt/ui'
 
@@ -55,9 +59,6 @@ import type { StepperItem } from '@nuxt/ui'
 definePageMeta({
   layout: 'admin'
 })
-
-// Style
-import "~/assets/css/admin/servers/create.scss"
 
 // Variables
 const itemsnode = ref(['Node 01'])

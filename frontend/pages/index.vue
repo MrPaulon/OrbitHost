@@ -51,10 +51,11 @@
   </div>
 </template>
 
-<script setup>
-// Style
-import "~/assets/css/index.scss"
+<style scoped lang="scss">
+@import "~/assets/css/index.scss";
+</style>
 
+<script setup>
 // Importation modules
 import { ref, computed, onMounted } from 'vue'
 

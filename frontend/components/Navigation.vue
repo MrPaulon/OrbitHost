@@ -1,10 +1,3 @@
-<script setup lang="ts">
-import { useRoute } from 'vue-router'
-import "~/assets/css/components/navigation.scss"
-
-const route = useRoute()
-const isActive = (path: string) => route.path === path
-</script>
 <template>
     <div class="navigation">
         <div class="content">
@@ -20,3 +13,14 @@ const isActive = (path: string) => route.path === path
         </div>
     </div>
 </template>
+
+<style scoped lang="scss">
+@import "~/assets/css/components/navigation.scss";
+</style>
+
+<script setup lang="ts">
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
+const isActive = (path: string) => route.path === path
+</script>
