@@ -14,11 +14,9 @@
     </div>
 </template>
 
-<style scoped lang="scss">
-@import "~/assets/css/components/navigation.scss";
-</style>
-
 <script setup lang="ts">
+// Style
+import "~/assets/css/components/navigation.scss"
 import { useRoute } from 'vue-router'
 
 const route = useRoute()

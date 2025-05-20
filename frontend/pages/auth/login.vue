@@ -38,15 +38,14 @@
     </div>
 </template>
 
-<style scoped lang="scss">
-@import "~/assets/css/auth.scss";
-</style>
-
 <script setup lang="ts">
 // Désactivation du layout
 definePageMeta({
   layout: false
 })
+
+// Style
+import '~/assets/css/auth.scss'
 
 // Importation modules
 import { object, string, type InferType } from 'yup'

@@ -62,11 +62,10 @@
   </div>
 </template>
 
-<style scoped lang="scss">
-@import "~/assets/css/components/ListTable.scss";
-</style>
-
 <script setup>
+// Style
+import "~/assets/css/components/ListTable.scss";
+
 const route = useRoute()
 const props = defineProps({
   title: String,

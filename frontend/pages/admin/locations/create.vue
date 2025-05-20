@@ -21,15 +21,14 @@
     </div>
 </template>
 
-<style scoped lang="scss">
-@import "~/assets/css/admin/locations/create.scss";
-</style>
-
 <script setup lang="ts">
 // Layout admin
 definePageMeta({
   layout: 'admin'
 })
+
+// Style
+import "~/assets/css/admin/locations/create.scss"
 
 // Variables
 const toast = useToast()

@@ -48,12 +48,11 @@
   </div>
 </template>
 
-<style scoped lang="scss">
-@import "~/assets/css/admin/servers/create.scss";
-</style>
-
 <script setup lang="ts">
 import type { StepperItem } from '@nuxt/ui'
+
+// Style
+import "~/assets/css/admin/servers/create.scss"
 
 // Layout admin
 definePageMeta({
