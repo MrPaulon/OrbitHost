@@ -14,16 +14,14 @@
   </div>
 </template>
 
-<style scoped lang="scss">
-@import "~/assets/css/admin/basic.scss";
-</style>
-
 <script setup lang="ts">
 // Layout admin
 definePageMeta({
 layout: 'admin'
 })
 
+// Import Style
+import '~/assets/css/admin/basic.scss';
 
 // Variables
 const locations = ref([])
@@ -47,9 +45,23 @@ onMounted(async () => {
   }
 })
 
+async function deleteLocations(locationID: number) {
+  const token = localStorage.getItem('token')
+  if (!token) return
 
-function deleteLocations(id: number) {
-console.log('Supprimer emplacement', id)
-// Logique suppresion d'une node
+  try {
+    await $fetch(`http://localhost:3001/api/locations/delete/${locationID}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+
+    // Mets à jour la liste après suppression
+    locations.value = locations.value.filter(s => s.id !== locationID)
+
+  } catch (error) {
+    console.error('Erreur lors de la suppression de emplacement :', error)
+  }
 }
 </script>
