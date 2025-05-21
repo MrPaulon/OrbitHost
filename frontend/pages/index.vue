@@ -43,7 +43,7 @@
             </div>
           </div>
           <div class="buttons">
-            <UButton icon="solar:box-bold-duotone" size="lg" color="primary" variant="solid"></UButton>
+            <UButton icon="solar:box-bold-duotone" size="lg" color="primary" variant="solid" :to="`/server/${server.id}`"></UButton>
           </div>
         </template>
       </UCard>
