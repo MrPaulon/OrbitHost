@@ -89,8 +89,8 @@
 - [ ] Envoie les résultats à l’API
 
 ### Frontend
-- [ ] Interface pour exécuter une commande sur un serveur
-- [ ] Affichage des résultats
+- [X] Interface pour exécuter une commande sur un serveur
+- [X] Affichage des résultats
 
 ---
 
