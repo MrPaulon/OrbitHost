@@ -18,6 +18,18 @@
             <UInput icon="solar:sidebar-code-bold-duotone" size="xl" class="cmd" v-model="inputCommand" @keyup.enter="sendCommand" placeholder="Entrer une commande..." />
           </div>
         </div>
+
+        <div class="infos">
+          <div class="srvinfos">
+            
+          </div>
+          <div class="srvcapacity">
+
+          </div>
+          <div class="srvstatus">
+
+          </div>
+        </div>
       </div>
     </div>
   </template>
