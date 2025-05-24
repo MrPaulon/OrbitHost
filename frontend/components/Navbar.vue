@@ -1,7 +1,7 @@
 <template>
     <nav class="flex items-center p-4 bg-surface border-b border-border" style="position: fixed; z-index: 100; width: 100%;">
       <img style="width: 50px; margin-left: 20px;" src="/logo_sans_texte_sans_fond.png" alt="">
-      <h1 class="text-xl font-bold ml-2">Serverly</h1>
+      <UButton to="/" variant="link" color="neutral"><h1 class="text-xl font-bold ml-2">Serverly</h1></UButton>
 
       <div style="display: flex; position: absolute; right: 30px;" class="gap-5">
         <UChip :show="false">
