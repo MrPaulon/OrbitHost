@@ -41,9 +41,14 @@ const items = ref<DropdownMenuItem[]>([
     icon: 'solar:settings-bold-duotone'
   },
   {
+    label: 'Déconnexion',
+    icon: 'solar:logout-2-bold-duotone',
+    to: 'logout'
+  },
+  {
     label: 'Admin',
     icon: 'solar:shield-bold-duotone',
     to: '/admin'
-  }
+  },
 ])
 </script>
