@@ -53,7 +53,7 @@
 
 ### Frontend
 - [X] Page "Mes serveurs" avec liste et bouton d’ajout
-- [ ] Génération d’une commande à copier pour installer l’agent (avec token)
+- [X] Génération d’une commande à copier pour installer l’agent (avec token)
 
 ---
 
@@ -84,12 +84,14 @@
   - `POST /agent/commands/:id/result` → renvoyer la sortie
 
 ### Agent Python
-- [ ] Récupère périodiquement les commandes en attente
-- [ ] Les exécute (ex: `uptime`, `df -h`, etc.)
+- [X] Webconsole
+- [X] Récupère les commandes
+- [X] Les exécute (ex: `uptime`, `df -h`, etc.)
 - [ ] Envoie les résultats à l’API
 
 ### Frontend
 - [X] Interface pour exécuter une commande sur un serveur
+- [X] Interface avec Webconsole
 - [X] Affichage des résultats
 
 ---
