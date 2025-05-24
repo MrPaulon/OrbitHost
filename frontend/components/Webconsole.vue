@@ -3,9 +3,10 @@
 </template>
   
 <script setup lang="ts">
+import { Style } from '#components'
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { Terminal } from 'xterm'
-import 'xterm/css/xterm.css'
+import '~/assets/css/components/webconsole.scss'
 
 const terminalContainer = ref<HTMLDivElement | null>(null)
 let terminal: Terminal
@@ -28,7 +29,7 @@ const connectWebSocket = () => {
     socket = new WebSocket('ws://localhost:8765')
   
     socket.onopen = () => {
-      terminal.writeln('\r\n[Connecté au VPS]')
+      terminal.write('\r\n[✅ Connecté au VPS]')
     }
   
     socket.onmessage = (event) => {
@@ -36,11 +37,11 @@ const connectWebSocket = () => {
     }
   
     socket.onclose = () => {
-      terminal.writeln('\r\n[Déconnecté]')
+      terminal.write('\r\n[⚠️ Déconnecté]')
     }
   
     socket.onerror = () => {
-      terminal.writeln('\r\n[Erreur WebSocket]')
+      terminal.write('\r\n[⛔️ Erreur WebSocket]')
     }
 }
   
@@ -54,9 +55,3 @@ onBeforeUnmount(() => {
     terminal?.dispose()
 })
 </script>
-  
-<style scoped>
-.terminal-container {
-    padding: 10px;
-}
-</style>
