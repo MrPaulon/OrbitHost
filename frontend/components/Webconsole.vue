@@ -1,17 +1,17 @@
 <template>
     <div ref="terminalContainer" class="terminal-container" />
-  </template>
+</template>
   
-  <script setup lang="ts">
-  import { ref, onMounted, onBeforeUnmount } from 'vue'
-  import { Terminal } from 'xterm'
-  import 'xterm/css/xterm.css'
+<script setup lang="ts">
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { Terminal } from 'xterm'
+import 'xterm/css/xterm.css'
+
+const terminalContainer = ref<HTMLDivElement | null>(null)
+let terminal: Terminal
+let socket: WebSocket
   
-  const terminalContainer = ref<HTMLDivElement | null>(null)
-  let terminal: Terminal
-  let socket: WebSocket
-  
-  const initTerminal = () => {
+const initTerminal = () => {
     terminal = new Terminal()
   
     terminal.open(terminalContainer.value!)
@@ -22,9 +22,9 @@
         socket.send(data)
       }
     })
-  }
+}
   
-  const connectWebSocket = () => {
+const connectWebSocket = () => {
     socket = new WebSocket('ws://localhost:8765')
   
     socket.onopen = () => {
@@ -42,21 +42,21 @@
     socket.onerror = () => {
       terminal.writeln('\r\n[Erreur WebSocket]')
     }
-  }
+}
   
-  onMounted(() => {
+onMounted(() => {
     initTerminal()
     connectWebSocket()
-  })
+})
   
-  onBeforeUnmount(() => {
+onBeforeUnmount(() => {
     socket?.close()
     terminal?.dispose()
-  })
-  </script>
+})
+</script>
   
-  <style scoped>
-  .terminal-container {
+<style scoped>
+.terminal-container {
     padding: 10px;
-  }
-  </style>
+}
+</style>
