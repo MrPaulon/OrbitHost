@@ -25,6 +25,6 @@ async def terminal(websocket, path):
 
 start_server = websockets.serve(terminal, "0.0.0.0", 8765)
 
-print("WebSocket Terminal Server started on ws://0.0.0.0:8765")
+print("✅ WebSocket Terminal Server started on ws://0.0.0.0:8765")
 asyncio.get_event_loop().run_until_complete(start_server)
 asyncio.get_event_loop().run_forever()
