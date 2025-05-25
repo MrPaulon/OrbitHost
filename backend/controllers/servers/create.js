@@ -3,7 +3,7 @@ const logger = require('../../utils/logger');
 const jwt = require('jsonwebtoken');
 
 module.exports = async (req, res) => {
-    const { name, ip_address, ssh_port = 22, ownerId = req.user?.userId } = req.body;
+    const { name, ip_address, ssh_port, ownerId = req.user?.userId } = req.body;
     const userId = req.user?.userId;
 
     if (!userId) {
@@ -55,7 +55,7 @@ module.exports = async (req, res) => {
         conn.release();
 
         const apiUrl = 'http://localhost:3001/api/agents';
-        const command = `echo '{"api_url":"${apiUrl}","token":"${token}","interval":60}' > config.json && python3 agent.py`;
+        const command = `echo '{"api_url":"${apiUrl}","token":"${token}","interval":60, "ip_address":"${ip_address}", "web_console_port":"${ssh_port}"}' > config.json && python3 agent.py`;
 
         logger.info(`Serveur ajouté par l'utilisateur ${userId} avec l'ID ${serverID}`, { ip: req.ipAddress });
 

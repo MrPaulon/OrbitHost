@@ -3,10 +3,15 @@
 </template>
   
 <script setup lang="ts">
-import { Style } from '#components'
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { Terminal } from 'xterm'
 import '~/assets/css/components/webconsole.scss'
+
+const props = defineProps({
+  idServer: String,
+  ip: String,
+  port: Number
+})
 
 const terminalContainer = ref<HTMLDivElement | null>(null)
 let terminal: Terminal
@@ -26,7 +31,9 @@ const initTerminal = () => {
 }
   
 const connectWebSocket = () => {
-    socket = new WebSocket('ws://localhost:8765')
+  console.log(props.ip)
+  console.log(props.port)
+    socket = new WebSocket(`ws://${props.ip}:${props.port}`)
   
     socket.onopen = () => {
       terminal.write('\r\n[✅ Connecté au VPS]')

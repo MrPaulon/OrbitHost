@@ -13,6 +13,8 @@ with open('config.json') as f:
 API_URL = config["api_url"]
 TOKEN = config["token"]
 INTERVAL = config["interval"]
+IP_ADDRESS = config["ip_address"]
+WEB_CONSOLE_PORT = config["web_console_port"]
 
 headers = {
     "Authorization": f"Bearer {TOKEN}"
@@ -37,8 +39,8 @@ async def periodic_sender():
 # Fonction principale
 async def main():
     # Démarrage du serveur WebSocket
-    server = await websockets.serve(terminal, "0.0.0.0", 8765)
-    print("✅ WebSocket Terminal Server started on ws://0.0.0.0:8765")
+    server = await websockets.serve(terminal, IP_ADDRESS, WEB_CONSOLE_PORT)
+    print(f"✅ WebSocket Terminal Server started on ws://{IP_ADDRESS}:{WEB_CONSOLE_PORT}")
 
     # Lancement parallèle de la tâche d'envoi
     await periodic_sender()

@@ -69,7 +69,7 @@ const form = ref({
   name: '',
   user: '',
   ip_address: '',
-  port: 22,
+  port: 8765,
   type: 'VPS'
 })
 const stepperitems = [
@@ -132,7 +132,8 @@ async function createServer() {
       body: {
         name: form.value.name,
         ip_address: form.value.ip_address,
-        ownerId: form.value.user.value
+        ownerId: form.value.user.value,
+        ssh_port: form.value.port
       }
     })
 
