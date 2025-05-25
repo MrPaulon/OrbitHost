@@ -1,7 +1,7 @@
 <template>
     <div class="login dark">
         <UForm :schema="schema" :state="state" @submit="onSubmit" @submit-invalid="onInvalid">
-            <UCard variant="solid" class="container" style="height: 420px;">
+            <UCard variant="solid" class="container" style="height: 430px;">
                 <template #header>
                     <h1 class="text-center title">Connexion</h1>
                     <p class="text">Connectez-vous pour accéder à votre espace</p>
@@ -24,12 +24,12 @@
                         />
                         <div class="divider"></div>
                         <UButton
-                            disabled
-                            label="Continuer avec Discord"
-                            icon="i-simple-icons-discord"
+                            label="S'inscrire"
+                            icon="solar:login-3-bold-duotone"
                             color="primary"
                             size="lg"
-                            variant="soft"
+                            variant="link"
+                            to="/auth/register"
                         />
                     </div>
                 </div>
