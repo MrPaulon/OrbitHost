@@ -1,3 +1,8 @@
+<img
+  src="/frontend/public/logo_sans_texte_sans_fond.png"
+  alt="Serverly logo"
+  style="width: 200px;"/>
+
 # 🚀 Serverly
 
 [![Nuxt.js](https://img.shields.io/badge/Nuxt.js-00DC82?style=for-the-badge&logo=nuxtdotjs&logoColor=white)](https://nuxt.com/)
