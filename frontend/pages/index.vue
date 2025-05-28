@@ -58,7 +58,6 @@ import '~/assets/css/index.scss'
 // Importation modules
 import { ref, computed, onMounted } from 'vue'
 
-
 // Variables
 const filter = ref('mine')
 const servers = ref([])
