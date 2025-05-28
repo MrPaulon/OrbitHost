@@ -1,0 +1,17 @@
+{
+    "mine": "Mes serveurs",
+    "others": "Autres serveurs",
+    "all": "Tous les serveurs",
+
+    "search": "Rechercher un serveur...",
+    "filter": "Filtres",
+    
+    "no_servers": "Aucun serveur trouvé",
+
+    "serverinfo": {
+        "status": "Statut",
+        "ip": "IP",
+        "username": "Utilisateur",
+        "ssh_port": "Port"
+    }
+}

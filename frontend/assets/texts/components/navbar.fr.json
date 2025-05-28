@@ -1,0 +1,10 @@
+{
+    "name": "Serverly",
+    "account": "Mon compte",
+    "menu": {
+      "profile": "Profil",
+      "settings": "Paramètres",
+      "logout": "Déconnexion",
+      "admin": "Admin"
+    }
+  }

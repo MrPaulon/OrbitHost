@@ -1,7 +1,7 @@
 <template>
     <nav class="flex items-center p-4 bg-surface border-b border-border" style="position: fixed; z-index: 100; width: 100%;">
       <img style="width: 50px; margin-left: 20px;" src="/logo_sans_texte_sans_fond.png" alt="">
-      <UButton to="/" variant="link" color="neutral"><h1 class="text-xl font-bold ml-2">Serverly</h1></UButton>
+      <UButton to="/" variant="link" color="neutral"><h1 class="text-xl font-bold ml-2">{{ navbarTexts.name }}</h1></UButton>
 
       <div style="display: flex; position: absolute; right: 30px;" class="gap-5">
         <UChip :show="false">
@@ -22,33 +22,47 @@
             content: 'w-48'
           }"
         >
-          <UButton label="Mon compte" icon="solar:user-bold" color="primary" variant="solid" />
+          <UButton :label="navbarTexts.account" icon="solar:user-bold" color="primary" variant="solid" />
         </UDropdownMenu>
       </div>
     </nav>
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted } from 'vue'
 import type { DropdownMenuItem } from '@nuxt/ui'
 
-const items = ref<DropdownMenuItem[]>([
-  {
-    label: 'Profil',
-    icon: 'solar:user-bold'
-  },
-  {
-    label: 'Paramètres',
-    icon: 'solar:settings-bold-duotone'
-  },
-  {
-    label: 'Déconnexion',
-    icon: 'solar:logout-2-bold-duotone',
-    to: 'logout'
-  },
-  {
-    label: 'Admin',
-    icon: 'solar:shield-bold-duotone',
-    to: '/admin'
-  },
-])
+// Langue
+const lang = (await import('~/assets/texts/lang.json')).default.lang
+
+// Références pour le texte et les éléments du menu
+const navbarTexts = ref<any>({})
+const items = ref<DropdownMenuItem[]>([])
+
+onMounted(async () => {
+  const data = await import(`@/assets/texts/components/navbar.${lang}.json`)
+  navbarTexts.value = data.default
+
+  // Créer les items dynamiquement avec les labels du JSON
+  items.value = [
+    {
+      label: navbarTexts.value.menu.profile,
+      icon: 'solar:user-bold'
+    },
+    {
+      label: navbarTexts.value.menu.settings,
+      icon: 'solar:settings-bold-duotone'
+    },
+    {
+      label: navbarTexts.value.menu.logout,
+      icon: 'solar:logout-2-bold-duotone',
+      to: 'logout'
+    },
+    {
+      label: navbarTexts.value.menu.admin,
+      icon: 'solar:shield-bold-duotone',
+      to: '/admin'
+    }
+  ]
+})
 </script>

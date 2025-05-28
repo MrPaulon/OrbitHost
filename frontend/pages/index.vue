@@ -4,9 +4,9 @@
     <!--Card buttons -->
     <section class="buttons flex justify-center gap-4 my-20">
       <div class="box">
-        <UButton class="button" size="lg" :color="filter === 'mine' ? 'primary' : 'gray'" @click="filter = 'mine'" variant="solid">Mes serveurs <UBadge color="primary" variant="soft">{{ mineCount }}</UBadge></UButton>
-        <UButton class="button" size="lg" :color="filter === 'others' ? 'primary' : 'gray'" @click="filter = 'others'" variant="solid">Autres serveurs <UBadge color="primary" variant="soft">{{ othersCount }}</UBadge></UButton>
-        <UButton class="button" size="lg" :color="filter === 'all' ? 'primary' : 'gray'" @click="filter = 'all'" variant="solid">Tous les serveurs <UBadge color="primary" variant="soft">{{ allCount }}</UBadge></UButton>
+        <UButton class="button" size="lg" :color="filter === 'mine' ? 'primary' : 'gray'" @click="filter = 'mine'" variant="solid">{{ indexTexts.mine }} <UBadge color="primary" variant="soft">{{ mineCount }}</UBadge></UButton>
+        <UButton class="button" size="lg" :color="filter === 'others' ? 'primary' : 'gray'" @click="filter = 'others'" variant="solid">{{ indexTexts.others }} <UBadge color="primary" variant="soft">{{ othersCount }}</UBadge></UButton>
+        <UButton class="button" size="lg" :color="filter === 'all' ? 'primary' : 'gray'" @click="filter = 'all'" variant="solid">{{ indexTexts.all }} <UBadge color="primary" variant="soft">{{ allCount }}</UBadge></UButton>
       </div>
     </section>
 
@@ -15,13 +15,13 @@
       <div class="header flex items-center justify-between mb-6 gap-4 flex-wrap">
         <UInput
           v-model="searchQuery"
-          placeholder="Rechercher un serveur..."
+          :placeholder="indexTexts.search"
           icon="i-heroicons-magnifying-glass"
           size="lg"
           class="w-full sm:w-auto flex-1"
         />
         <UButton class="button" icon="solar:filter-bold-duotone" color="primary" variant="subtle">
-          Filtres
+          {{ indexTexts.filter}}
         </UButton>
       </div>
 
@@ -36,10 +36,10 @@
             <div class="status"></div>
             <UIcon name="solar:server-square-cloud-bold" class="size-8" />
             <h2 class="title text-lg font-semibold">{{ server.name }}</h2>
-            <div class="center">
-              <p>IP: {{ server.ip_address }}</p>
-              <p>Utilisateur: {{ server.username }}</p>
-              <p>Port SSH: {{ server.ssh_port }}</p>
+            <div class="center" v-if="indexTexts.serverinfo">
+              <p>{{ indexTexts.serverinfo.ip }}: {{ server.ip_address }}</p>
+              <p>{{ indexTexts.serverinfo.username }}: {{ server.user_id }}</p>
+              <p>{{ indexTexts.serverinfo.ssh_port }}: {{ server.ssh_port }}</p>
             </div>
           </div>
           <div class="buttons">
@@ -65,6 +65,12 @@ const servers = ref([])
 const userId = ref(null)
 const searchQuery = ref('')
 
+// Lang
+const lang = (await import('~/assets/texts/lang.json')).default.lang
+
+// Texts
+const indexTexts = ref({})
+
 // Récupération liste des serveurs
 onMounted(async () => {
   // Récupération du token
@@ -82,6 +88,8 @@ onMounted(async () => {
   })
 
   servers.value = result
+
+  indexTexts.value = await import(`@/assets/texts/pages/index.${lang}.json`)
 })
 
 // Filtre les serveurs dans les différentes catégories (Mes serveurs, Autres serveurs, Tous les serveurs)
