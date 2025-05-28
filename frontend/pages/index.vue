@@ -89,7 +89,7 @@ onMounted(async () => {
 
   servers.value = result
 
-  indexTexts.value = await import(`@/assets/texts/pages/index.${lang}.json`)
+  indexTexts.value = await import(`@/assets/texts/${lang}/pages/index.json`)
 })
 
 // Filtre les serveurs dans les différentes catégories (Mes serveurs, Autres serveurs, Tous les serveurs)

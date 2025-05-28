@@ -40,7 +40,7 @@ const navbarTexts = ref<any>({})
 const items = ref<DropdownMenuItem[]>([])
 
 onMounted(async () => {
-  const data = await import(`@/assets/texts/components/navbar.${lang}.json`)
+  const data = await import(`@/assets/texts/${lang}/components/navbar.json`)
   navbarTexts.value = data.default
 
   // Créer les items dynamiquement avec les labels du JSON

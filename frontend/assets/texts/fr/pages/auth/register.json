@@ -1,0 +1,18 @@
+{
+    "title": "Bienvenue",
+    "description": "Créez un compte pour accéder à nos services",
+
+    "form": {
+        "field": "Champs nécéssaire :",
+        "mail": "Adresse mail",
+        "pseudo": "Pseudo",
+        "password": "Mot de passe"
+    },
+
+    "cgu": "En créant un compte vous acceptez nos conditions d'utilisations",
+
+    "buttons": {
+        "login": "Créer le compte",
+        "register": "Se connecter"
+    }
+}

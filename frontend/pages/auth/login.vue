@@ -1,30 +1,30 @@
 <template>
     <div class="login dark">
         <UForm :schema="schema" :state="state" @submit="onSubmit" @submit-invalid="onInvalid">
-            <UCard variant="solid" class="container" style="height: 430px;">
+            <UCard variant="solid" class="container" style="height: 430px;" v-if="loginTexts">
                 <template #header>
-                    <h1 class="text-center title">Connexion</h1>
-                    <p class="text">Connectez-vous pour accéder à votre espace</p>
+                    <h1 class="text-center title">{{ loginTexts.title}}</h1>
+                    <p class="text">{{ loginTexts.description }}</p>
                 </template>
-                <div class="content">
-                    <UFormField label="Identifiants de connexion :" required>
-                        <UInput v-model="state.email" icon="i-lucide-at-sign" class="input" size="xl" type="email" color="neutral" variant="soft" placeholder="Adresse mail" />
-                        <UInput v-model="state.password" icon="solar:lock-password-bold" class="input" size="xl" type="password" color="neutral" variant="soft" placeholder="Mot de passe" />
+                <div class="content" v-if="loginTexts.form">
+                    <UFormField :label="loginTexts.form.field"required>
+                        <UInput v-model="state.email" icon="i-lucide-at-sign" class="input" size="xl" type="email" color="neutral" variant="soft" :placeholder="loginTexts.form.mail" />
+                        <UInput v-model="state.password" icon="solar:lock-password-bold" class="input" size="xl" type="password" color="neutral" variant="soft" :placeholder="loginTexts.form.password" />
                     </UFormField>
                 </div>
                 <div class="footer">
-                    <div class="buttons">
+                    <div class="buttons" v-if="loginTexts.buttons">
                         <UButton 
                             type="submit"
                             icon="material-symbols:rocket-launch-rounded"
                             color="primary"
                             size="lg"
                             variant="solid"
-                            label="Se connecter"
+                            :label="loginTexts.buttons.login"
                         />
                         <div class="divider"></div>
                         <UButton
-                            label="S'inscrire"
+                            :label="loginTexts.buttons.register"
                             icon="solar:login-3-bold-duotone"
                             color="primary"
                             size="lg"
@@ -51,6 +51,11 @@ import '~/assets/css/auth.scss'
 import { object, string, type InferType } from 'yup'
 import type { FormSubmitEvent } from '@nuxt/ui'
 
+// Lang
+const lang = (await import('~/assets/texts/lang.json')).default.lang
+
+// Texts
+const loginTexts = ref({})
 
 // Variables
 const toast = useToast()
@@ -69,6 +74,10 @@ const state = reactive({
     password: ''
 })
 
+// Chargement du text json
+onMounted(async () => {
+    loginTexts.value = await import(`@/assets/texts/${lang}/pages/auth/login.json`)
+})
 
 // Fonction submit
 async function onSubmit(event: FormSubmitEvent<Schema>) {
@@ -77,6 +86,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
     }
 }
 
+// Fonction API création user
 async function loginUser(data: Schema) {
   try {
     // Test des identifiants sur l'api

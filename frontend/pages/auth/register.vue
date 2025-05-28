@@ -1,20 +1,20 @@
 <template>
     <div class="register dark">
         <UForm :schema="schema" :state="state" @submit="onSubmit" @submit-invalid="onInvalid">
-            <UCard variant="solid" class="container" style="height: 550px;">
+            <UCard variant="solid" class="container" style="height: 550px;" v-if="registerTexts">
                 <template #header>
-                    <h1 class="text-center title">Bienvenue</h1>
-                    <p class="text">Créez un compte pour accéder à nos services</p>
+                    <h1 class="text-center title">{{registerTexts.title}}</h1>
+                    <p class="text">{{registerTexts.description}}</p>
                 </template>
-                <div class="content">
-                    <UFormField label="Champs nécéssaire:" required>
-                        <UInput v-model="state.email" icon="i-lucide-at-sign" class="input" size="xl" type="email" color="neutral" variant="soft" placeholder="Adresse mail" />
-                        <UInput v-model="state.pseudo" icon="solar:user-hand-up-bold" class="input" size="xl" type="text" color="neutral" variant="soft" placeholder="Pseudo" />
-                        <UInput v-model="state.password" icon="solar:lock-password-bold" class="input" size="xl" type="password" color="neutral" variant="soft" placeholder="Mot de passe" />
+                <div class="content" v-if="registerTexts.form">
+                    <UFormField :label="registerTexts.form.field" required>
+                        <UInput v-model="state.email" icon="i-lucide-at-sign" class="input" size="xl" type="email" color="neutral" variant="soft" :placeholder="registerTexts.form.mail" />
+                        <UInput v-model="state.pseudo" icon="solar:user-hand-up-bold" class="input" size="xl" type="text" color="neutral" variant="soft" :placeholder="registerTexts.form.pseudo" />
+                        <UInput v-model="state.password" icon="solar:lock-password-bold" class="input" size="xl" type="password" color="neutral" variant="soft" :placeholder="registerTexts.form.password" />
                     </UFormField>
                 </div>
-                <div class="footer">
-                    <p class="text">En créant un compte vous acceptez nos conditions d'utilisations</p>
+                <div class="footer" v-if="registerTexts.buttons">
+                    <p class="text">{{ registerTexts.cgu }}</p>
                     <div class="buttons">
                         <UButton 
                             type="submit"
@@ -22,11 +22,11 @@
                             color="primary"
                             size="lg"
                             variant="solid"
-                            label="Créer le compte"
+                            :label="registerTexts.buttons.register"
                         />
                         <div class="divider"></div>
                         <UButton
-                            label="Se connecter"
+                            :label="registerTexts.buttons.register"
                             icon="solar:login-2-bold-duotone"
                             color="primary"
                             size="lg"
@@ -54,6 +54,11 @@ import { object, string, type InferType } from 'yup'
 import type { FormSubmitEvent } from '@nuxt/ui'
 
 
+// Lang
+const lang = (await (import ("~/assets/texts/lang.json"))).default.lang
+const registerTexts = ref({})
+
+
 // Variables
 const toast = useToast()
 
@@ -71,6 +76,10 @@ const state = reactive<Schema>({
   password: ''
 })
 
+// Chargement du text json
+onMounted( async() => {
+    registerTexts.value = await import(`@/assets/texts/${lang}/pages/auth/register.json`)
+})
 
 // Fonction vérification des informations saisies
 async function onSubmit(event: FormSubmitEvent<Schema>) {
