@@ -87,18 +87,17 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
     if (event.data.email != null && event.data.password != null && event.data.pseudo != null) {
         if (event.data.password.length > 8) {
             registerUser(event.data)
-            console.log("success")
         } else {
             toast.add({
-                title: 'Erreur',
-                description: 'Votre mot de passe doit contenir plus de 8 caratères',
+                title: registerTexts.value.alert.fielderror.title,
+                description: registerTexts.value.alert.fielderror.description,
                 color: 'error'
             })
         }
     } else {
         toast.add({
-            title: 'Erreur',
-            description: 'Veuillez remplir tous les champs pour créer votre compte',
+            title: registerTexts.value.alert.fielderror.title,
+            description: registerTexts.value.alert.fielderror.description,
             color: 'error'
         })
     }
@@ -112,19 +111,17 @@ async function registerUser(data: Schema) {
       body: data,
     })
 
-    console.log("Inscription réussie", response)
     // Afficher un toast de succès ou rediriger
     toast.add({
-      title: 'Connexion réussie',
-      description: 'Bienvenue sur votre tableau de bord',
+      title: registerTexts.value.alert.success.title,
+      description: registerTexts.value.alert.success.title,
       color: 'success'
     })
   } catch (error) {
-    console.error("Erreur lors de l'inscription :", error)
     // Afficher une alerte/toast d'erreur
     toast.add({
-      title: 'Erreur',
-      description: 'Un problème est survenue lors de la création de votre compte',
+      title: registerTexts.value.alert.error.title,
+      description: registerTexts.value.alert.error.description,
       color: 'error'
     })
   }

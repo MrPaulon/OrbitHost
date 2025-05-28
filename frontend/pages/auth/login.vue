@@ -98,8 +98,8 @@ async function loginUser(data: Schema) {
     // Stockage du token
     localStorage.setItem('token', response.token)
     toast.add({
-      title: 'Connexion réussie',
-      description: 'Bienvenue sur votre tableau de bord',
+      title: loginTexts.value.alert.success.title,
+      description: loginTexts.value.alert.success.description,
       color: 'success'
     })
 
@@ -109,8 +109,8 @@ async function loginUser(data: Schema) {
     // Gestion des erreurs
     // Afficher une alerte/toast d'erreur
     toast.add({
-      title: 'Erreur de connexion',
-      description: 'Vérifiez vos identifiants et réessayez',
+      title: loginTexts.value.alert.error.title,
+      description: loginTexts.value.alert.error.description,
       color: 'error'
     })
   }

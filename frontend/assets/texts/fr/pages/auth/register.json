@@ -14,5 +14,20 @@
     "buttons": {
         "login": "Créer le compte",
         "register": "Se connecter"
+    },
+
+    "alert" : {
+        "success": {
+            "title": "Inscription réussie",
+            "description": "Connectez-vous pour accéder à votre espace"
+        },
+        "error": {
+            "title": "Erreur",
+            "description": "Un problème est survenue lors de la création de votre compte"
+        },
+        "fielderror": {
+            "title" :"Erreur",
+            "description": "Veuillez remplir tous les champs pour créer votre compte"
+        }
     }
 }

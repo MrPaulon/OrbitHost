@@ -11,5 +11,16 @@
     "buttons": {
         "login": "Se connecter",
         "register": "S'inscrire"
+    },
+
+    "alert" : {
+        "success": {
+            "title": "Connexion réussie",
+            "description": "Bienvenue sur votre tableau de bord"
+        },
+        "error": {
+            "title": "Erreur de connexion",
+            "description": "Vérifiez vos identifiants et réessayez"
+        }
     }
 }
