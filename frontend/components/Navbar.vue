@@ -4,6 +4,7 @@
       <UButton to="/" variant="link" color="neutral"><h1 class="text-xl font-bold ml-2">{{ navbarTexts.name }}</h1></UButton>
 
       <div style="display: flex; position: absolute; right: 30px;" class="gap-5">
+        <Lang />
         <UChip :show="false">
          <UButton icon="ic:twotone-support" color="neutral" variant="subtle" />
         </UChip>

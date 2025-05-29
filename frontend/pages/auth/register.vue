@@ -1,6 +1,8 @@
 <template>
     <div class="register dark">
-        <Lang />
+        <div style="position: fixed; bottom: 20px; left: 20px;">
+            <Lang />
+        </div>
         <UForm :schema="schema" :state="state" @submit="onSubmit" @submit-invalid="onInvalid">
             <UCard variant="solid" class="container" style="height: 550px;" v-if="registerTexts">
                 <template #header>

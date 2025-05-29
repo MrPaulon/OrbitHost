@@ -1,5 +1,5 @@
 <template>
-  <div style="position: fixed; z-index: 101; bottom: 10px; left: 10px;">
+  <div>
     <USelectMenu
       style="width: 80px;"
       v-model="currentLang"
