@@ -27,13 +27,17 @@
 </template>
 
 <script setup lang="ts">
+// Désactivation Layout
+definePageMeta({ layout: 'server' })
+// Style
 import "~/assets/css/server/index.scss"
+
+// Importations des modules
 import { useRoute } from 'vue-router'
 import { defineAsyncComponent, onMounted, ref } from 'vue'
 import { useToast } from '#imports'
 
-definePageMeta({ layout: 'server' })
-
+// Variables
 const route = useRoute()
 const toast = useToast()
 
