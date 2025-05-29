@@ -1,0 +1,13 @@
+{
+	"dashboard": "Dashboard",
+	"settings": "Paramètres",
+	"api": "API",
+	"manage": {
+		"title": "Gestion",
+		"database" : "Base de données",
+		"locations": "Emplacements",
+		"nodes": "Nodes",
+		"servers": "Serveurs",
+		"users": "Utilisateurs"
+	}
+}
