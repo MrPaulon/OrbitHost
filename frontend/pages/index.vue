@@ -57,6 +57,7 @@ import '~/assets/css/index.scss'
 
 // Importation modules
 import { ref, computed, onMounted } from 'vue'
+import { getLang } from '~/utils/lang.ts'
 
 // Variables
 const filter = ref('mine')
@@ -65,10 +66,12 @@ const userId = ref(null)
 const searchQuery = ref('')
 
 // Lang
-const lang = (await import('~/assets/texts/lang.json')).default.lang
+const lang = (await getLang())
 
 // Texts
 const indexTexts = ref({})
+
+console.log()
 
 // Récupération liste des serveurs
 onMounted(async () => {

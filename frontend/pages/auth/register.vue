@@ -1,5 +1,6 @@
 <template>
     <div class="register dark">
+        <Lang />
         <UForm :schema="schema" :state="state" @submit="onSubmit" @submit-invalid="onInvalid">
             <UCard variant="solid" class="container" style="height: 550px;" v-if="registerTexts">
                 <template #header>
@@ -52,10 +53,11 @@ import '~/assets/css/auth.scss'
 // Importation modules
 import { object, string, type InferType } from 'yup'
 import type { FormSubmitEvent } from '@nuxt/ui'
+import { getLang } from '~/utils/lang.ts'
 
 
 // Lang
-const lang = (await (import ("~/assets/texts/lang.json"))).default.lang
+const lang = (await getLang())
 const registerTexts = ref({})
 
 
