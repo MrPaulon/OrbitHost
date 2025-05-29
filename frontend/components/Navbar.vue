@@ -1,7 +1,7 @@
 <template>
     <nav class="flex items-center p-4 bg-surface border-b border-border" style="position: fixed; z-index: 100; width: 100%;">
       <img style="width: 50px; margin-left: 20px;" src="/logo_sans_texte_sans_fond.png" alt="">
-      <UButton to="/" variant="link" color="neutral"><h1 class="text-xl font-bold ml-2">{{ navbarTexts.name }}</h1></UButton>
+      <UButton to="/" variant="link" color="neutral"><h1 class="text-xl font-bold ml-2">{{ app.name }}</h1></UButton>
 
       <div style="display: flex; position: absolute; right: 30px;" class="gap-5">
         <Lang />
@@ -32,9 +32,11 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import type { DropdownMenuItem } from '@nuxt/ui'
+import { getLang } from '~/utils/lang.ts'
 
 // Langue
-const lang = (await import('~/assets/texts/lang.json')).default.lang
+const lang = (await getLang())
+const app = (await import(`~/assets/texts/app.json`)).default
 
 // Références pour le texte et les éléments du menu
 const navbarTexts = ref<any>({})
