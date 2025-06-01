@@ -25,6 +25,11 @@
         </UButton>
       </div>
 
+
+      <div v-if="filteredServers.length === 0" class="text-center text-sm text-gray-500 py-4">
+        {{ indexTexts.no_servers }}
+      </div>
+
       <UCard
         v-for="server in filteredServers"
         :key="server.id"
