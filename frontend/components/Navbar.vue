@@ -42,7 +42,21 @@ const app = (await import(`~/assets/texts/app.json`)).default
 const navbarTexts = ref<any>({})
 const items = ref<DropdownMenuItem[]>([])
 
+// User id
+const userId = ref(null)
+
+
 onMounted(async () => {
+  // Récupération du token
+  const token = localStorage.getItem('token')
+  if (!token) return
+
+  // Décoder le token pour récupérer l'ID utilisateur
+  const payload = JSON.parse(atob(token.split('.')[1]))
+  userId.value = payload.userId
+
+  console.log(userId.value)
+
   const data = await import(`@/assets/texts/${lang}/components/navbar.json`)
   navbarTexts.value = data.default
 
@@ -50,7 +64,8 @@ onMounted(async () => {
   items.value = [
     {
       label: navbarTexts.value.menu.profile,
-      icon: 'solar:user-bold'
+      icon: 'solar:user-bold',
+      to: `/user/${userId.value}`
     },
     {
       label: navbarTexts.value.menu.settings,
