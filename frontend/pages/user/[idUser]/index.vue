@@ -1,62 +1,84 @@
 <template>
 	<div class="userpage dark">
 		<div class="content">
-			<div class="flex justify-center py-10 px-4">
-			    <UCard class="w-full max-w-2xl">
-			      <template #header>
-			        <div class="flex items-center gap-4">
-			          <UAvatar
-			            size="xl"
-			            src="https://i.pravatar.cc/150?u={{ idUser }}"
-			            alt="Avatar"
-			          />
-			          <div>
-			            <h2 class="text-xl font-bold">Utilisateur #{{ idUser }}</h2>
-			            <p class="text-sm text-gray-500 dark:text-gray-400">Profil public</p>
-			          </div>
-			        </div>
-			      </template>
 
-			      <div class="space-y-4">
-			        <UInput v-model="username" label="Nom d'utilisateur" />
-			        <UInput v-model="email" label="Email" type="email" />
-			        <UTextarea v-model="bio" label="Bio" />
-			      </div>
+			<h1>Votre profil</h1>
 
-			      <template #footer>
-			        <div class="flex justify-end">
-			          <UButton @click="updateProfile" icon="i-heroicons-check-circle" color="primary">
-			            Sauvegarder
-			          </UButton>
-			        </div>
-			      </template>
-			    </UCard>
-			  </div>
+			<div class="card">
+
+				<UForm :schema="schema" :state="state" @submit="onSubmit" class="space-y-4">
+
+					<div class="line">
+						<h3>Pseudo</h3>
+						<UInput size="lg" v-model="pseudo" icon="solar:user-hand-up-bold" placeholder="Pseudo" class="w-full" required/>
+					</div>
+
+					<div class="line">
+						<h3>Adresse email</h3>
+						<UInput size="lg" v-model="email" icon="i-lucide-at-sign" placeholder="Adresse email" class="w-full" required/>
+					</div>
+
+					<div class="line">
+						<h3>Mot de passe</h3>
+						<UInput type="password" size="lg" v-model="password" icon="solar:lock-password-bold-duotone" placeholder="Mot de passe" class="w-full" required=""/>
+					</div>
+
+					<div class="line">
+						<UButton icon="solar:check-square-bold-duotone" type="submit" size="lg" color="primary" class="w-full">
+							Enregistrer
+						</UButton>
+					</div>
+
+					
+				</UForm>
+
+			</div>
+
 		</div>
 	</div>
 </template>
 
 <script setup lang="ts">
-// Style (optionnel)
+// Style
 import "~/assets/css/user/index.scss"
 
+// Modules
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 
+
+// Variables
 const route = useRoute()
 const idUser = route.params.idUser as string
 
-// Données utilisateur simulées (à remplacer par API plus tard)
-const username = ref(`user_${idUser}`)
-const email = ref(`user${idUser}@example.com`)
-const bio = ref('Je suis un utilisateur passionné par Nuxt.')
+// Form variables
+const pseudo = ref('')
+const email = ref('')
+const password = ref('')
 
-const updateProfile = () => {
-  console.log('Profil mis à jour :', {
-    idUser,
-    username: username.value,
-    email: email.value,
-    bio: bio.value
-  })
+const schema = {
+	pseudo: {
+		type: 'string',
+		require: true
+	},
+	email: {
+		type: 'string',
+		required: true,
+	},
+	password: {
+		type: 'string',
+		required: true,
+	},
 }
+
+const state = ref({
+	pseudo: '',
+	email: '',
+	password: ''
+})
+
+const onSubmit = (data: any) => {
+	console.log(data)
+}
+
 </script>

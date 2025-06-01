@@ -1,8 +1,70 @@
 .userpage {
     position: absolute;
     width: 100%;
-    margin-top: 80px;
+    margin-top: 100px;
 
     .content {
+        margin-top: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        h1 {
+            width: 100%;
+            max-width: 600px;
+            text-align: left;
+            margin-bottom: 50px;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 30px;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            padding-bottom: 30px;
+            background-color: var(--color-surface);
+            border-radius: 20px;
+            border: 1px solid var(--color-border);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+
+            .line {
+                width: 100%;
+                height: auto;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding-left: 60px;
+                padding-right: 60px;
+
+                margin-top: 30px;
+
+                h3 {
+                    width: 50%;
+                }
+
+
+                input {
+                    border: 1px solid var(--color-bg-alt);
+                    background-color: var(--color-bg-alt);
+                    border-radius: 5px;
+                }
+
+                button {
+                    width: 200px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 40px;
+                    font-size: 16px;
+                    color: var(--color-text);
+                }
+            }
+        }
     }
 }

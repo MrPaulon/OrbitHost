@@ -30,6 +30,7 @@
 </template>
 
 <script setup lang="ts">
+// Modules
 import { ref, onMounted } from 'vue'
 import type { DropdownMenuItem } from '@nuxt/ui'
 import { getLang } from '~/utils/lang.ts'
