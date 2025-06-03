@@ -71,7 +71,7 @@ onMounted(async () => {
     {
       label: navbarTexts.value.menu.logout,
       icon: 'solar:logout-2-bold-duotone',
-      to: 'logout'
+      to: '/logout'
     },
     {
       label: navbarTexts.value.menu.admin,
