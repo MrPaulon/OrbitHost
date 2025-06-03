@@ -21,7 +21,7 @@
 
 						<div class="line">
 							<h3>{{ indexTexts.account.password }}</h3>
-							<UInput type="password" size="lg" v-model="state.password" icon="solar:lock-password-bold-duotone" :placeholder="indexTexts.account.password" class="w-full" required=""/>
+							<UInput type="password" size="lg" v-model="state.password" icon="solar:lock-password-bold-duotone" :placeholder="indexTexts.account.password" class="w-full"/>
 						</div>
 
 						<div class="line">
@@ -29,7 +29,6 @@
 								{{ indexTexts.account.save }}
 							</UButton>
 						</div>
-
 
 						</UForm>
 					</template>
@@ -73,26 +72,25 @@
 // Style
 import "~/assets/css/user/index.scss"
 
-// Modules
+// Importation des modules
 import { ref, onMounted, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import type { TabsItem } from '@nuxt/ui'
 import { getLang } from '~/utils/lang.ts'
+import * as yup from 'yup'
 
-// Lang
+// Notification
+const toast = useToast()
+
+// Chargement de la langue et des textes
 const lang = (await getLang())
-
-// Texts
 const indexTexts = ref({})
 
-onMounted(async () => {
-  indexTexts.value = await import(`@/assets/texts/${lang}/pages/user/index.json`)
-})
-// Variables
+// Récupération de l'ID utilisateur depuis l'URL
 const route = useRoute()
 const idUser = route.params.idUser as string
 
-// Tabs
+// Définition des onglets
 const items = computed(() => [
   {
     label: indexTexts.value?.tabs?.account,
@@ -116,24 +114,15 @@ const items = computed(() => [
   }
 ]) satisfies TabsItem[]
 
-// User
+// Déclaration des états utilisateur
 const userInfos = ref([])
 
-
-const schema = {
-	pseudo: {
-		type: 'string',
-		require: true
-	},
-	email: {
-		type: 'string',
-		required: true,
-	},
-	password: {
-		type: 'string',
-		required: true,
-	},
-}
+// Schéma de validation du formulaire
+const schema = yup.object({
+  pseudo: yup.string().required('Le pseudo est requis'),
+  email: yup.string().email('Email invalide').required('L\'email est requis'),
+  password: yup.string().optional()
+})
 
 const state = ref({
 	pseudo: '',
@@ -141,11 +130,12 @@ const state = ref({
 	password: ''
 })
 
-
-// Récupération des infos de l'utilisateur
+// Chargement des données utilisateur au montage
 onMounted(async () => {
   const token = localStorage.getItem('token');
   if (!token) return;
+
+  indexTexts.value = await import(`@/assets/texts/${lang}/pages/user/index.json`)
 
   try {
     const result = await $fetch(`http://localhost:3001/api/users/infos?userTarget=${idUser}`, {
@@ -157,6 +147,7 @@ onMounted(async () => {
     });
     userInfos.value = result[0];
 
+	// Remplissage des champs du formulaire
 	state.value.pseudo = userInfos.value.pseudo
 	state.value.email = userInfos.value.email
 
@@ -165,13 +156,55 @@ onMounted(async () => {
   }
 });
 
-
-// 2FA
-
+// Données pour l'authentification à deux facteurs
 const twoFactor = ref('')
 
-const onSubmit = (data: any) => {
-	console.log(data)
+// Fonction de soumission du formulaire
+const onSubmit = async (data: any) => {
+  const token = localStorage.getItem('token');
+  if (!token) {
+    console.error('Token manquant');
+    return;
+  }
+  
+  data = data.data
+
+  // Construction du payload de mise à jour
+  const updatePayload: any = {
+    userTarget: idUser,
+    pseudo: data.pseudo,
+    email: data.email
+  };
+  if (data.password?.trim()) {
+    updatePayload.password = data.password;
+  }
+
+  console.log(updatePayload)
+
+  try {
+    const response = await $fetch('http://localhost:3001/api/users/update', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+      body: updatePayload
+    });
+
+    console.log('Mise à jour réussie :', response);
+    toast.add({
+      title: indexTexts.value.toast.success.title,
+      description: indexTexts.value.toast.success.description,
+      color: 'success'
+    })
+  } catch (error) {
+    console.error('Erreur lors de la mise à jour du compte :', error);
+	toast.add({
+      title: indexTexts.value.toast.error.title,
+      description: indexTexts.value.toast.error.description,
+      color: 'error'
+    })
+  }
 }
 
 </script>

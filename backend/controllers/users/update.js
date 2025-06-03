@@ -1,5 +1,7 @@
 
 
+const bcrypt = require('bcrypt');
+
 const { getConnection } = require('../../db/connection');
 const logger = require('../../utils/logger');
 
@@ -38,7 +40,11 @@ module.exports = async (req, res) => {
         const fieldsToUpdate = {};
         if (pseudo) fieldsToUpdate.pseudo = pseudo;
         if (email) fieldsToUpdate.email = email;
-        if (password) fieldsToUpdate.password = password;
+        if (password) {
+            const saltRounds = 10;
+            const hashedPassword = await bcrypt.hash(password, saltRounds);
+            fieldsToUpdate.password_hash = hashedPassword;
+        }
 
         if (Object.keys(fieldsToUpdate).length === 0) {
             conn.release();
