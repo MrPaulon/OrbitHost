@@ -13,8 +13,10 @@ router.get('/list', verifyToken, isAdmin, list);
 // 🎯 api User
 const register = require('../controllers/users/register');
 const login = require('../controllers/users/login');
+const infos = require('../controllers/users/infos')
 
 router.post('/register', register);
 router.post('/login', login);
+router.get('/infos', verifyToken, infos);
 
 module.exports = router;
