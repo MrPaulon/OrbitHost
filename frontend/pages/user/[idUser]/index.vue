@@ -1,32 +1,32 @@
 <template>
 	<div class="userpage dark">
 		<div class="content">
-			<h1>Votre profil</h1>
+			<h1>{{ indexTexts.title }}</h1>
 			<div class="card">
-				<UTabs :items="items" class="w-full">
+				<UTabs v-if="indexTexts.tabs" :items="items" class="w-full">
 					
 					<!--Section compte-->
-					<template #account="{ item }">
+					<template v-if="indexTexts.account" #account="{ item }">
 						<UForm :schema="schema" :state="state" @submit="onSubmit" class="space-y-4">
 
 						<div class="line">
-							<h3>Pseudo</h3>
-							<UInput type="text" size="lg" v-model="state.pseudo" icon="solar:user-hand-up-bold" placeholder="Pseudo" class="w-full" required/>
+							<h3>{{ indexTexts.account.pseudo }}</h3>
+							<UInput type="text" size="lg" v-model="state.pseudo" icon="solar:user-hand-up-bold" :placeholder="indexTexts.account.pseudo" class="w-full" required/>
 						</div>
 
 						<div class="line">
-							<h3>Adresse email</h3>
-							<UInput type="text" size="lg" v-model="state.email" icon="i-lucide-at-sign" placeholder="Adresse email" class="w-full" required/>
+							<h3>{{ indexTexts.account.email }}</h3>
+							<UInput type="text" size="lg" v-model="state.email" icon="i-lucide-at-sign" :placeholder="indexTexts.account.email" class="w-full" required/>
 						</div>
 
 						<div class="line">
-							<h3>Mot de passe</h3>
-							<UInput type="password" size="lg" v-model="state.password" icon="solar:lock-password-bold-duotone" placeholder="Mot de passe" class="w-full" required=""/>
+							<h3>{{ indexTexts.account.password }}</h3>
+							<UInput type="password" size="lg" v-model="state.password" icon="solar:lock-password-bold-duotone" :placeholder="indexTexts.account.password" class="w-full" required=""/>
 						</div>
 
 						<div class="line">
 							<UButton icon="solar:check-square-bold-duotone" type="submit" size="lg" color="primary" class="w-full">
-								Enregistrer
+								{{ indexTexts.account.save }}
 							</UButton>
 						</div>
 
@@ -35,7 +35,7 @@
 					</template>
 
 					<!--Section 2FA-->
-					<template #2fa="{ item }">
+					<template #twofa="{ item }">
 						<div class="line">
 							<img src="https://cdn.qrcode-ai.com/template/preview/f54c61b0f1b6607c25bc3500f4e5bd39-1719680140773.png" alt="" style="width: 300px; border-radius: 20px;">
 						</div>
@@ -74,38 +74,47 @@
 import "~/assets/css/user/index.scss"
 
 // Modules
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import type { TabsItem } from '@nuxt/ui'
+import { getLang } from '~/utils/lang.ts'
 
+// Lang
+const lang = (await getLang())
 
+// Texts
+const indexTexts = ref({})
+
+onMounted(async () => {
+  indexTexts.value = await import(`@/assets/texts/${lang}/pages/user/index.json`)
+})
 // Variables
 const route = useRoute()
 const idUser = route.params.idUser as string
 
 // Tabs
-const items = [
+const items = computed(() => [
   {
-    label: 'Profil',
+    label: indexTexts.value?.tabs?.account,
     icon: 'lets-icons:user-box-duotone',
     slot: 'account' as const
   },
   {
-    label: '2FA',
+    label: indexTexts.value?.tabs?.twofa,
     icon: 'solar:shield-bold-duotone',
-    slot: '2fa' as const
+    slot: 'twofa' as const
   },
   {
-	label: 'API',
-	icon: 'solar:delivery-bold-duotone',
-	slot: 'api' as const
+    label: indexTexts.value?.tabs?.api,
+    icon: 'solar:delivery-bold-duotone',
+    slot: 'api' as const
   },
   {
-	label: 'Préférences',
-	icon: 'solar:pallete-2-bold-duotone',
-	slot: 'preferences' as const
+    label: indexTexts.value?.tabs?.custom,
+    icon: 'solar:pallete-2-bold-duotone',
+    slot: 'preferences' as const
   }
-] satisfies TabsItem[]
+]) satisfies TabsItem[]
 
 // User
 const userInfos = ref([])

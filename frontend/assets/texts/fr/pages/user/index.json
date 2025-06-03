@@ -1,0 +1,16 @@
+{
+    "title": "Votre profil",
+    "tabs" : {
+        "account": "Profil",
+        "twofa": "2FA",
+        "api": "API",
+        "custom": "Préférences"
+    },
+
+    "account": {
+        "pseudo": "Pseudo",
+        "email": "Adresse email",
+        "password": "Mot de passe",
+        "save": "Enregistrer"
+    }
+}
