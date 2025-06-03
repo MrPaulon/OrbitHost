@@ -69,10 +69,6 @@ onMounted(async () => {
       to: `/user/${userId.value}`
     },
     {
-      label: navbarTexts.value.menu.settings,
-      icon: 'solar:settings-bold-duotone'
-    },
-    {
       label: navbarTexts.value.menu.logout,
       icon: 'solar:logout-2-bold-duotone',
       to: 'logout'

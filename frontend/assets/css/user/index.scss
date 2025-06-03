@@ -24,13 +24,14 @@
             width: 100%;
             max-width: 600px;
             height: auto;
-            padding-bottom: 30px;
             background-color: var(--color-surface);
             border-radius: 20px;
             border: 1px solid var(--color-border);
             display: flex;
             flex-direction: column;
             justify-content: center;
+            padding: 10px;
+            padding-bottom: 30px;
 
 
             .line {
