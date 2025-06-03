@@ -1,29 +1,27 @@
 <template>
 	<div class="userpage dark">
 		<div class="content">
-
 			<h1>Votre profil</h1>
-
 			<div class="card">
-
 				<UTabs :items="items" class="w-full">
-
+					
+					<!--Section compte-->
 					<template #account="{ item }">
 						<UForm :schema="schema" :state="state" @submit="onSubmit" class="space-y-4">
 
 						<div class="line">
 							<h3>Pseudo</h3>
-							<UInput size="lg" v-model="pseudo" icon="solar:user-hand-up-bold" placeholder="Pseudo" class="w-full" required/>
+							<UInput type="text" size="lg" v-model="state.pseudo" icon="solar:user-hand-up-bold" placeholder="Pseudo" class="w-full" required/>
 						</div>
 
 						<div class="line">
 							<h3>Adresse email</h3>
-							<UInput size="lg" v-model="email" icon="i-lucide-at-sign" placeholder="Adresse email" class="w-full" required/>
+							<UInput type="text" size="lg" v-model="state.email" icon="i-lucide-at-sign" placeholder="Adresse email" class="w-full" required/>
 						</div>
 
 						<div class="line">
 							<h3>Mot de passe</h3>
-							<UInput type="password" size="lg" v-model="password" icon="solar:lock-password-bold-duotone" placeholder="Mot de passe" class="w-full" required=""/>
+							<UInput type="password" size="lg" v-model="state.password" icon="solar:lock-password-bold-duotone" placeholder="Mot de passe" class="w-full" required=""/>
 						</div>
 
 						<div class="line">
@@ -36,6 +34,7 @@
 						</UForm>
 					</template>
 
+					<!--Section 2FA-->
 					<template #2fa="{ item }">
 						<div class="line">
 							<img src="https://cdn.qrcode-ai.com/template/preview/f54c61b0f1b6607c25bc3500f4e5bd39-1719680140773.png" alt="" style="width: 300px; border-radius: 20px;">
@@ -51,6 +50,7 @@
 						</div>
 					</template>
 
+					<!--Section API-->
 					<template #api="{ item }">
 						<div class="line">
 							<h3>API</h3>
@@ -62,11 +62,9 @@
 							</UButton>
 						</div>
 					</template>
-					
+
 				</UTabs>
-
 			</div>
-
 		</div>
 	</div>
 </template>
@@ -76,7 +74,7 @@
 import "~/assets/css/user/index.scss"
 
 // Modules
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import type { TabsItem } from '@nuxt/ui'
 
@@ -109,10 +107,9 @@ const items = [
   }
 ] satisfies TabsItem[]
 
-// Form variables
-const pseudo = ref('')
-const email = ref('')
-const password = ref('')
+// User
+const userInfos = ref([])
+
 
 const schema = {
 	pseudo: {
@@ -134,6 +131,30 @@ const state = ref({
 	email: '',
 	password: ''
 })
+
+
+// Récupération des infos de l'utilisateur
+onMounted(async () => {
+  const token = localStorage.getItem('token');
+  if (!token) return;
+
+  try {
+    const result = await $fetch(`http://localhost:3001/api/users/infos?userTarget=${idUser}`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    });
+    userInfos.value = result[0];
+
+	state.value.pseudo = userInfos.value.pseudo
+	state.value.email = userInfos.value.email
+
+  } catch (error) {
+    console.error("Erreur lors du chargement des informations de l'utilisateur :", error);
+  }
+});
 
 
 // 2FA

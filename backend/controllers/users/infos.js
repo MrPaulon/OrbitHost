@@ -4,7 +4,7 @@ const { getConnection } = require('../../db/connection');
 const logger = require('../../utils/logger');
 
 module.exports = async (req, res) => {
-  const { userTarget = req.user?.userId } = req.body; // Récupère l'utilisateur cible ou lui même par défaut
+  const userTarget = req.query.userTarget || req.user?.userId; // Récupère l'utilisateur cible depuis la query ou lui même par défaut
   const userId = req.user?.userId;
   const userIsAdmin = req.user.isAdmin;
 
