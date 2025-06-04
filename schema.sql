@@ -9,6 +9,20 @@ CREATE TABLE users (
   is_admin BOOLEAN DEFAULT FALSE
 );
 
+CREATE TABLE nodes (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL UNIQUE,
+  fqdn VARCHAR(255) NOT NULL, -- Fully Qualified Domain Name
+  ip_address VARCHAR(45) NOT NULL,
+  location_id INT, -- Référence à la table `locations`
+  token VARCHAR(64) NOT NULL UNIQUE, -- pour communication sécurisée avec l'agent
+  status VARCHAR(20) DEFAULT 'unknown',
+  ssh_port INT DEFAULT 22,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (location_id) REFERENCES locations(id) ON DELETE SET NULL
+);
+
 CREATE TABLE servers (
   id INT AUTO_INCREMENT PRIMARY KEY,
   user_id INT NOT NULL,
