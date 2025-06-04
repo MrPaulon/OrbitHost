@@ -23,6 +23,10 @@ const userRoutes = require('./routes/users');
 app.use('/api/users', userRoutes);
 
 // Routes servers
+const serverNodes = require('./routes/nodes');
+app.use('/api/nodes', serverNodes);
+
+// Routes servers
 const serverRoutes = require('./routes/servers');
 app.use('/api/servers', serverRoutes);
 
