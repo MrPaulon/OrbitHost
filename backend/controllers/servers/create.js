@@ -3,7 +3,7 @@ const logger = require('../../utils/logger');
 const jwt = require('jsonwebtoken');
 
 module.exports = async (req, res) => {
-    const { name, ip_address, ssh_port, ownerId = req.user?.userId } = req.body;
+    const { name, ip_address, ssh_port, node_id, ownerId = req.user?.userId } = req.body;
     const userId = req.user?.userId;
 
     if (!userId) {
@@ -30,8 +30,8 @@ module.exports = async (req, res) => {
 
         // Étape 1 : insérer d'abord sans token
         const result = await conn.query(
-            'INSERT INTO servers (user_id, name, ip_address, ssh_port) VALUES (?, ?, ?, ?)',
-            [ownerId, name, ip_address, ssh_port]
+            'INSERT INTO servers (user_id, node_id, name, ip_address, ssh_port) VALUES (?, ?, ?, ?, ?)',
+            [ownerId, node_id, name, ip_address, ssh_port]
         );
         const serverID = Number(result.insertId);
 

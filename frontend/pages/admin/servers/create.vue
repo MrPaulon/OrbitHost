@@ -60,7 +60,7 @@ definePageMeta({
 })
 
 // Variables
-const itemsnode = ref(['Node 01'])
+const itemsnode = ref([])
 const itemstype = ref(['VPS', 'Docker'])
 const itemsuser = ref([])
 const toast = useToast()
@@ -92,6 +92,8 @@ var commandtocpy = '';
 onMounted(async () => {
   try {
     const token = localStorage.getItem('token')
+
+    // Récupération des users
     const users = await $fetch('http://localhost:3001/api/users/list', {
       headers: {
         Authorization: `Bearer ${token}`
@@ -100,6 +102,17 @@ onMounted(async () => {
     itemsuser.value = users.map(user => ({
       label: user.pseudo,
       value: user.id
+    }))
+
+    // Récupération des nodes
+    const nodes = await $fetch('http://localhost:3001/api/nodes/list', {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    itemsnode.value = nodes.map(node => ({
+      label: node.name,
+      value: node.id
     }))
   } catch (error) {
     console.error('Erreur lors du chargement des utilisateurs:', error)
@@ -131,6 +144,7 @@ async function createServer() {
       },
       body: {
         name: form.value.name,
+        node_id: form.value.node,
         ip_address: form.value.ip_address,
         ownerId: form.value.user.value,
         ssh_port: form.value.port
