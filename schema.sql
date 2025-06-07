@@ -18,6 +18,10 @@ CREATE TABLE nodes (
   token VARCHAR(255) NULL UNIQUE, -- pour communication sécurisée avec l'agent
   status VARCHAR(20) DEFAULT 'unknown',
   ssh_port INT DEFAULT 22,
+  maintenance BOOLEAN DEFAULT FALSE,
+  cpu_usage FLOAT DEFAULT -1,
+  ram_usage FLOAT DEFAULT -1,
+  storage_usage FLOAT DEFAULT -1,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   FOREIGN KEY (location_id) REFERENCES locations(id) ON DELETE SET NULL
