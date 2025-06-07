@@ -46,8 +46,23 @@ onMounted(async () => {
 })
 
 
-function deleteNodes(id: number) {
-console.log('Supprimer Nodes', id)
-// Logique suppresion d'une node
+async function deleteNodes(nodeId: number) {
+  const token = localStorage.getItem('token')
+  if (!token) return
+
+  try {
+    await $fetch(`http://localhost:3001/api/nodes/delete/${nodeId}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+
+    // Mets à jour la liste après suppression
+    nodes.value = nodes.value.filter(n => n.id !== nodeId)
+
+  } catch (error) {
+    console.error('Erreur lors de la suppression de la node :', error)
+  }
 }
 </script>
