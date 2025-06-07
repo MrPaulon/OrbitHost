@@ -49,7 +49,7 @@
                   </UFormField>
               </div>
               <div class="createbtn">
-                  <UButton icon="solar:check-square-bold-duotone" class="btn submit" size="xl" type="button" @click="createNode" color="primary">Créer</UButton>
+                  <UButton icon="solar:check-square-bold-duotone" class="btn submit" size="xl" type="button" @click="handleSubmit" color="primary">Créer</UButton>
               </div>
             </template>
           </UStepper>
@@ -71,7 +71,7 @@ definePageMeta({
 // Importations des modules
 import { ref } from 'vue'
 import { useFetch } from '#app'
-import type { StepperItem, CheckboxGroupItem } from '@nuxt/ui'
+import type { StepperItem } from '@nuxt/ui'
 
 
 // Variables
@@ -90,6 +90,7 @@ const stepperitems = [
 ] satisfies StepperItem[]
 const currentStep = ref(0)
 
+// Variables du formulaire à envoyer à l'API
 const form = ref({
   name: '',
   fqdn: '',
@@ -110,12 +111,7 @@ function next() {
   currentStep.value = 1
 }
 
-function createNode() {
-  console.log(form.value)
-  handleSubmit()
-}
-
-// Récupération liste des utilisateurs
+// Récupération liste des emplacements
 onMounted(async () => {
   try {
     const token = localStorage.getItem('token')
@@ -135,6 +131,7 @@ onMounted(async () => {
   }
 })
 
+// Fonction pour créer une node
 const handleSubmit = async () => {
   const token = localStorage.getItem('token')
   const { data, error } = await useFetch('http://localhost:3001/api/nodes/create', {
