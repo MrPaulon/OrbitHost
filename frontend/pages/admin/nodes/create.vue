@@ -112,6 +112,7 @@ function next() {
 
 function createNode() {
   console.log(form.value)
+  handleSubmit()
 }
 
 // Récupération liste des utilisateurs
@@ -135,16 +136,30 @@ onMounted(async () => {
 })
 
 const handleSubmit = async () => {
-  const { data, error } = await useFetch('/api/nodes/create', {
+  const token = localStorage.getItem('token')
+  const { data, error } = await useFetch('http://localhost:3001/api/nodes/create', {
     method: 'POST',
+    headers: {
+        Authorization: `Bearer ${token}`
+    },
     body: form.value
   })
 
   if (error.value) {
-    console.error('Erreur lors de la création de la node :', error.value.data?.error)
+    toast.add({
+      title: 'Erreur',
+      description: `Problème à la création de la node: ${error.value.data?.error}`,
+      color: 'error'
+    })
     return
   }
 
-  alert('Node créée avec succès !')
+  toast.add({
+    title: 'Node créé',
+    description: `La node: ${form.value.name} à été créé`,
+    color: 'success'
+  })
+
+  navigateTo('/admin/nodes')
 }
 </script>
