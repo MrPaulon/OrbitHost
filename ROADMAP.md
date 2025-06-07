@@ -96,7 +96,16 @@
 
 ---
 
-## 🔹 Phase 6 – Sécurité & Production
+## 🔹 Phase 6 – Interface de gestion Client + Administrateur
+**Durée : 4-6 jours**
+- [X] Mise en place du site vitrine + docs
+- [X] Interface admin (Liaison avec API)
+- [ ] Interface client (Gestion du serveur, Webconsole, FileManager...)
+- [ ] Logs des actions (auth, exécutions, agents)
+
+---
+
+## 🔹 Phase 7 – Sécurité & Production
 **Durée : 4-6 jours**
 - [ ] HTTPS obligatoire (Let's Encrypt avec Nginx ou Caddy)
 - [ ] Vérifications d'entrée côté API (validation, sanitisation)
@@ -106,7 +115,7 @@
 
 ---
 
-## 🔹 Phase 7 – Améliorations & Extensions
+## 🔹 Phase 8 – Améliorations & Extensions
 **Durée : 7+ jours**
 - [ ] Interface admin (liste globale des serveurs & users)
 - [ ] Graphiques (CPU, RAM dans le temps avec Chart.js ou ApexCharts)
