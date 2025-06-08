@@ -8,7 +8,7 @@
         item-type="locations"
         :fields="['id', 'name']"
         @delete="deleteLocations"
-        icon="solar:server-square-cloud-bold-duotone"
+        icon="solar:map-point-bold-duotone"
       />
     </div>
   </div>
