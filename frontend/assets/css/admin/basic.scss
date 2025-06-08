@@ -8,15 +8,17 @@
         flex-direction: column;
         display: flex;
         justify-content: center;
-        margin-left: 400px;
+        align-items: center;
+        margin-left: 350px;
 
         h1 {
             text-align: left;
-            width: 100%;
+            width: 90%;
             margin-bottom: 50px;
             font-weight: bold;
             text-transform: uppercase;
             font-size: 30px;
+            max-width: 1200px;
         }
     }
 }
