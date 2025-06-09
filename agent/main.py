@@ -2,7 +2,7 @@ from fastapi import FastAPI, Depends
 from utils.executor import run_command
 from middleware.auth import verify_token
 from utils.console import router as console_router
-from config import AGENT_PORT
+from config import AGENT_PORT, AGENT_IP
 
 app = FastAPI()
 
@@ -14,4 +14,4 @@ app.include_router(console_router, prefix="/console")
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("main:app", host="0.0.0.0", port=AGENT_PORT)
+    uvicorn.run("main:app", host=AGENT_IP, port=AGENT_PORT)
