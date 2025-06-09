@@ -74,6 +74,44 @@
                     color: var(--color-text);
                 }
             }
+
+            .deployementsection {
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+
+                p {
+                    margin-top: 40px;
+                    width: 90%;
+                }
+
+                .copysection {
+                    margin-top: 20px;
+                    width: 90%;
+                    height: auto;
+                    display: flex;
+                    gap: 10px;
+                    justify-content: center;
+    
+                    .command {
+                        background-color: var(--color-bg-alt);
+                        border-radius: 5px;
+                        padding: 5px;
+                        overflow: scroll;
+                        width: -webkit-fill-available;
+                    }
+
+                    .btncpy {
+                        background-color: var(--color-bg-alt);
+                    }
+                }
+
+                .btnclose {
+                    color: var(--color-text);
+                    margin-top: 30px;
+                    width: fit-content;
+                }
+            }
         }
     }
 }

@@ -52,6 +52,17 @@
                   <UButton icon="solar:check-square-bold-duotone" class="btn submit" size="xl" type="button" @click="handleSubmit" color="primary">Créer</UButton>
               </div>
             </template>
+
+            <template #deploy>
+            <div class="deployementsection">
+              <p>Copie/colle la commande suivante sur le terminal de ton serveur pour terminer la configuration: </p>
+              <div class="copysection">
+                <pre class="command">{{ commandtocpy }}</pre>
+                <UButton class="btncpy" @click="copyCommand()" icon="solar:copy-bold-duotone" variant="solid" color="neutral"/>
+              </div>
+              <UButton class="btnclose" icon="solar:check-square-bold-duotone" size="xl" variant="solid" to="../nodes">Terminer</UButton>
+            </div>
+          </template>
           </UStepper>
         </UForm>
       </div>  
@@ -86,9 +97,16 @@ const stepperitems = [
     slot: 'settings' as const,
     title: 'Réglages',
     icon: 'solar:settings-bold-duotone'
+  },
+  {
+    slot: 'deploy' as const,
+    title: 'Déploiement',
+    icon: 'solar:rocket-bold-duotone'
   }
 ] satisfies StepperItem[]
 const currentStep = ref(0)
+
+var commandtocpy = '';
 
 // Variables du formulaire à envoyer à l'API
 const form = ref({
@@ -109,6 +127,15 @@ const itemsLocation = ref([])
 
 function next() {
   currentStep.value = 1
+}
+
+function copyCommand() {
+  navigator.clipboard.writeText(commandtocpy);
+  toast.add({
+    title: 'Presse-papier',
+    description: `La commande a été copié`,
+    color: 'info'
+  })
 }
 
 // Récupération liste des emplacements
@@ -142,6 +169,8 @@ const handleSubmit = async () => {
     body: form.value
   })
 
+  commandtocpy = data.value.command;
+
   if (error.value) {
     toast.add({
       title: 'Erreur',
@@ -157,6 +186,7 @@ const handleSubmit = async () => {
     color: 'success'
   })
 
-  navigateTo('/admin/nodes')
+
+  currentStep.value += 1
 }
 </script>

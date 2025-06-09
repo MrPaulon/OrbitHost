@@ -3,7 +3,7 @@ const logger = require('../../utils/logger');
 const jwt = require('jsonwebtoken');
 
 module.exports = async (req, res) => {
-    const { name, fqdn, ip_address, location_id, storageValue, memoryValue, cpuValue, maintenance } = req.body;
+    const { name, fqdn, ip_address, location_id, storageValue, memoryValue, cpuValue, maintenance, port = '5555' } = req.body;
     const userId = req.user?.userId;
 
     if (!userId) {
@@ -16,8 +16,8 @@ module.exports = async (req, res) => {
 
         // Étape 1 : insérer d'abord sans token
         const result = await conn.query(
-            'INSERT INTO nodes (name, fqdn, ip_address, location_id, storage_usage, ram_usage, cpu_usage, maintenance) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
-            [name, fqdn, ip_address, location_id, storageValue, memoryValue, cpuValue, maintenance]
+            'INSERT INTO nodes (name, fqdn, ip_address, location_id, storage_usage, ram_usage, cpu_usage, maintenance, ssh_port) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
+            [name, fqdn, ip_address, location_id, storageValue, memoryValue, cpuValue, maintenance, port]
         );
         const nodeID = Number(result.insertId);
 
@@ -42,10 +42,14 @@ module.exports = async (req, res) => {
 
         logger.info(`Node ajouté par l'utilisateur ${userId} avec l'ID ${nodeID}`, { ip: req.ipAddress });
 
+        const envContent = `AGENT_TOKEN=${token}\nAGENT_PORT=${port}\nAGENT_IP=${ip_address}`;
+        const command = `echo "${envContent}" > .env && ./start.sh`;
+
         return res.status(201).json({
             message: 'Node ajouté.',
-            id: nodeID,
-            token
+            nodeID: nodeID,
+            command
+
         });
     } catch (err) {
         logger.error(`Erreur lors de l'ajout du node: ${err.message}`, { ip: req.ipAddress });
