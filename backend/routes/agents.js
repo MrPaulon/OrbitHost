@@ -5,7 +5,5 @@ const router = express.Router();
 const verifyToken = require('../middleware/auth');
 
 // Routes
-const ping = require('../controllers/agents/ping');
-router.post('/ping', verifyToken, ping);
 
 module.exports = router;
