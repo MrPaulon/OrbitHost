@@ -40,8 +40,8 @@
                         <div class="stats">
                             <h2>Utilisation des ressources</h2>
                             <div class="charts">
-                                <StatsChart class="graphique" color="#6690ff" label="Utilisation CPU (%)" :data="[12, 12, 12, 14, 15, 15, 10, 10]" />
-                                <StatsChart class="graphique" color="#c07efe" label="Utilisation RAM (%)" :data="[60, 62, 58, 70, 68, 75, 72, 78]" />
+                                <StatsChart class="graphique" color="#6690ff" label="Utilisation CPU (%)" :data="[12, 12, 12, 14, 15]" />
+                                <StatsChart class="graphique" color="#c07efe" label="Utilisation RAM (%)" :data="[60, 62, 58, 70, 68]" />
                                 <PieChart
                                 class="graphique"
                                 :labels="['Disque disponible', 'Disque utilisé']"

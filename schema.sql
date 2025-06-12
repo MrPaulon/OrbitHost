@@ -27,6 +27,26 @@ CREATE TABLE nodes (
   FOREIGN KEY (location_id) REFERENCES locations(id) ON DELETE SET NULL
 );
 
+CREATE TABLE node_metrics (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  node_id INT NOT NULL,
+  os VARCHAR(100),
+  os_version VARCHAR(255),
+  architecture VARCHAR(100),
+  processor VARCHAR(100),
+  cpu_count INTEGER,
+  cpu_percent FLOAT,
+  memory_total_gb BIGINT,
+  memory_used_gb BIGINT,
+  memory_percent FLOAT,
+  disk_total_gb BIGINT,
+  disk_used_gb BIGINT,
+  disk_percent FLOAT,
+  boot_time BIGINT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (node_id) REFERENCES nodes(id) ON DELETE CASCADE
+);
+
 CREATE TABLE servers (
   id INT AUTO_INCREMENT PRIMARY KEY,
   user_id INT NOT NULL,

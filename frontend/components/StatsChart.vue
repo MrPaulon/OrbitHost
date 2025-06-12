@@ -12,7 +12,7 @@ ChartJS.register(Title, Tooltip, Legend, LineElement, CategoryScale, LinearScale
 const { label, data, color} = defineProps<{ label: string; data: number[]; color: string }>()
 
 const chartData = ref({
-  labels: Array.from({ length: 8 }, (_, i) => `${i + 1}`),
+  labels: Array.from({ length: 5 }, (_, i) => `${i + 1}`),
   datasets: [{
     label: '',
     data: [],
