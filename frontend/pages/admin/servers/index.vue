@@ -1,5 +1,5 @@
 <template>
-  <div class="serverspage">
+  <div class="adminpage">
     <div class="content">
       <h1>Liste des serveurs</h1>
       <ListTable
