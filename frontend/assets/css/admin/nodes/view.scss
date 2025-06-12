@@ -1,0 +1,80 @@
+.viewpage {
+    position: absolute;
+    width: 100%;
+    margin-top: 80px;
+
+    .content {
+        margin-top: 40px;
+        flex-direction: column;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 350px;
+
+        h1 {
+            text-align: left;
+            width: 90%;
+            margin-bottom: 50px;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 30px;
+            max-width: 1200px;
+        }
+
+        .card {
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-border);
+            width: 90%;
+            height: auto;
+            max-width: 1200px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 10px;
+
+            .overview {
+                margin-top: 20px;
+                margin-left: 20px;
+                .informations {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 15px;
+                    .infocard {
+                        margin-top: 10px;
+                        padding: 15px;
+                        border: 1px solid var(--color-border);
+                        display: flex;
+                        flex-direction: column;
+                        width: auto;
+                        border-radius: 10px;
+
+                        p {
+                            font-weight: bold;
+                        }
+                    }
+                }
+                
+            }
+
+            .stats {
+                margin-top: 20px;
+                margin-left: 20px;
+
+                .charts {
+                    margin-top: 20px;
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-around;
+
+                    .graphique {
+                        margin: 20px;
+                        max-width: 420px;
+                        max-height: 280px;
+                    }
+                }
+            }
+        }
+    }
+}

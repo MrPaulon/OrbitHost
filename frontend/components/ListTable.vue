@@ -26,7 +26,7 @@
                       icon="solar:eye-bold-duotone"
                       color="primary"
                       variant="solid"
-                      :to="`/admin/${itemType}/${item.id}`"
+                      :to="`/admin/${itemType}/${item.id}/view`"
                   />
                   <UPopover>
                     <UButton
