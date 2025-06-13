@@ -40,12 +40,13 @@
                         <div class="stats">
                             <h2>Utilisation des ressources</h2>
                             <div class="charts">
-                                <StatsChart class="graphique" color="#6690ff" label="Utilisation CPU (%)" :data="[12, 12, 12, 14, 15]" />
-                                <StatsChart class="graphique" color="#c07efe" label="Utilisation RAM (%)" :data="[60, 62, 58, 70, 68]" />
+                                <StatsChart v-if="node_metrics.cpu_percent" class="graphique" color="#6690ff" label="Utilisation CPU (%)" :data="data_cpu" />
+                                <StatsChart v-if="node_metrics.memory_percent" class="graphique" color="#c07efe" label="Utilisation RAM (%)" :data="data_memory" />
                                 <PieChart
+                                v-if="node_metrics.disk_total_gb"
                                 class="graphique"
                                 :labels="['Disque disponible', 'Disque utilisé']"
-                                :values="[70, 30]"
+                                :values="[node_metrics.disk_total_gb, node_metrics.disk_used_gb]"
                                 title="Répartition des ressources"
                                 />
                             </div>
@@ -75,6 +76,9 @@ import type { TabsItem } from '@nuxt/ui'
 const route = useRoute()
 const nodeId = route.params.nodeId as string
 const node = ref([])
+const node_metrics = ref([])
+const data_cpu = ref([])
+const data_memory= ref([])
 
 const tabsitems = ref<TabsItem[]>([
   {
@@ -107,19 +111,48 @@ const tabsitems = ref<TabsItem[]>([
 
 // Récupération de la liste de tous les node
 onMounted(async () => {
-  // Récupération du token
   const token = localStorage.getItem('token')
   if (!token) return
 
   try {
-    const [result] = await $fetch(`http://localhost:3001/api/nodes/get/${nodeId}`, {
+    const [result_node] = await $fetch(`http://localhost:3001/api/nodes/get/${nodeId}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
     })
-    node.value = result
+    node.value = result_node
+
+    get_metrics()
+    setInterval(() => {
+        get_metrics()
+    }, 5000)
+    
   } catch (error) {
     console.error('Erreur lors du chargement de la node :', error)
   }
 })
+
+function pushLimitedArray(arr: number[], value: number, maxLength: number) {
+  if (arr.length >= maxLength) {
+    arr.shift()
+  }
+  arr.push(value)
+}
+
+async function get_metrics() {
+  const token = localStorage.getItem('token')
+  if (!token) return
+  const result_metrics = await $fetch(`http://localhost:3001/api/nodes/metrics/${nodeId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
+  node_metrics.value = result_metrics
+
+  pushLimitedArray(data_cpu.value, result_metrics.cpu_percent, 8)
+  pushLimitedArray(data_memory.value, result_metrics.memory_percent, 8)
+
+  console.log('CPU data:', data_cpu.value)
+  console.log('Memory data:', data_memory.value)
+}
 </script>
