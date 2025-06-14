@@ -52,6 +52,60 @@
                             </div>
                         </div>
                     </template>
+
+                    <template #settings>
+                        <div class="settings">
+                            <UForm class="w-full" :state="node_form" @submit="updateInfos">
+                                <div class="flex flex-wrap">
+                                    <div class="champs">
+                                        <UFormField label="Nom de la node">
+                                            <UInput v-model="node_form.name" icon="solar:text-square-bold-duotone" size="xl" placeholder="ex: node-paris-1" required />
+                                        </UFormField>
+                                        <UFormField label="Maintenance" style="width: 300px;">
+                                            <UCheckbox size="sm" color="primary" variant="card" v-model="node_form.maintenance" label="Actif" />
+                                        </UFormField>
+                                    </div>
+                                    <USeparator/>
+
+                                    <div class="champs">
+                                        <UFormField label="FQDN">
+                                            <UInput v-model="node_form.fqdn" icon="solar:diploma-verified-bold-duotone" size="xl" placeholder="ex: node1.exemple.com" required  />
+                                        </UFormField>
+                                        <UFormField label="Adresse IP">
+                                            <UInput v-model="node_form.ip_address" icon="solar:station-bold-duotone" size="xl" placeholder="ex: 192.168.1.10" required  />
+                                        </UFormField>
+                                        <UFormField label="Port">
+                                            <UInput v-model="node_form.ssh_port" icon="solar:shield-network-bold-duotone" size="xl" placeholder="ex: 8080" required  />
+                                        </UFormField>
+                                        <UFormField label="localisation">
+                                            <USelect class="btn" icon="solar:map-point-bold-duotone" size="xl" v-model="node_form.location_id" :items="itemsLocation" required/>
+                                        </UFormField>
+                                        <UFormField label="Méthode">
+                                            <USelect class="btn" icon="solar:slash-square-bold-duotone" size="xl" v-model="node_form.method" :items="itemsMethod" required/>
+                                        </UFormField>
+                                    </div>
+                                    <USeparator/>
+
+                                    <div class="champs">
+                                        <UFormField label="Capacité de stockage (Mb)">
+                                            <UInput type="number"v-model="node_form.storage_usage" icon="solar:shield-network-bold-duotone" size="xl" placeholder="-1 = illimité" required  />
+                                        </UFormField>
+                                        <UFormField label="Mémoire vive (Mb)">
+                                            <UInput type="number" v-model="node_form.ram_usage" icon="solar:shield-network-bold-duotone" size="xl" placeholder="-1 = illimité" required  />
+                                        </UFormField>
+                                        <UFormField label="CPU (% / 100)">
+                                            <UInput type="number" v-model="node_form.cpu_usage" icon="solar:shield-network-bold-duotone" size="xl" placeholder="-1 = illimité" max="100" required  />
+                                        </UFormField>
+                                    </div>
+                                    <USeparator/>
+
+                                    <div class="createbtn">
+                                        <UButton icon="solar:refresh-square-bold-duotone" class="btn submit" size="xl" type="submit" color="primary">Mettre à jour</UButton>
+                                    </div>
+                                </div>
+                            </UForm>
+                        </div>
+                    </template>
                 </UTabs>
             </div>
         </div>
@@ -70,6 +124,7 @@ import "~/assets/css/admin/nodes/view.scss"
 // Importations des modules
 import { useRoute } from 'vue-router'
 import type { TabsItem } from '@nuxt/ui'
+import { number } from "yup"
 
 
 // Variables
@@ -79,6 +134,8 @@ const node = ref([])
 const node_metrics = ref([])
 const data_cpu = ref([])
 const data_memory= ref([])
+const itemsMethod = ref(['HTTP', 'HTTPS'])
+const itemsLocation = ref(['HTTP'])
 
 const tabsitems = ref<TabsItem[]>([
   {
@@ -108,6 +165,20 @@ const tabsitems = ref<TabsItem[]>([
   }
 ])
 
+// Variables du formulaire à envoyer à l'API
+const node_form = ref({
+  name: '',
+  fqdn: '',
+  ip_address: '',
+  ssh_port: '',
+  location_id: '',
+  method: '',
+  storage_usage: '',
+  ram_usage: '',
+  cpu_usage: '',
+  maintenance: true
+})
+
 
 // Récupération de la liste de tous les node
 onMounted(async () => {
@@ -121,6 +192,18 @@ onMounted(async () => {
       }
     })
     node.value = result_node
+    node_form.value = node.value
+
+    // Récupération des location
+    const locations = await $fetch('http://localhost:3001/api/locations/list', {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    itemsLocation.value = locations.map(location => ({
+      label: location.name,
+      value: location.id
+    }))
 
     get_metrics()
     setInterval(() => {
@@ -154,5 +237,10 @@ async function get_metrics() {
 
   console.log('CPU data:', data_cpu.value)
   console.log('Memory data:', data_memory.value)
+}
+
+// Fonction pour créer une node
+const updateInfos = async () => {
+    console.log('Salade')
 }
 </script>
