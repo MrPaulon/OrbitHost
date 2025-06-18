@@ -11,11 +11,13 @@ const list = require('../controllers/nodes/list');
 const remove = require('../controllers/nodes/delete');
 const get = require('../controllers/nodes/get');
 const metrics = require('../controllers/nodes/metrics');
+const update = require('../controllers/nodes/update');
 
 router.post('/create', verifyToken, isAdmin, create);
 router.get('/list', verifyToken, isAdmin, list);
 router.delete('/delete/:id', verifyToken, isAdmin, remove);
 router.get('/get/:id', verifyToken, isAdmin, get);
 router.get('/metrics/:id', verifyToken, isAdmin, metrics);
+router.post('/update', verifyToken, isAdmin, update);
 
 module.exports = router;
