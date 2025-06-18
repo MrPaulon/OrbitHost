@@ -81,7 +81,7 @@
                                             <USelect class="btn" icon="solar:map-point-bold-duotone" size="xl" v-model="node_form.location_id" :items="itemsLocation" required/>
                                         </UFormField>
                                         <UFormField label="Méthode">
-                                            <USelect class="btn" icon="solar:slash-square-bold-duotone" size="xl" v-model="node_form.method" :items="itemsMethod" required/>
+                                            <USelect class="btn" icon="solar:slash-square-bold-duotone" size="xl" v-model="node_form.method" default-value="HTTP" :items="itemsMethod" required/>
                                         </UFormField>
                                     </div>
                                     <USeparator/>
@@ -124,18 +124,18 @@ import "~/assets/css/admin/nodes/view.scss"
 // Importations des modules
 import { useRoute } from 'vue-router'
 import type { TabsItem } from '@nuxt/ui'
-import { number } from "yup"
 
 
 // Variables
 const route = useRoute()
+const toast = useToast()
 const nodeId = route.params.nodeId as string
 const node = ref([])
 const node_metrics = ref([])
 const data_cpu = ref([])
 const data_memory= ref([])
 const itemsMethod = ref(['HTTP', 'HTTPS'])
-const itemsLocation = ref(['HTTP'])
+const itemsLocation = ref([])
 
 const tabsitems = ref<TabsItem[]>([
   {
@@ -241,6 +241,10 @@ async function get_metrics() {
 
 // Fonction pour créer une node
 const updateInfos = async () => {
-    console.log('Salade')
+    toast.add({
+    title: 'Mise à jour',
+    description: `La Node à bien été modifié`,
+    color: 'success'
+  })
 }
 </script>
