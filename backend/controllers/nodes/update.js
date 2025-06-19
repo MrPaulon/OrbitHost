@@ -2,9 +2,10 @@ const { getConnection } = require('../../db/connection');
 const logger = require('../../utils/logger');
 
 module.exports = async (req, res) => {
-    const { nodeId, name, fqdn, ip_address, location_id, token, status, ssh_port, maintenance, cpu_usage, ram_usage, storage_usage } = req.body;
+    const { id, name, fqdn, ip_address, location_id, token, status, ssh_port, maintenance, cpu_usage, ram_usage, storage_usage } = req.body;
     const userId = req.user?.userId;
 
+    const nodeId = id
     // Vérifiaction que l'utilisateur soit identifié
     if (!userId) {
         logger.warn(`Tentative de modification par un utilisateur non authentifié`, { ip: req.ipAddress });
@@ -33,6 +34,7 @@ module.exports = async (req, res) => {
         if (status) fieldsToUpdate.status = status;
         if (ssh_port) fieldsToUpdate.ssh_port = ssh_port;
         if (maintenance) fieldsToUpdate.maintenance = maintenance;
+        else fieldsToUpdate.maintenance = false;
         if (cpu_usage) fieldsToUpdate.cpu_usage = cpu_usage;
         if (ram_usage) fieldsToUpdate.ram_usage = ram_usage;
         if (storage_usage) fieldsToUpdate.storage_usage = storage_usage;
@@ -41,8 +43,6 @@ module.exports = async (req, res) => {
             conn.release();
             return res.status(400).json({ error: 'Aucun champ à mettre à jour.' });
         }
-
-        console.log(fieldsToUpdate)
 
         const updateQuery = 'UPDATE nodes SET ' + Object.keys(fieldsToUpdate).map(key => `${key} = ?`).join(', ') + ' WHERE id = ?';
         const updateValues = [...Object.values(fieldsToUpdate), nodeId];

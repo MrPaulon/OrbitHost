@@ -124,6 +124,7 @@ import "~/assets/css/admin/nodes/view.scss"
 // Importations des modules
 import { useRoute } from 'vue-router'
 import type { TabsItem } from '@nuxt/ui'
+import { boolean } from "yup"
 
 
 // Variables
@@ -176,7 +177,7 @@ const node_form = ref({
   storage_usage: '',
   ram_usage: '',
   cpu_usage: '',
-  maintenance: true
+  maintenance: boolean
 })
 
 
@@ -234,17 +235,37 @@ async function get_metrics() {
 
   pushLimitedArray(data_cpu.value, result_metrics.cpu_percent, 8)
   pushLimitedArray(data_memory.value, result_metrics.memory_percent, 8)
-
-  console.log('CPU data:', data_cpu.value)
-  console.log('Memory data:', data_memory.value)
 }
 
 // Fonction pour créer une node
 const updateInfos = async () => {
+  const token = localStorage.getItem('token');
+  if (!token) {
+    console.error('Token manquant');
+    return;
+  }
+  
+  try {
+    await $fetch('http://localhost:3001/api/nodes/update', {
+    method: 'POST',
+    headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+      body: node_form.value
+    });
     toast.add({
-    title: 'Mise à jour',
-    description: `La Node à bien été modifié`,
-    color: 'success'
-  })
+      title: 'Mise à jour',
+      description: `La Node à bien été modifié`,
+      color: 'success'
+    })
+  } catch (error) {
+    console.error('Erreur lors de la mise à jour de la node :', error);
+    toast.add({
+      title: 'Erreur',
+      description: `La Node à bien n'a pas été modifié`,
+      color: 'error'
+    })
+  }
 }
 </script>
