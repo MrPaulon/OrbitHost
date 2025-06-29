@@ -37,8 +37,10 @@
                             </div>
                         </div>
 
-                        <div class="stats">
-                            <h2>Utilisation des ressources</h2>
+
+                        <div class="stats" >
+                            <UButton class="btn" @click="view_metrics">Afficher les statistiques</UButton>
+                            <h2 v-if="node_metrics.cpu_percent">Utilisation des ressources</h2>
                             <div class="charts">
                                 <StatsChart v-if="node_metrics.cpu_percent" class="graphique" color="#6690ff" label="Utilisation CPU (%)" :data="data_cpu" />
                                 <StatsChart v-if="node_metrics.memory_percent" class="graphique" color="#c07efe" label="Utilisation RAM (%)" :data="data_memory" />
@@ -205,11 +207,6 @@ onMounted(async () => {
       label: location.name,
       value: location.id
     }))
-
-    get_metrics()
-    setInterval(() => {
-        get_metrics()
-    }, 5000)
     
   } catch (error) {
     console.error('Erreur lors du chargement de la node :', error)
@@ -235,6 +232,13 @@ async function get_metrics() {
 
   pushLimitedArray(data_cpu.value, result_metrics.cpu_percent, 8)
   pushLimitedArray(data_memory.value, result_metrics.memory_percent, 8)
+}
+
+async function view_metrics() {
+  get_metrics()
+  setInterval(() => {
+      get_metrics()
+  }, 5000)
 }
 
 // Fonction pour créer une node
